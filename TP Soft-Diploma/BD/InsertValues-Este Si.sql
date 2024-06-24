@@ -16,18 +16,18 @@ Go
 
 -- Insertar valores en la tabla Personas 
 INSERT INTO Personas (legajo, nombre, apellido, mail, telefono) VALUES
-(1, 'Juan', 'González', 'juangonzalez@example.com', '555-1234'),
-(2, 'María', 'López', 'marialopez@example.com', '555-5678'),
-(3, 'Carlos', 'Martínez', 'carlosmartinez@example.com', '555-9012'),
-(4, 'Laura', 'Rodríguez', 'laurarodriguez@example.com', '555-3456');
+(1, 'Juan', 'González', 'juan.gonzalez@example.com', '555-1234'),
+(2, 'María', 'López', 'maria.lopez@example.com', '555-5678'),
+(3, 'Carlos', 'Martínez', 'carlos.martinez@example.com', '555-9012'),
+(4, 'Laura', 'Rodríguez', 'laura.rodriguez@example.com', '555-3456'),
+(5, 'Martina', 'Garcia', 'martina.garcia@example.com', '555-9632');
 Go
 
+--//////////////////////////////////////////////////////////////////
 -- Insertar valores en la tabla Roles
 INSERT INTO Roles (id, descripcion) VALUES
 (1, 'Consultor'),
-(2, 'Administrador'),
-(3, 'Rol 3'), --PARA LLENAR DESPUES
-(4, 'Rol 4');
+(2, 'Administrador')
 Go
 
 -- Insertar valores en la tabla Postulantes
@@ -211,9 +211,11 @@ Go
 -- Insertar valores en la tabla OL_Consultor_Asignado
 INSERT INTO OL_Consultor_Asignado (nro_OL, legajo_consultor) VALUES
 (1, 1),
-(2, 2),
+--(2, 2),
 (3, 3),
-(4, 4);
+--(4, 4);
+(2, 1),
+(4, 3);
 Go
 
 -- Insertar valores en la tabla OL_Clientes
@@ -236,8 +238,8 @@ Go
 INSERT INTO Personas_Rol (id_Rol, legajo) VALUES
 (1, 1),
 (2, 2),
-(3, 3),
-(4, 4);
+(2, 3),
+(1, 3);
 Go
 
 -- Insertar valores en la tabla Mensajes

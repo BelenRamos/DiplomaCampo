@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{92839E01-E1DA-41B9-8F65-691E32B65255}</ProjectGuid>
+    <ProjectGuid>{BC9B6E2D-DA95-4F13-98DE-70DF5E99084F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Modelo</RootNamespace>
@@ -163,28 +163,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clientes.cs" />
-    <Compile Include="Clientes_Telefonos.cs" />
-    <Compile Include="Entrevistas.cs" />
-    <Compile Include="Estados.cs" />
-    <Compile Include="Evaluaciones.cs" />
-    <Compile Include="Mensajes.cs" />
+    <Compile Include="Sistema\Clientes.cs" />
+    <Compile Include="Sistema\Clientes_Telefonos.cs" />
+    <Compile Include="Sistema\Entrevistas.cs" />
+    <Compile Include="Sistema\Estados.cs" />
+    <Compile Include="Sistema\Evaluaciones.cs" />
+    <Compile Include="Seguridad\Formularios.cs" />
+    <Compile Include="Seguridad\Grupos.cs" />
+    <Compile Include="Sistema\Mensajes.cs" />
     <Compile Include="Modelo.cs" />
-    <Compile Include="Ofertas_Laborales.cs" />
-    <Compile Include="Perfiles.cs" />
-    <Compile Include="Personas.cs" />
-    <Compile Include="Postulantes.cs" />
+    <Compile Include="Seguridad\Modulos.cs" />
+    <Compile Include="Sistema\Ofertas_Laborales.cs" />
+    <Compile Include="Sistema\Perfiles.cs" />
+    <Compile Include="Seguridad\Permisos.cs" />
+    <Compile Include="Sistema\Personas.cs" />
+    <Compile Include="Sistema\Postulantes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Psicologos.cs" />
-    <Compile Include="Requisitos.cs" />
-    <Compile Include="Reuniones.cs" />
-    <Compile Include="Roles.cs" />
-    <Compile Include="Tipo_Evaluaciones.cs" />
-    <Compile Include="Turnos.cs" />
-    <Compile Include="TurnosReuniones.cs" />
+    <Compile Include="Sistema\Psicologos.cs" />
+    <Compile Include="Sistema\Requisitos.cs" />
+    <Compile Include="Sistema\Reuniones.cs" />
+    <Compile Include="Sistema\Roles.cs" />
+    <Compile Include="Seguridad\SessionManager.cs" />
+    <Compile Include="Sistema\Tipo_Evaluaciones.cs" />
+    <Compile Include="Sistema\Turnos.cs" />
+    <Compile Include="Sistema\TurnosReuniones.cs" />
+    <Compile Include="Seguridad\Usuarios.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -17,18 +17,24 @@ namespace Modelo
         public virtual DbSet<Entrevistas> Entrevistas { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
         public virtual DbSet<Evaluaciones> Evaluaciones { get; set; }
+        public virtual DbSet<Formularios> Formularios { get; set; }
+        public virtual DbSet<Grupos> Grupos { get; set; }
         public virtual DbSet<Mensajes> Mensajes { get; set; }
+        public virtual DbSet<Modulos> Modulos { get; set; }
         public virtual DbSet<Ofertas_Laborales> Ofertas_Laborales { get; set; }
         public virtual DbSet<Perfiles> Perfiles { get; set; }
+        public virtual DbSet<Permisos> Permisos { get; set; }
         public virtual DbSet<Personas> Personas { get; set; }
         public virtual DbSet<Postulantes> Postulantes { get; set; }
         public virtual DbSet<Psicologos> Psicologos { get; set; }
         public virtual DbSet<Requisitos> Requisitos { get; set; }
         public virtual DbSet<Reuniones> Reuniones { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<SessionManager> SessionManager { get; set; }
         public virtual DbSet<Tipo_Evaluaciones> Tipo_Evaluaciones { get; set; }
         public virtual DbSet<Turnos> Turnos { get; set; }
         public virtual DbSet<TurnosReuniones> TurnosReuniones { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -68,6 +74,33 @@ namespace Modelo
                 .WithMany(e => e.Evaluaciones)
                 .Map(m => m.ToTable("Evaluciones_Postulantes").MapLeftKey("nro_evaluacion").MapRightKey("nro_postulante"));
 
+            modelBuilder.Entity<Formularios>()
+                .Property(e => e.nombreForm)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Grupos>()
+                .Property(e => e.nombreGrupo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Grupos>()
+                .HasMany(e => e.Grupos1)
+                .WithMany(e => e.Grupos2)
+                .Map(m => m.ToTable("Grupos_Grupos").MapLeftKey("idGrupoPadre").MapRightKey("idGrupoHijo"));
+
+            modelBuilder.Entity<Grupos>()
+                .HasMany(e => e.Permisos)
+                .WithMany(e => e.Grupos)
+                .Map(m => m.ToTable("Permisos_Grupos").MapLeftKey("idGrupo").MapRightKey("idPermiso"));
+
+            modelBuilder.Entity<Grupos>()
+                .HasMany(e => e.Usuarios)
+                .WithMany(e => e.Grupos)
+                .Map(m => m.ToTable("Usuarios_Grupos").MapLeftKey("idGrupo").MapRightKey("idUsuario"));
+
+            modelBuilder.Entity<Modulos>()
+                .Property(e => e.nombreModulo)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Ofertas_Laborales>()
                 .HasMany(e => e.Postulantes)
                 .WithMany(e => e.Ofertas_Laborales)
@@ -87,6 +120,15 @@ namespace Modelo
                 .HasMany(e => e.Postulantes)
                 .WithMany(e => e.Perfiles)
                 .Map(m => m.ToTable("Perfiles_Postulantes").MapLeftKey("id_perfil").MapRightKey("nro_postulante"));
+
+            modelBuilder.Entity<Permisos>()
+                .Property(e => e.nombrePermiso)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Permisos>()
+                .HasMany(e => e.Usuarios)
+                .WithMany(e => e.Permisos)
+                .Map(m => m.ToTable("Usuarios_Permisos").MapLeftKey("idPermiso").MapRightKey("idUsuario"));
 
             modelBuilder.Entity<Personas>()
                 .HasMany(e => e.Mensajes)
@@ -124,6 +166,24 @@ namespace Modelo
                 .HasMany(e => e.Evaluaciones)
                 .WithMany(e => e.Tipo_Evaluaciones)
                 .Map(m => m.ToTable("Evaluaciones_Tipos").MapLeftKey("id_tipo").MapRightKey("nro_evaluacion"));
+
+            modelBuilder.Entity<Usuarios>()
+                .Property(e => e.nombreUsuario)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Usuarios>()
+                .Property(e => e.contrasenia)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Usuarios>()
+                .Property(e => e.emailUsuario)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Usuarios>()
+                .HasMany(e => e.SessionManager)
+                .WithRequired(e => e.Usuarios)
+                .HasForeignKey(e => e.userId)
+                .WillCascadeOnDelete(false);
         }
     }
 }

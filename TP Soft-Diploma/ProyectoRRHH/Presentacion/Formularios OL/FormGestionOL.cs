@@ -37,7 +37,7 @@ namespace Presentacion.Formularios_OL
 
         private void btnAgregarOL_Click(object sender, EventArgs e)
         {
-            using (FormAM_OL formulario = new FormAM_OL { EsAlta = true })
+            using (FormOLNuevo formulario = new FormOLNuevo { EsAlta = true })
             {
                 if (formulario.ShowDialog() == DialogResult.OK)
                 {
@@ -49,22 +49,22 @@ namespace Presentacion.Formularios_OL
 
         private void btnModificarOL_Click(object sender, EventArgs e)
         {
-            if (dgvOfertasLaborales.SelectedRows.Count > 0)
-            {
-                var ofertaSeleccionada = (Ofertas_Laborales)dgvOfertasLaborales.SelectedRows[0].DataBoundItem;
-                using (FormAM_OL formulario = new FormAM_OL { EsAlta = false, Oferta = ofertaSeleccionada })
-                {
-                    if (formulario.ShowDialog() == DialogResult.OK)
-                    {
-                        // Refrescar la lista de ofertas laborales
-                        dgvOfertasLaborales.DataSource = ofertaslaborales.ObtenerTodasLasOfertasLaborales();
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Seleccione una oferta laboral para modificar.");
-            }
+            //if (dgvOfertasLaborales.SelectedRows.Count > 0)
+            //{
+            //    var ofertaSeleccionada = (Ofertas_Laborales)dgvOfertasLaborales.SelectedRows[0].DataBoundItem;
+            //    using (FormOLNuevo formulario = new FormOLNuevo { EsAlta = false, Oferta = ofertaSeleccionada })
+            //    {
+            //        if (formulario.ShowDialog() == DialogResult.OK)
+            //        {
+            //            // Refrescar la lista de ofertas laborales
+            //            dgvOfertasLaborales.DataSource = ofertaslaborales.ObtenerTodasLasOfertasLaborales();
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Seleccione una oferta laboral para modificar.");
+            //}
         }
 
         private void btnEliminarOL_Click(object sender, EventArgs e)
