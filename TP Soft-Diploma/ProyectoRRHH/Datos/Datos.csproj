@@ -132,7 +132,7 @@
     <Compile Include="RepoSeguridad\RepoModulos.cs" />
     <Compile Include="RepoSeguridad\RepoPermisos.cs" />
     <Compile Include="RepoSeguridad\RepoUsuarios.cs" />
-    <Compile Include="RepositorioMaster.cs" />
+    <Compile Include="RepositorioMaestro.cs" />
     <Compile Include="RepositoriosSistema\RepoTipoEvaluaciones.cs" />
     <Compile Include="RepositoriosSistema\RepoTurnos.cs" />
     <Compile Include="RepositoriosSistema\RepoTurnosReuniones.cs" />

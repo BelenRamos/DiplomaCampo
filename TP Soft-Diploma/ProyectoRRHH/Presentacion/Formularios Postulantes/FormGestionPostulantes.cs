@@ -24,6 +24,11 @@ namespace Presentacion
         private void FormGestionPostulantes_Load(object sender, EventArgs e)
         {
             postulantes = NegPostulantes.ObtenerInstancia();
+            CargarPostulantes();
+        }
+
+        private void CargarPostulantes()
+        {
             try
             {
                 dgvPostulantes.DataSource = postulantes.ObtenerTodosLosPostulantes();
@@ -39,7 +44,11 @@ namespace Presentacion
             // Abre el formulario FormPostulanteNuevo
             using (FormPostulanteNuevo formulario = new FormPostulanteNuevo())
             {
-                formulario.ShowDialog();
+                if (formulario.ShowDialog() == DialogResult.OK)
+                {
+                    // Actualiza la vista después de agregar el postulante
+                    CargarPostulantes();
+                }
             }
         }
 
@@ -64,7 +73,7 @@ namespace Presentacion
                         {
                             MessageBox.Show("Postulante eliminado correctamente.");
                             // Actualiza la vista después de la eliminación
-                            dgvPostulantes.DataSource = postulantes.ObtenerTodosLosPostulantes();
+                            CargarPostulantes();
                         }
                         else
                         {
@@ -82,7 +91,6 @@ namespace Presentacion
                 MessageBox.Show("Por favor, seleccione un postulante para eliminar.");
             }
         }
-
 
         private void btnModificarPostulante_Click(object sender, EventArgs e)
         {
@@ -119,6 +127,7 @@ namespace Presentacion
                 MessageBox.Show("Por favor, seleccione un postulante para modificar.");
             }
         }
+
 
 
     }
