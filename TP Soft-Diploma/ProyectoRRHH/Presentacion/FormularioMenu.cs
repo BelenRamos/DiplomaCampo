@@ -1,4 +1,5 @@
-﻿using Presentacion.Formularios_OL;
+﻿using Presentacion.Formulario_de_Reporte;
+using Presentacion.Formularios_OL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -81,7 +82,7 @@ namespace Presentacion
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FormDashboard());
+            //OpenChildForm(new FormDashboard());
         }
 
     }
