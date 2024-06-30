@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioMenu));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnSeguridad = new System.Windows.Forms.Button();
+            this.btnDashboard = new System.Windows.Forms.Button();
             this.btnPostulantes = new System.Windows.Forms.Button();
             this.btnClientes = new System.Windows.Forms.Button();
             this.btnTurnos = new System.Windows.Forms.Button();
@@ -47,6 +49,8 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(31)))), ((int)(((byte)(48)))));
+            this.panelMenu.Controls.Add(this.btnSeguridad);
+            this.panelMenu.Controls.Add(this.btnDashboard);
             this.panelMenu.Controls.Add(this.btnPostulantes);
             this.panelMenu.Controls.Add(this.btnClientes);
             this.panelMenu.Controls.Add(this.btnTurnos);
@@ -56,8 +60,41 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(200, 398);
+            this.panelMenu.Size = new System.Drawing.Size(200, 496);
             this.panelMenu.TabIndex = 0;
+            // 
+            // btnSeguridad
+            // 
+            this.btnSeguridad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(31)))), ((int)(((byte)(48)))));
+            this.btnSeguridad.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSeguridad.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSeguridad.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
+            this.btnSeguridad.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.btnSeguridad.Location = new System.Drawing.Point(0, 440);
+            this.btnSeguridad.Name = "btnSeguridad";
+            this.btnSeguridad.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnSeguridad.Size = new System.Drawing.Size(200, 50);
+            this.btnSeguridad.TabIndex = 8;
+            this.btnSeguridad.Text = "Ajustes de Seguridad";
+            this.btnSeguridad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSeguridad.UseVisualStyleBackColor = false;
+            // 
+            // btnDashboard
+            // 
+            this.btnDashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(31)))), ((int)(((byte)(48)))));
+            this.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDashboard.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
+            this.btnDashboard.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.btnDashboard.Location = new System.Drawing.Point(0, 390);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnDashboard.Size = new System.Drawing.Size(200, 50);
+            this.btnDashboard.TabIndex = 7;
+            this.btnDashboard.Text = "Dashboard";
+            this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDashboard.UseVisualStyleBackColor = false;
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // btnPostulantes
             // 
@@ -189,14 +226,14 @@
             this.panelFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFormularios.Location = new System.Drawing.Point(200, 58);
             this.panelFormularios.Name = "panelFormularios";
-            this.panelFormularios.Size = new System.Drawing.Size(984, 340);
+            this.panelFormularios.Size = new System.Drawing.Size(984, 438);
             this.panelFormularios.TabIndex = 3;
             // 
             // FormularioMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 398);
+            this.ClientSize = new System.Drawing.Size(1184, 496);
             this.Controls.Add(this.panelFormularios);
             this.Controls.Add(this.panelseparacion);
             this.Controls.Add(this.panelBarra);
@@ -223,5 +260,7 @@
         private System.Windows.Forms.Panel panelFormularios;
         private System.Windows.Forms.Button btnPostulantes;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSeguridad;
+        private System.Windows.Forms.Button btnDashboard;
     }
 }

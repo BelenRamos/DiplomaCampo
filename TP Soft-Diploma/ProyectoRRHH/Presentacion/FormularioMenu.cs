@@ -56,8 +56,6 @@ namespace Presentacion
             //ActivateButton(sender, RGBColors.color1);
             //OpenChildForm(new FormGestionPerfiles());
         }
-
-
         
         private void btnOL_Click(object sender, EventArgs e)
         {
@@ -80,5 +78,11 @@ namespace Presentacion
         {
             OpenChildForm(new FormGestionPostulantes());
         }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FormDashboard());
+        }
+
     }
 }
