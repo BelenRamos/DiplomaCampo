@@ -82,7 +82,7 @@ namespace Presentacion
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-           // OpenChildForm(new FormDashboard());
+            OpenChildForm(new Formulario_de_Reporte.Dashboard());
         }
 
     }

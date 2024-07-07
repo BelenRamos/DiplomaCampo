@@ -1,6 +1,7 @@
 ﻿using Modelo;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -8,6 +9,12 @@ namespace Datos
 {
     public class RepoPostulantes : RepositorioMaestro
     {
+        private string connectionString;
+        public RepoPostulantes()
+        {
+            // Obtener la cadena de conexión desde la configuración
+            connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
+        }
         public List<Postulantes> ObtenerTodosLosPostulantes()
         {
             List<Postulantes> postulantes = new List<Postulantes>();
@@ -132,6 +139,24 @@ namespace Datos
                 throw new Exception("Error al obtener el último número de postulante", ex);
             }
         }
+
+        public int ObtenerTotalPostulantes()
+        {
+            string consultaSQL = "SELECT COUNT(*) FROM Postulantes";
+            int totalPostulantes = 0;
+
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                {
+                    conexion.Open();
+                    totalPostulantes = (int)comando.ExecuteScalar();
+                }
+            }
+
+            return totalPostulantes;
+        }
+
 
     }
 }

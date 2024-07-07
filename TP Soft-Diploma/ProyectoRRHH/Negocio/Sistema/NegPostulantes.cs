@@ -101,7 +101,13 @@ namespace Negocio
                 throw new Exception("Error al obtener el último número de postulante.", ex);
             }
         }
+
+        public int ObtenerPorcentajePostulantes(int maxPostulantes)
+        {
+            int totalPostulantes = repositorio.ObtenerTotalPostulantes();
+            return (int)((float)totalPostulantes / maxPostulantes * 100);
         }
+    }
     }
 
 

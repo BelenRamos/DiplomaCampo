@@ -85,6 +85,18 @@ namespace Negocio
                 throw new Exception("Error al obtener los clientes de la oferta laboral.", ex);
             }
         }
+
+        public int ObtenerTotalClientes()
+        {
+            return repositorio.ObtenerTotalClientes();
+        }
+
+        public int ObtenerPorcentajeClientes(int maxClientes)
+        {
+            int totalClientes = repositorio.ObtenerTotalClientes();
+            return (int)((float)totalClientes / maxClientes * 100);
+        }
+
     }
 }
 

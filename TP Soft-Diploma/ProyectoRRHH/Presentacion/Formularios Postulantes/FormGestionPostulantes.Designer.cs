@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class FormDashboard
+    partial class FormGestionPostulantes
     {
         /// <summary>
         /// Required designer variable.

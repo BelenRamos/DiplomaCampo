@@ -160,8 +160,28 @@ namespace Datos
 
             return filasAfectadas;
         }
+
+        public int ObtenerTotalClientes()
+        {
+            string consultaSQL = "SELECT COUNT(*) FROM Clientes";
+            int totalClientes = 0;
+
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                {
+                    conexion.Open();
+                    totalClientes = (int)comando.ExecuteScalar();
+                }
+            }
+
+            return totalClientes;
+        }
+
     }
 }
+
+
 
 
 //namespace Datos
