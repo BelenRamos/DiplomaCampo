@@ -1,9 +1,11 @@
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Presentacion.exe.config
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Presentacion.exe
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Presentacion.pdb
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\BouncyCastle.Cryptography.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Datos.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EntityFramework.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\itextsharp.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Bcl.HashCode.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -35,8 +37,10 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Modelo.dll.config
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Negocio.pdb
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Negocio.dll.config
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EntityFramework.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\itextsharp.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Bcl.HashCode.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.EntityFrameworkCore.xml

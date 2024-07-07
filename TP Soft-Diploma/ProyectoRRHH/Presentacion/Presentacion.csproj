@@ -36,11 +36,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -138,11 +144,17 @@
     <Compile Include="Formulario de Reporte\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formulario de Reporte\FormReporte.cs">
+    <Compile Include="Formulario de Reporte\FormReporteClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formulario de Reporte\FormReporte.Designer.cs">
-      <DependentUpon>FormReporte.cs</DependentUpon>
+    <Compile Include="Formulario de Reporte\FormReporteClientes.Designer.cs">
+      <DependentUpon>FormReporteClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formulario de Reporte\FormReportePostulantes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formulario de Reporte\FormReportePostulantes.Designer.cs">
+      <DependentUpon>FormReportePostulantes.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios Cliente\FormGestionClientes.cs">
       <SubType>Form</SubType>
@@ -194,8 +206,8 @@
     <EmbeddedResource Include="Formulario de Reporte\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formulario de Reporte\FormReporte.resx">
-      <DependentUpon>FormReporte.cs</DependentUpon>
+    <EmbeddedResource Include="Formulario de Reporte\FormReporteClientes.resx">
+      <DependentUpon>FormReporteClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios Cliente\FormGestionClientes.resx">
       <DependentUpon>FormGestionClientes.cs</DependentUpon>

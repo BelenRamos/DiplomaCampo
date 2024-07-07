@@ -72,6 +72,7 @@
             this.btnGenerarReporteCliente.TabIndex = 7;
             this.btnGenerarReporteCliente.Text = "Generar Reporte ";
             this.btnGenerarReporteCliente.UseVisualStyleBackColor = true;
+            this.btnGenerarReporteCliente.Click += new System.EventHandler(this.btnGenerarReporteCliente_Click);
             // 
             // pbClientes
             // 
@@ -114,6 +115,7 @@
             this.btnGenerarReportePostulante.TabIndex = 7;
             this.btnGenerarReportePostulante.Text = "Generar Reporte ";
             this.btnGenerarReportePostulante.UseVisualStyleBackColor = true;
+            this.btnGenerarReportePostulante.Click += new System.EventHandler(this.btnGenerarReportePostulante_Click);
             // 
             // pbPostulantes
             // 

@@ -33,5 +33,16 @@ namespace Presentacion.Formulario_de_Reporte
             pbClientes.Value = Math.Min(porcentajeClientes, 100); // Asegurar que no se pase de 100
             pbPostulantes.Value = Math.Min(porcentajeClientes, 100); // pbPostulantes.Value = Math.Min(porcentajePostulantes, 100); // Asegurar que no se pase de 100
         }
+
+        private void btnGenerarReporteCliente_Click(object sender, EventArgs e)
+        {
+            FormReporteClientes formReporteClientes = new FormReporteClientes();
+            formReporteClientes.ShowDialog();
+        }
+
+        private void btnGenerarReportePostulante_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
