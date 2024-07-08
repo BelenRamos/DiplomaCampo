@@ -209,6 +209,9 @@
     <EmbeddedResource Include="Formulario de Reporte\FormReporteClientes.resx">
       <DependentUpon>FormReporteClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formulario de Reporte\FormReportePostulantes.resx">
+      <DependentUpon>FormReportePostulantes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios Cliente\FormGestionClientes.resx">
       <DependentUpon>FormGestionClientes.cs</DependentUpon>
     </EmbeddedResource>
