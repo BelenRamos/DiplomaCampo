@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{E842AF7E-445E-4175-9623-9FBB36516ACD}|Negocio\\Negocio.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\negocio\\negreportes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E842AF7E-445E-4175-9623-9FBB36516ACD}|Negocio\\Negocio.csproj|solutionrelative:negocio\\negreportes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\datos\\reportes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|solutionrelative:datos\\reportes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\presentacion\\formulario de reporte\\formreporteclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\formulario de reporte\\formreporteclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\presentacion\\formulario de reporte\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\formulario de reporte\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\presentacion\\formulario de reporte\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\formulario de reporte\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\presentacion\\formulario de reporte\\formreporteclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\formulario de reporte\\formreporteclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +30,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NegReportes.cs",
+              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Negocio\\NegReportes.cs",
+              "RelativeDocumentMoniker": "Negocio\\NegReportes.cs",
+              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Negocio\\NegReportes.cs",
+              "RelativeToolTip": "Negocio\\NegReportes.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-08T00:53:31.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Reportes.cs",
+              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\Reportes.cs",
+              "RelativeDocumentMoniker": "Datos\\Reportes.cs",
+              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\Reportes.cs",
+              "RelativeToolTip": "Datos\\Reportes.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-08T00:37:52.326Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -32,14 +66,14 @@
               "RelativeDocumentMoniker": "Presentacion\\Formulario de Reporte\\FormReporteClientes.cs",
               "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formulario de Reporte\\FormReporteClientes.cs",
               "RelativeToolTip": "Presentacion\\Formulario de Reporte\\FormReporteClientes.cs",
-              "ViewState": "AQIAAA4AAABAZmZmZmYSwB8AAAA9AAAA",
+              "ViewState": "AQIAABEAAACQmZmZmZkxwCYAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-07T19:13:13.688Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Dashboard.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formulario de Reporte\\Dashboard.cs",
               "RelativeDocumentMoniker": "Presentacion\\Formulario de Reporte\\Dashboard.cs",
@@ -51,13 +85,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Dashboard.cs",
               "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formulario de Reporte\\Dashboard.cs",
               "RelativeDocumentMoniker": "Presentacion\\Formulario de Reporte\\Dashboard.cs",
               "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formulario de Reporte\\Dashboard.cs",
               "RelativeToolTip": "Presentacion\\Formulario de Reporte\\Dashboard.cs",
-              "ViewState": "AQIAABUAAACAmZmZmZktwCIAAAAJAAAA",
+              "ViewState": "AQIAABwAAAAQMzMzMzMpwC4AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-07T17:29:32.942Z",
               "EditorCaption": ""

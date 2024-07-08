@@ -1,6 +1,6 @@
 ﻿namespace Presentacion.Formulario_de_Reporte
 {
-    partial class FormReporte
+    partial class FormReporteClientes
     {
         /// <summary>
         /// Required designer variable.
