@@ -37,12 +37,13 @@ namespace Presentacion.Formulario_de_Reporte
         private void btnGenerarReporteCliente_Click(object sender, EventArgs e)
         {
             FormReporteClientes formReporteClientes = new FormReporteClientes();
-            //formReporteClientes.ShowDialog();
+            formReporteClientes.ShowDialog();
         }
 
         private void btnGenerarReportePostulante_Click(object sender, EventArgs e)
         {
-
+            FormReportePostulantes formReportePostulantes = new FormReportePostulantes();
+            formReportePostulantes.ShowDialog();
         }
     }
 }

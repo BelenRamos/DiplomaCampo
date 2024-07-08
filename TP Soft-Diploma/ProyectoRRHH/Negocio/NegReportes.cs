@@ -23,15 +23,15 @@ namespace Negocio
             return instancia;
         }
 
-        public void GenerarReporteClientes(List<Clientes> clientes, string rutaArchivo)
+        public void GenerarReporteClientes(List<Clientes> clientes, string nombreArchivo)
         {
-            reportes.GenerarReporteClientes(clientes, rutaArchivo);
+            reportes.GenerarReporteClientes(clientes, nombreArchivo);
         }
 
-        public void GenerarReportePostulantes(List<Postulantes> postulantes, string rutaArchivo)
+        public void GenerarReportePostulantes(List<Postulantes> postulantes, string nombreArchivo)
         {
-            reportes.GenerarReportePostulantes(postulantes, rutaArchivo);
+            reportes.GenerarReportePostulantes(postulantes, nombreArchivo);
         }
     }
-}
 
+}

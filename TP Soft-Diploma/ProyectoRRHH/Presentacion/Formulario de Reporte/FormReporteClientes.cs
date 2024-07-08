@@ -2,23 +2,21 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace Presentacion.Formulario_de_Reporte
 {
-    public partial class FormReporte : Form
+    public partial class FormReporteClientes : Form
     {
         private NegClientes negClientes;
-        public FormReporte()
+        private NegReportes negReportes;
+
+        public FormReporteClientes()
         {
             InitializeComponent();
             negClientes = NegClientes.ObtenerInstancia();
+            negReportes = NegReportes.ObtenerInstancia();
         }
 
         private void FormReporte_Load(object sender, EventArgs e)
@@ -29,13 +27,30 @@ namespace Presentacion.Formulario_de_Reporte
 
         private void btnGenerarReporteCliente_Click(object sender, EventArgs e)
         {
-            List<Clientes> clientes = (List<Clientes>)dgvDataClientes.DataSource;
-            string rutaArchivo = "reporte_clientes.pdf";
+            try
+            {
+                List<Clientes> clientes = (List<Clientes>)dgvDataClientes.DataSource;
+                if (clientes == null || clientes.Count == 0)
+                {
+                    MessageBox.Show("No hay datos de clientes para generar el reporte.");
+                    return;
+                }
 
-            ReportePDF reporte = new ReportePDF();
-            reporte.GenerarReporteClientes(clientes, rutaArchivo);
+                string rutaDirectorio = @"C:\Reportes";
+                if (!System.IO.Directory.Exists(rutaDirectorio))
+                {
+                    System.IO.Directory.CreateDirectory(rutaDirectorio);
+                }
 
-            MessageBox.Show("Reporte de clientes generado y guardado como PDF en " + rutaArchivo);
+                string rutaArchivo = System.IO.Path.Combine(rutaDirectorio, "reporte_clientes.pdf");
+                negReportes.GenerarReporteClientes(clientes, rutaArchivo);
+                MessageBox.Show("Reporte de Clientes generado exitosamente en " + rutaArchivo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al generar el reporte: {ex.Message}");
+            }
         }
     }
 }
+

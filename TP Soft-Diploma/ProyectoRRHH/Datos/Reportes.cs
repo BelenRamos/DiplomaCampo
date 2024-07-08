@@ -2,15 +2,28 @@
 using iTextSharp.text.pdf;
 using Modelo;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Datos
 {
     public class Reportes
     {
-        public void GenerarReporteClientes(List<Clientes> clientes, string rutaArchivo)
+        private string rutaBase = @"C:\Reportes"; // Carpeta donde se guardarán los reportes
+
+        public Reportes()
         {
+            // Crear la carpeta de reportes si no existe
+            if (!Directory.Exists(rutaBase))
+            {
+                Directory.CreateDirectory(rutaBase);
+            }
+        }
+
+        public void GenerarReporteClientes(List<Clientes> clientes, string nombreArchivo)
+        {
+            string rutaArchivo = Path.Combine(rutaBase, nombreArchivo);
             Document document = new Document();
-            PdfWriter writer = PdfWriter.GetInstance(document, new System.IO.FileStream(rutaArchivo, System.IO.FileMode.Create));
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(rutaArchivo, FileMode.Create));
             document.Open();
 
             document.Add(new Paragraph("Reporte de Clientes") { Alignment = Element.ALIGN_CENTER, Font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 20) });
@@ -31,10 +44,11 @@ namespace Datos
             document.Close();
         }
 
-        public void GenerarReportePostulantes(List<Postulantes> postulantes, string rutaArchivo)
+        public void GenerarReportePostulantes(List<Postulantes> postulantes, string nombreArchivo)
         {
+            string rutaArchivo = Path.Combine(rutaBase, nombreArchivo);
             Document document = new Document();
-            PdfWriter writer = PdfWriter.GetInstance(document, new System.IO.FileStream(rutaArchivo, System.IO.FileMode.Create));
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(rutaArchivo, FileMode.Create));
             document.Open();
 
             document.Add(new Paragraph("Reporte de Postulantes") { Alignment = Element.ALIGN_CENTER, Font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 20) });
@@ -64,5 +78,6 @@ namespace Datos
         }
     }
 }
+
 
 
