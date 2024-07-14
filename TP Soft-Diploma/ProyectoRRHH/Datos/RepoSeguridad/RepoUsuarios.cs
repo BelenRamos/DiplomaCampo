@@ -1,5 +1,4 @@
-﻿using Datos;
-using Modelo;
+﻿using Modelo;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -199,6 +198,73 @@ namespace Datos.RepoSeguridad
                 habilitado = fila["habilitado"] != DBNull.Value ? (byte?)Convert.ToByte(fila["habilitado"]) : null,
                 legajo = fila["legajo"] != DBNull.Value ? (int?)Convert.ToInt32(fila["legajo"]) : null
             };
+        }
+
+        public int AltaUsuario(Usuarios usuario)
+        {
+            string consultaSQL = @"INSERT INTO Usuarios (nombreUsuario, contrasenia, emailUsuario, habilitado, legajo) 
+                                   VALUES (@nombreUsuario, @contrasenia, @emailUsuario, @habilitado, @legajo)";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@nombreUsuario", usuario.nombreUsuario ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@contrasenia", usuario.contrasenia ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@emailUsuario", usuario.emailUsuario ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@habilitado", usuario.habilitado ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@legajo", usuario.legajo ?? (object)DBNull.Value));
+
+            try
+            {
+                return ExecuteNonQuery(consultaSQL);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al dar de alta al usuario", ex);
+            }
+        }
+
+        public int ModificarUsuario(Usuarios usuario)
+        {
+            string consultaSQL = @"UPDATE Usuarios 
+                                   SET nombreUsuario = @nombreUsuario, 
+                                       contrasenia = @contrasenia, 
+                                       emailUsuario = @emailUsuario, 
+                                       habilitado = @habilitado, 
+                                       legajo = @legajo 
+                                   WHERE idUsuario = @idUsuario";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@idUsuario", usuario.idUsuario));
+            parametros.Add(new SqlParameter("@nombreUsuario", usuario.nombreUsuario ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@contrasenia", usuario.contrasenia ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@emailUsuario", usuario.emailUsuario ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@habilitado", usuario.habilitado ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@legajo", usuario.legajo ?? (object)DBNull.Value));
+
+            try
+            {
+                return ExecuteNonQuery(consultaSQL);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al modificar al usuario", ex);
+            }
+        }
+
+        public int BajaUsuario(int idUsuario)
+        {
+            string consultaSQL = "DELETE FROM Usuarios WHERE idUsuario = @idUsuario";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@idUsuario", idUsuario));
+
+            try
+            {
+                return ExecuteNonQuery(consultaSQL);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al dar de baja al usuario", ex);
+            }
         }
     }
 }

@@ -162,6 +162,24 @@
     <Compile Include="Formularios Cliente\FormGestionClientes.Designer.cs">
       <DependentUpon>FormGestionClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios de Seguridad\Gestion de Usuarios\FormAltaUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\Gestion de Usuarios\FormAltaUsuario.Designer.cs">
+      <DependentUpon>FormAltaUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\Gestion de Usuarios\FormGestionUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\Gestion de Usuarios\FormGestionUsuarios.Designer.cs">
+      <DependentUpon>FormGestionUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\MenuSeguridad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\MenuSeguridad.Designer.cs">
+      <DependentUpon>MenuSeguridad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios OL\FormGestionOL.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +191,12 @@
     </Compile>
     <Compile Include="Formularios OL\FormOLNuevo.Designer.cs">
       <DependentUpon>FormOLNuevo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\Gestion de Usuarios\FormPermisosUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\Gestion de Usuarios\FormPermisosUsuario.Designer.cs">
+      <DependentUpon>FormPermisosUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios Postulantes\FormPostulanteNuevo.cs">
       <SubType>Form</SubType>
@@ -215,11 +239,23 @@
     <EmbeddedResource Include="Formularios Cliente\FormGestionClientes.resx">
       <DependentUpon>FormGestionClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios de Seguridad\Gestion de Usuarios\FormAltaUsuario.resx">
+      <DependentUpon>FormAltaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios de Seguridad\Gestion de Usuarios\FormGestionUsuarios.resx">
+      <DependentUpon>FormGestionUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios de Seguridad\MenuSeguridad.resx">
+      <DependentUpon>MenuSeguridad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios OL\FormGestionOL.resx">
       <DependentUpon>FormGestionOL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios OL\FormOLNuevo.resx">
       <DependentUpon>FormOLNuevo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios de Seguridad\Gestion de Usuarios\FormPermisosUsuario.resx">
+      <DependentUpon>FormPermisosUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios Postulantes\FormPostulanteNuevo.resx">
       <DependentUpon>FormPostulanteNuevo.cs</DependentUpon>
@@ -278,7 +314,13 @@
     <None Include="Resources\icons8-circled-m-48.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Formularios de Seguridad\" />
+    <None Include="Resources\icons-derechos-de-los-usuarios.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons-grupo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons-usuario.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

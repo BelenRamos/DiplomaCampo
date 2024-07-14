@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NegReportes.cs" />
+    <Compile Include="Seguridad\NegUsuarios.cs" />
     <Compile Include="Sistema\NegClientes.cs" />
     <Compile Include="Sistema\NegClientesTels.cs" />
     <Compile Include="Sistema\NegEntrevistas.cs" />
@@ -150,8 +151,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Seguridad\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

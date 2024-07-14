@@ -78,6 +78,7 @@
             this.btnSeguridad.Text = "Ajustes de Seguridad";
             this.btnSeguridad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSeguridad.UseVisualStyleBackColor = false;
+            this.btnSeguridad.Click += new System.EventHandler(this.btnSeguridad_Click);
             // 
             // btnDashboard
             // 
@@ -108,7 +109,7 @@
             this.btnPostulantes.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnPostulantes.Size = new System.Drawing.Size(200, 50);
             this.btnPostulantes.TabIndex = 6;
-            this.btnPostulantes.Text = "Postulantes";
+            this.btnPostulantes.Text = "Gestion de Postulantes";
             this.btnPostulantes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPostulantes.UseVisualStyleBackColor = false;
             this.btnPostulantes.Click += new System.EventHandler(this.btnPostulantes_Click);
@@ -125,7 +126,7 @@
             this.btnClientes.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnClientes.Size = new System.Drawing.Size(200, 50);
             this.btnClientes.TabIndex = 5;
-            this.btnClientes.Text = "Clientes";
+            this.btnClientes.Text = "Gestion de Clientes";
             this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClientes.UseVisualStyleBackColor = false;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
@@ -159,7 +160,7 @@
             this.btnOL.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnOL.Size = new System.Drawing.Size(200, 50);
             this.btnOL.TabIndex = 4;
-            this.btnOL.Text = "Ofertas Laborales";
+            this.btnOL.Text = "Gestion de Ofertas Laborales";
             this.btnOL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOL.UseVisualStyleBackColor = false;
             this.btnOL.Click += new System.EventHandler(this.btnOL_Click);
@@ -176,7 +177,7 @@
             this.btnPerfiles.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnPerfiles.Size = new System.Drawing.Size(200, 50);
             this.btnPerfiles.TabIndex = 1;
-            this.btnPerfiles.Text = "Perfiles";
+            this.btnPerfiles.Text = "Gestion de Perfiles";
             this.btnPerfiles.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPerfiles.UseMnemonic = false;
             this.btnPerfiles.UseVisualStyleBackColor = false;

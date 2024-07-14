@@ -85,5 +85,9 @@ namespace Presentacion
             OpenChildForm(new Formulario_de_Reporte.Dashboard());
         }
 
+        private void btnSeguridad_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Formularios_de_Seguridad.MenuSeguridad());
+        }
     }
 }
