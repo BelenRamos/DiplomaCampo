@@ -66,5 +66,24 @@ namespace Datos
                 }
             }
         }
+
+        protected int ExecuteNonQuery(string query, SqlTransaction transaction)
+        {
+            using (SqlCommand comando = new SqlCommand(query, transaction.Connection, transaction))
+            {
+                foreach (var parametro in parametros)
+                {
+                    comando.Parameters.Add(parametro);
+                }
+                return comando.ExecuteNonQuery();
+            }
+        }
+
+        private SqlConnection ObtenerConexion()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

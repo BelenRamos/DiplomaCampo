@@ -2,7 +2,7 @@
 using Presentacion.Formularios_Postulantes;
 using System;
 using System.Windows.Forms;
-using Negocio;
+
 using Modelo;
 using System.Collections.Generic;
 
@@ -11,6 +11,9 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
     public partial class FormGestionUsuarios : Form
     {
         private NegUsuarios negocioUsuarios;
+
+
+
         public FormGestionUsuarios()
         {
             InitializeComponent();
@@ -19,8 +22,16 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
 
         private void btnPermisosUsuarios_Click(object sender, EventArgs e)
         {
-            FormPermisosUsuario formPermisosUsuario = new FormPermisosUsuario();
-            formPermisosUsuario.ShowDialog();
+            if (dataUsuarios.SelectedRows.Count > 0)
+            {
+                Usuarios usuarioSeleccionado = (Usuarios)dataUsuarios.SelectedRows[0].DataBoundItem;
+                FormPermisosUsuario formPermisosUsuario = new FormPermisosUsuario(usuarioSeleccionado);
+                formPermisosUsuario.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un usuario para ver sus permisos.");
+            }
         }
 
         private void btnAltaUsuario_Click(object sender, EventArgs e)
@@ -31,22 +42,46 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
                 Usuarios nuevoUsuario = formAltaUsuario.ObtenerUsuario();
                 try
                 {
-                    negocioUsuarios.AltaUsuario(nuevoUsuario);
-                    CargarUsuarios(); // Recargar la lista de usuarios después de agregar uno nuevo
+                    int resultado = negocioUsuarios.AltaUsuario(nuevoUsuario);
+                    if (resultado > 0)
+                    {
+                        MessageBox.Show("Usuario agregado exitosamente.");
+                        CargarUsuarios(); // Recargar la lista de usuarios después de agregar uno nuevo
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo agregar el usuario. Verifica los datos e inténtalo nuevamente.");
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al agregar el usuario: " + ex.Message);
+                    MessageBox.Show("Error al agregar el usuario en el form gestion: " + ex.Message);
+                    Console.WriteLine(ex); // Esto imprimirá el error en la consola para depuración
                 }
             }
         }
+
 
         private void btnModificarUsuario_Click(object sender, EventArgs e)
         {
             if (dataUsuarios.SelectedRows.Count > 0)
             {
                 Usuarios usuarioSeleccionado = (Usuarios)dataUsuarios.SelectedRows[0].DataBoundItem;
-                dataUsuarios.BeginEdit(true);
+                FormAltaUsuario formModificarUsuario = new FormAltaUsuario(usuarioSeleccionado);
+
+                if (formModificarUsuario.ShowDialog() == DialogResult.OK)
+                {
+                    Usuarios usuarioModificado = formModificarUsuario.ObtenerUsuario();
+                    try
+                    {
+                        negocioUsuarios.ModificarUsuario(usuarioModificado);
+                        CargarUsuarios(); // Recargar la lista de usuarios después de modificar uno
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al modificar el usuario: " + ex.Message);
+                    }
+                }
             }
             else
             {

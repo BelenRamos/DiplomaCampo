@@ -58,27 +58,27 @@ namespace Negocio
             }
         }
 
-        public Usuarios ObtenerUsuarioPorCredenciales(string username, string password)
-        {
-            try
-            {
-                return repositorio.ObtenerUsuarioPorCredenciales(username, password);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el usuario por credenciales.", ex);
-            }
-        }
-
         public int AltaUsuario(Usuarios usuario)
         {
             try
             {
-                return repositorio.AltaUsuario(usuario);
+                int resultado = repositorio.AltaUsuarioSimple(usuario);
+                if (resultado > 0)
+                {
+                    usuarios.Add(usuario); // Agregar a la lista local si la inserción fue exitosa
+                }
+                return resultado;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al dar de alta el usuario.", ex);
+                // Agregar más información del error
+                string mensajeError = $"Error al dar de alta el usuario. {ex.Message}";
+                if (ex.InnerException != null)
+                {
+                    mensajeError += $"\nDetalles internos: {ex.InnerException.Message}";
+                }
+                mensajeError += $"\nPila de llamadas: {ex.StackTrace}";
+                throw new Exception(mensajeError, ex);
             }
         }
 
@@ -86,7 +86,17 @@ namespace Negocio
         {
             try
             {
-                return repositorio.ModificarUsuario(usuario);
+                int resultado = repositorio.ModificarUsuario(usuario);
+                if (resultado > 0)
+                {
+                    // Actualizar la lista local de usuarios
+                    Usuarios usuarioExistente = usuarios.Find(u => u.idUsuario == usuario.idUsuario);
+                    if (usuarioExistente != null)
+                    {
+                        usuarios[usuarios.IndexOf(usuarioExistente)] = usuario;
+                    }
+                }
+                return resultado;
             }
             catch (Exception ex)
             {
@@ -98,13 +108,29 @@ namespace Negocio
         {
             try
             {
-                return repositorio.BajaUsuario(idUsuario);
+                int resultado = repositorio.BajaUsuario(idUsuario);
+                if (resultado > 0)
+                {
+                    // Remover de la lista local si la eliminación fue exitosa
+                    Usuarios usuarioExistente = usuarios.Find(u => u.idUsuario == idUsuario);
+                    if (usuarioExistente != null)
+                    {
+                        usuarios.Remove(usuarioExistente);
+                    }
+                }
+                return resultado;
             }
             catch (Exception ex)
             {
                 throw new Exception("Error al dar de baja el usuario.", ex);
             }
         }
+
+        public List<Permisos> ObtenerPermisosPorUsuario(int idUsuario)
+    {
+        return repositorio.ObtenerPermisosPorUsuario(idUsuario);
+    }
+
     }
 }
 

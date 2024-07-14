@@ -1,6 +1,7 @@
 ﻿using Modelo;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -8,6 +9,13 @@ namespace Datos.RepoSeguridad
 {
     public class RepoUsuarios : RepositorioMaestro
     {
+        private string connectionString;
+        public RepoUsuarios()
+        {
+            // Obtener la cadena de conexión desde la configuración
+            connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
+        }
+
         public List<Usuarios> ObtenerTodosLosUsuarios()
         {
             List<Usuarios> usuarios = new List<Usuarios>();
@@ -57,124 +65,39 @@ namespace Datos.RepoSeguridad
             }
         }
 
-        public Usuarios ObtenerUsuarioPorCredenciales(string username, string password)
+        public List<Permisos> ObtenerPermisosPorUsuario(int idUsuario)
         {
+            List<Permisos> permisos = new List<Permisos>();
+
+            string consultaSQL = @"SELECT P.* 
+                               FROM Permisos P
+                               JOIN Usuarios_Permisos UP ON P.idPermiso = UP.idPermiso
+                               WHERE UP.idUsuario = @idUsuario";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@idUsuario", idUsuario));
+
             try
             {
-                parametros.Clear();
-                string consultaSQL = "SELECT * FROM Usuarios WHERE nombreUsuario = @Username AND contrasenia = @Password";
+                DataTable tablaPermisos = ExecuteReader(consultaSQL);
 
-                SqlParameter parametroUsername = new SqlParameter("@Username", SqlDbType.VarChar);
-                parametroUsername.Value = username;
-                parametros.Add(parametroUsername);
-
-                SqlParameter parametroPassword = new SqlParameter("@Password", SqlDbType.VarChar);
-                parametroPassword.Value = password;
-                parametros.Add(parametroPassword);
-
-                DataTable tablaUsuario = ExecuteReader(consultaSQL);
-
-                if (tablaUsuario.Rows.Count > 0)
+                foreach (DataRow fila in tablaPermisos.Rows)
                 {
-                    DataRow fila = tablaUsuario.Rows[0];
-                    return ConvertirDataRowAUsuario(fila);
-                }
-                else
-                {
-                    return null; // Retorna null si no se encuentra el usuario
+                    Permisos permiso = new Permisos
+                    {
+                        idPermiso = Convert.ToInt32(fila["idPermiso"]),
+                        nombrePermiso = fila["nombrePermiso"].ToString()
+                    };
+                    permisos.Add(permiso);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al obtener usuario por credenciales: " + ex.Message);
-                throw;
+                throw new Exception("Error al obtener los permisos del usuario", ex);
             }
+
+            return permisos;
         }
-
-        public List<Usuarios> ObtenerUsuariosPorGrupo(int grupoID)
-        {
-            List<Usuarios> usuarios = new List<Usuarios>();
-            string consultaSQL = "SELECT U.* FROM Usuarios U JOIN UxG ON U.idUsuario = UxG.idUsuario WHERE UxG.idGrupo = @grupoID";
-
-            parametros.Add(new SqlParameter("@grupoID", grupoID));
-
-            try
-            {
-                DataTable tablaUsuarios = ExecuteReader(consultaSQL);
-                usuarios = ConvertirDataTableALista(tablaUsuarios);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener usuarios por grupo: " + ex.Message);
-                throw;
-            }
-
-            return usuarios;
-        }
-
-        public List<Usuarios> ObtenerUsuariosNoAsociadosAGrupo(int grupoID)
-        {
-            List<Usuarios> usuarios = new List<Usuarios>();
-            string consultaSQL = "SELECT U.* FROM Usuarios U LEFT JOIN UxG ON U.idUsuario = UxG.idUsuario AND UxG.idGrupo = @grupoID WHERE UxG.idUsuario IS NULL";
-
-            parametros.Add(new SqlParameter("@grupoID", grupoID));
-
-            try
-            {
-                DataTable tablaUsuarios = ExecuteReader(consultaSQL);
-                usuarios = ConvertirDataTableALista(tablaUsuarios);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener usuarios no asociados a grupo: " + ex.Message);
-                throw;
-            }
-
-            return usuarios;
-        }
-
-        public List<Usuarios> ObtenerUsuariosAsociadosAPermiso(int permisoID)
-        {
-            List<Usuarios> usuarios = new List<Usuarios>();
-            string consultaSQL = "SELECT U.* FROM Usuarios U JOIN PxU ON U.idUsuario = PxU.idUsuario WHERE PxU.idPermiso = @permisoID";
-
-            parametros.Add(new SqlParameter("@permisoID", permisoID));
-
-            try
-            {
-                DataTable tablaUsuarios = ExecuteReader(consultaSQL);
-                usuarios = ConvertirDataTableALista(tablaUsuarios);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener usuarios asociados a permiso: " + ex.Message);
-                throw;
-            }
-
-            return usuarios;
-        }
-
-        public List<Usuarios> ObtenerUsuariosNoAsociadosAPermiso(int permisoID)
-        {
-            List<Usuarios> usuarios = new List<Usuarios>();
-            string consultaSQL = "SELECT U.* FROM Usuarios U LEFT JOIN PxU ON U.idUsuario = PxU.idUsuario AND PxU.idPermiso = @permisoID WHERE PxU.idUsuario IS NULL";
-
-            parametros.Add(new SqlParameter("@permisoID", permisoID));
-
-            try
-            {
-                DataTable tablaUsuarios = ExecuteReader(consultaSQL);
-                usuarios = ConvertirDataTableALista(tablaUsuarios);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener usuarios no asociados a permiso: " + ex.Message);
-                throw;
-            }
-
-            return usuarios;
-        }
-
         private List<Usuarios> ConvertirDataTableALista(DataTable tabla)
         {
             List<Usuarios> usuarios = new List<Usuarios>();
@@ -199,30 +122,7 @@ namespace Datos.RepoSeguridad
                 legajo = fila["legajo"] != DBNull.Value ? (int?)Convert.ToInt32(fila["legajo"]) : null
             };
         }
-
-        public int AltaUsuario(Usuarios usuario)
-        {
-            string consultaSQL = @"INSERT INTO Usuarios (nombreUsuario, contrasenia, emailUsuario, habilitado, legajo) 
-                                   VALUES (@nombreUsuario, @contrasenia, @emailUsuario, @habilitado, @legajo)";
-
-            parametros.Clear();
-            parametros.Add(new SqlParameter("@nombreUsuario", usuario.nombreUsuario ?? (object)DBNull.Value));
-            parametros.Add(new SqlParameter("@contrasenia", usuario.contrasenia ?? (object)DBNull.Value));
-            parametros.Add(new SqlParameter("@emailUsuario", usuario.emailUsuario ?? (object)DBNull.Value));
-            parametros.Add(new SqlParameter("@habilitado", usuario.habilitado ?? (object)DBNull.Value));
-            parametros.Add(new SqlParameter("@legajo", usuario.legajo ?? (object)DBNull.Value));
-
-            try
-            {
-                return ExecuteNonQuery(consultaSQL);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al dar de alta al usuario", ex);
-            }
-        }
-
-        public int ModificarUsuario(Usuarios usuario)
+      public int ModificarUsuario(Usuarios usuario)
         {
             string consultaSQL = @"UPDATE Usuarios 
                                    SET nombreUsuario = @nombreUsuario, 
@@ -266,6 +166,104 @@ namespace Datos.RepoSeguridad
                 throw new Exception("Error al dar de baja al usuario", ex);
             }
         }
-    }
-}
 
+
+        public int ObtenerUltimoIDUsuario()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("SELECT MAX(idUsuario) FROM Usuarios", connection);
+                    object result = command.ExecuteScalar();
+                    if (result != DBNull.Value)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el último ID de usuario.", ex);
+            }
+        }
+
+        public int AltaUsuarioSimple(Usuarios usuario)
+        {
+            string consultaSQL = @"INSERT INTO Usuarios (idUsuario, nombreUsuario, contrasenia, emailUsuario, habilitado, legajo) 
+                           VALUES (@idUsuario, @nombreUsuario, @contrasenia, @emailUsuario, @habilitado, @legajo)";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@idUsuario", usuario.idUsuario));
+            parametros.Add(new SqlParameter("@nombreUsuario", usuario.nombreUsuario ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@contrasenia", usuario.contrasenia ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@emailUsuario", usuario.emailUsuario ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@habilitado", usuario.habilitado ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@legajo", usuario.legajo ?? (object)DBNull.Value));
+
+            try
+            {
+                return ExecuteNonQuery(consultaSQL);
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                throw new Exception("Error al dar de alta al usuario", ex);
+            }
+        }
+
+
+        private int AltaUsuarioTransaccion(Usuarios usuario, SqlTransaction transaction)
+        {
+            string consultaSQL = @"INSERT INTO Usuarios (idUsuario, nombreUsuario, contrasenia, emailUsuario, habilitado, legajo) 
+                                   VALUES (@idUsuario, @nombreUsuario, @contrasenia, @emailUsuario, @habilitado, @legajo)";
+
+            using (SqlCommand command = new SqlCommand(consultaSQL, transaction.Connection, transaction))
+            {
+                command.Parameters.AddWithValue("@idUsuario", usuario.idUsuario);
+                command.Parameters.AddWithValue("@nombreUsuario", usuario.nombreUsuario ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@contrasenia", usuario.contrasenia ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@emailUsuario", usuario.emailUsuario ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@habilitado", usuario.habilitado ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@legajo", usuario.legajo ?? (object)DBNull.Value);
+
+                return command.ExecuteNonQuery();
+            }
+        }
+
+        private void AsignarUsuarioAGrupo(int idUsuario, int idGrupo, SqlTransaction transaction)
+        {
+            string consultaSQL = @"INSERT INTO Usuarios_Grupos (idUsuario, idGrupo) VALUES (@idUsuario, @idGrupo)";
+
+            using (SqlCommand command = new SqlCommand(consultaSQL, transaction.Connection, transaction))
+            {
+                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                command.Parameters.AddWithValue("@idGrupo", idGrupo);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        private void AsignarPermisosAUsuario(int idUsuario, List<int> permisos, SqlTransaction transaction)
+        {
+            foreach (int permiso in permisos)
+            {
+                string consultaSQL = @"INSERT INTO Usuarios_Permisos (idUsuario, idPermiso) VALUES (@idUsuario, @idPermiso)";
+
+                using (SqlCommand command = new SqlCommand(consultaSQL, transaction.Connection, transaction))
+                {
+                    command.Parameters.Clear();
+                    command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    command.Parameters.AddWithValue("@idPermiso", permiso);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+    }
+
+}

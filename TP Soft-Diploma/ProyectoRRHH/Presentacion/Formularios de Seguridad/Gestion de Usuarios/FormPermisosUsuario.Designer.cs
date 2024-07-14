@@ -78,6 +78,7 @@
             this.Controls.Add(this.treePermisosUsu);
             this.Name = "FormPermisosUsuario";
             this.Text = "FormPermisosUsuario";
+            this.Load += new System.EventHandler(this.FormPermisosUsuario_Load);
             this.ResumeLayout(false);
 
         }
