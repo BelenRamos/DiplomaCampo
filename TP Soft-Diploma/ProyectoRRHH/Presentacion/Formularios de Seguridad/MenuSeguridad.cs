@@ -21,12 +21,14 @@ namespace Presentacion.Formularios_de_Seguridad
 
         private void btmGestionPermisos(object sender, EventArgs e)
         {
-
+            FormGestionPermisos formGestionPermisos = new FormGestionPermisos();
+            formGestionPermisos.ShowDialog();
         }
 
         private void btnGestionGrupos_Click(object sender, EventArgs e)
         {
-
+            //FormGestionGrupos formGestionGrupos = new FormGestionGrupos();
+            //formGestionGrupos.ShowDialog();
         }
 
         private void btnGestionUsuarios_Click(object sender, EventArgs e)

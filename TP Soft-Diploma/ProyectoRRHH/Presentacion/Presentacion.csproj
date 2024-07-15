@@ -162,6 +162,12 @@
     <Compile Include="Formularios Cliente\FormGestionClientes.Designer.cs">
       <DependentUpon>FormGestionClientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios de Seguridad\FormGestionPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\FormGestionPermisos.Designer.cs">
+      <DependentUpon>FormGestionPermisos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios de Seguridad\Gestion de Usuarios\FormAltaUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,12 @@
     </Compile>
     <Compile Include="Formularios de Seguridad\Gestion de Usuarios\FormGestionUsuarios.Designer.cs">
       <DependentUpon>FormGestionUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\Gestion Grupos\FormGestionGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\Gestion Grupos\FormGestionGrupos.Designer.cs">
+      <DependentUpon>FormGestionGrupos.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios de Seguridad\MenuSeguridad.cs">
       <SubType>Form</SubType>
@@ -239,11 +251,17 @@
     <EmbeddedResource Include="Formularios Cliente\FormGestionClientes.resx">
       <DependentUpon>FormGestionClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios de Seguridad\FormGestionPermisos.resx">
+      <DependentUpon>FormGestionPermisos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios de Seguridad\Gestion de Usuarios\FormAltaUsuario.resx">
       <DependentUpon>FormAltaUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios de Seguridad\Gestion de Usuarios\FormGestionUsuarios.resx">
       <DependentUpon>FormGestionUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios de Seguridad\Gestion Grupos\FormGestionGrupos.resx">
+      <DependentUpon>FormGestionGrupos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios de Seguridad\MenuSeguridad.resx">
       <DependentUpon>MenuSeguridad.cs</DependentUpon>

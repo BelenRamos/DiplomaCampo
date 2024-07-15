@@ -1,180 +1,114 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using Datos;
 using Modelo;
 
-namespace Datos.RepoSeguridad
+namespace Datos
 {
-    public class RepoPermisos : RepositorioMaestro
+    public class RepoPermisos
     {
-        public List<Permisos> ObtenerTodosLosPermisos()
-        {
-            List<Permisos> permisos = new List<Permisos>();
-            string consultaSQL = "SELECT * FROM Permisos";
+        private readonly string _connectionString;
 
-            try
+        public RepoPermisos()
+        {
+            _connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
+        }
+
+        public IEnumerable<Permisos> ObtenerTodos()
+        {
+            var permisos = new List<Permisos>();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                DataTable tablaPermisos = ExecuteReader(consultaSQL);
-                permisos = ConvertirDataTableALista(tablaPermisos);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener todos los permisos: " + ex.Message);
-                throw;
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Permisos", connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var permiso = new Permisos
+                    {
+                        idPermiso = (int)reader["idPermiso"],
+                        nombrePermiso = reader["nombrePermiso"].ToString(),
+                        idForm = reader["idForm"] as int?
+                    };
+
+                    permisos.Add(permiso);
+                }
             }
 
             return permisos;
         }
 
-        public List<Permisos> ObtenerPermisosDeUsuario(int userID)
+        public Permisos ObtenerPorId(int id)
         {
-            List<Permisos> permisos = new List<Permisos>();
-            string consultaSQL = "SELECT DISTINCT P.* FROM PERMISOS P JOIN PxU ON P.idPermiso = PxU.idPermiso JOIN USUARIOS U ON PxU.idUsuario = U.idUsuario WHERE U.idUsuario = @UserID";
-            parametros.Add(new SqlParameter("@UserID", userID));
+            Permisos permiso = null;
 
-            try
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                DataTable tablaPermisos = ExecuteReader(consultaSQL);
-                permisos = ConvertirDataTableALista(tablaPermisos);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener permisos de usuario: " + ex.Message);
-                throw;
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Permisos WHERE idPermiso = @id", connection);
+                command.Parameters.AddWithValue("@id", id);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    permiso = new Permisos
+                    {
+                        idPermiso = (int)reader["idPermiso"],
+                        nombrePermiso = reader["nombrePermiso"].ToString(),
+                        idForm = reader["idForm"] as int?
+                    };
+                }
             }
 
-            return permisos;
+            return permiso;
         }
 
-        public List<Permisos> ObtenerPermisosDeGruposPorID_User(int userID)
+        public void Agregar(Permisos permiso)
         {
-            List<Permisos> permisos = new List<Permisos>();
-            string consultaSQL = "SELECT P.* FROM PERMISOS P JOIN PxG ON P.idPermiso = PxG.idPermiso JOIN GRUPOS G ON PxG.idGrupo = G.idGrupo JOIN UxG ON G.idGrupo = UxG.idGrupo JOIN USUARIOS U ON UxG.idUsuario = U.idUsuario WHERE U.idUsuario = @UserID";
-            parametros.Add(new SqlParameter("@UserID", userID));
-
-            try
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                DataTable tablaPermisos = ExecuteReader(consultaSQL);
-                permisos = ConvertirDataTableALista(tablaPermisos);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener permisos de grupos por ID de usuario: " + ex.Message);
-                throw;
-            }
+                connection.Open();
+                SqlCommand command = new SqlCommand(
+                    "INSERT INTO Permisos (idPermiso, nombrePermiso, idForm) VALUES (@idPermiso, @nombrePermiso, @idForm)", connection);
 
-            return permisos;
-        }
+                command.Parameters.AddWithValue("@idPermiso", permiso.idPermiso);
+                command.Parameters.AddWithValue("@nombrePermiso", permiso.nombrePermiso);
+                command.Parameters.AddWithValue("@idForm", permiso.idForm);
 
-        public List<Permisos> ObtenerPermisosDeGrupoPorID_Group(int grupoID)
-        {
-            List<Permisos> permisos = new List<Permisos>();
-            string consultaSQL = "SELECT PERMISOS.* FROM PERMISOS JOIN PxG ON PERMISOS.idPermiso = PxG.idPermiso WHERE PxG.idGrupo = @grupoID";
-            parametros.Add(new SqlParameter("@grupoID", grupoID));
-
-            try
-            {
-                DataTable tablaPermisos = ExecuteReader(consultaSQL);
-                permisos = ConvertirDataTableALista(tablaPermisos);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener permisos de grupo por ID de grupo: " + ex.Message);
-                throw;
-            }
-
-            return permisos;
-        }
-
-        public int QuitarTodosLosUsuariosAsociadosAPermiso(int permisoId)
-        {
-            string consultaSQL = "DELETE FROM PxU WHERE idPermiso = @permisoId";
-            parametros.Add(new SqlParameter("@permisoId", permisoId));
-
-            try
-            {
-                return ExecuteNonQuery(consultaSQL);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al quitar todos los usuarios asociados al permiso: " + ex.Message);
-                throw;
+                command.ExecuteNonQuery();
             }
         }
 
-        public int QuitarTodosLosGruposAsociadosAPermiso(int permisoId)
+        public void Actualizar(Permisos permiso)
         {
-            string consultaSQL = "DELETE FROM PxG WHERE idPermiso = @permisoId";
-            parametros.Add(new SqlParameter("@permisoId", permisoId));
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(
+                    "UPDATE Permisos SET nombrePermiso = @nombrePermiso, idForm = @idForm WHERE idPermiso = @idPermiso", connection);
 
-            try
-            {
-                return ExecuteNonQuery(consultaSQL);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al quitar todos los grupos asociados al permiso: " + ex.Message);
-                throw;
+                command.Parameters.AddWithValue("@idPermiso", permiso.idPermiso);
+                command.Parameters.AddWithValue("@nombrePermiso", permiso.nombrePermiso);
+                command.Parameters.AddWithValue("@idForm", permiso.idForm);
+
+                command.ExecuteNonQuery();
             }
         }
 
-        public int AgregarATablaPxU(int permisoId, int usuarioId)
+        public void Eliminar(int id)
         {
-            string consultaSQL = "INSERT INTO PxU (idPermiso, idUsuario) VALUES (@permisoId, @usuarioId)";
-            parametros.Add(new SqlParameter("@permisoId", permisoId));
-            parametros.Add(new SqlParameter("@usuarioId", usuarioId));
-
-            try
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                return ExecuteNonQuery(consultaSQL);
+                connection.Open();
+                SqlCommand command = new SqlCommand("DELETE FROM Permisos WHERE idPermiso = @id", connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al agregar a la tabla PxU: " + ex.Message);
-                throw;
-            }
-        }
-
-        public int AgregarATablaPxG(int permisoId, int grupoId)
-        {
-            string consultaSQL = "INSERT INTO PxG (idPermiso, idGrupo) VALUES (@permisoId, @grupoId)";
-            parametros.Add(new SqlParameter("@permisoId", permisoId));
-            parametros.Add(new SqlParameter("@grupoId", grupoId));
-
-            try
-            {
-                return ExecuteNonQuery(consultaSQL);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al agregar a la tabla PxG: " + ex.Message);
-                throw;
-            }
-        }
-
-        private List<Permisos> ConvertirDataTableALista(DataTable tabla)
-        {
-            List<Permisos> permisos = new List<Permisos>();
-
-            foreach (DataRow fila in tabla.Rows)
-            {
-                permisos.Add(ConvertirDataRowAPermiso(fila));
-            }
-
-            return permisos;
-        }
-
-        private Permisos ConvertirDataRowAPermiso(DataRow fila)
-        {
-            return new Permisos
-            {
-                idPermiso = Convert.ToInt32(fila["idPermiso"]),
-                nombrePermiso = fila["nombrePermiso"].ToString(),
-                idForm = fila["idForm"] != DBNull.Value ? Convert.ToInt32(fila["idForm"]) : (int?)null
-            };
         }
     }
 }
-

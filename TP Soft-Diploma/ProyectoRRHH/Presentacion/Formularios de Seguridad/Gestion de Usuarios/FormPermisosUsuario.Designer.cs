@@ -36,6 +36,8 @@
             // treePermisosUsu
             // 
             this.treePermisosUsu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
+            this.treePermisosUsu.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
+            this.treePermisosUsu.ForeColor = System.Drawing.Color.SeaShell;
             this.treePermisosUsu.Location = new System.Drawing.Point(75, 27);
             this.treePermisosUsu.Name = "treePermisosUsu";
             this.treePermisosUsu.Size = new System.Drawing.Size(393, 295);
