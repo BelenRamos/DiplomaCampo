@@ -8,11 +8,11 @@ namespace Presentacion.Formularios_de_Seguridad
 {
     public partial class FormGestionPermisos : Form
     {
-        private readonly NegPermisos _negPermisos;
+        private readonly NegPermisos negPermisos;
 
         public FormGestionPermisos()
         {
-            _negPermisos = new NegPermisos();
+            negPermisos = new NegPermisos();
             InitializeComponent();
         }
 
@@ -25,7 +25,7 @@ namespace Presentacion.Formularios_de_Seguridad
         {
             treePermisos.Nodes.Clear();
 
-            var permisos = _negPermisos.ObtenerTodosPermisos();
+            var permisos = negPermisos.ObtenerTodosPermisos();
             foreach (var permiso in permisos)
             {
                 var nodoPermiso = new TreeNode(permiso.nombrePermiso)

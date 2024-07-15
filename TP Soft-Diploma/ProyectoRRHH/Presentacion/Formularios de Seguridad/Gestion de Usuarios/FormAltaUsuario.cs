@@ -1,5 +1,7 @@
 ﻿using Modelo;
 using System;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
@@ -41,12 +43,26 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
                 usuario = new Usuarios();
 
             usuario.nombreUsuario = txtNombreUsuario.Text;
-            usuario.contrasenia = txtContrasenia.Text;
+            usuario.contrasenia = HashPassword(txtContrasenia.Text);
             usuario.emailUsuario = txtEmailUsuario.Text;
             usuario.habilitado = chkHabilitado.Checked ? (byte)1 : (byte)0;
             usuario.legajo = !string.IsNullOrEmpty(txtLegajo.Text) ? int.Parse(txtLegajo.Text) : (int?)null;
 
             return usuario;
+        }
+
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -92,3 +108,4 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
         }
     }
 }
+

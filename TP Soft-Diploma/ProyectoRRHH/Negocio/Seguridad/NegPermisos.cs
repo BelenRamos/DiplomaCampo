@@ -6,36 +6,36 @@ namespace Negocio
 {
     public class NegPermisos
     {
-        private readonly RepoPermisos _repoPermisos;
+        private readonly RepoPermisos repoPermisos;
 
         public NegPermisos()
         {
-            _repoPermisos = new RepoPermisos();
+            repoPermisos = new RepoPermisos();
         }
 
         public IEnumerable<Permisos> ObtenerTodosPermisos()
         {
-            return _repoPermisos.ObtenerTodos();
+            return repoPermisos.ObtenerTodos();
         }
 
         public Permisos ObtenerPermisoPorId(int id)
         {
-            return _repoPermisos.ObtenerPorId(id);
+            return repoPermisos.ObtenerPorId(id);
         }
 
         public void AgregarPermiso(Permisos permiso)
         {
-            _repoPermisos.Agregar(permiso);
+            repoPermisos.Agregar(permiso);
         }
 
         public void ActualizarPermiso(Permisos permiso)
         {
-            _repoPermisos.Actualizar(permiso);
+            repoPermisos.Actualizar(permiso);
         }
 
         public void EliminarPermiso(int id)
         {
-            _repoPermisos.Eliminar(id);
+            repoPermisos.Eliminar(id);
         }
     }
 }

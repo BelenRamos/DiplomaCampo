@@ -69,8 +69,11 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formulario_de_Reporte.FormReporteClientes.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formulario_de_Reporte.FormReportePostulantes.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.FormGestionClientes.resources
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.FormGestionPermisos.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios.FormAltaUsuario.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios.FormGestionUsuarios.resources
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_de_Permisos.FormAltaGrupo.resources
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_Grupos.FormGestionGrupos.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.MenuSeguridad.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_OL.FormGestionOL.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_OL.FormOLNuevo.resources
@@ -85,5 +88,3 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presenta.BC77CD05.Up2Date
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.exe
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.pdb
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.FormGestionPermisos.resources
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_Grupos.FormGestionGrupos.resources

@@ -1,5 +1,6 @@
 ﻿using Presentacion.Formulario_de_Reporte;
 using Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios;
+using Presentacion.Formularios_de_Seguridad.Gestion_Grupos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,8 +28,8 @@ namespace Presentacion.Formularios_de_Seguridad
 
         private void btnGestionGrupos_Click(object sender, EventArgs e)
         {
-            //FormGestionGrupos formGestionGrupos = new FormGestionGrupos();
-            //formGestionGrupos.ShowDialog();
+            FormGestionGrupos formGestionGrupos = new FormGestionGrupos();
+            formGestionGrupos.ShowDialog();
         }
 
         private void btnGestionUsuarios_Click(object sender, EventArgs e)

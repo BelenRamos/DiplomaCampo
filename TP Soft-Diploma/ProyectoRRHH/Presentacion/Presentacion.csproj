@@ -162,10 +162,16 @@
     <Compile Include="Formularios Cliente\FormGestionClientes.Designer.cs">
       <DependentUpon>FormGestionClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios de Seguridad\FormGestionPermisos.cs">
+    <Compile Include="Formularios de Seguridad\Gestion Grupos\FormAltaGrupo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Formularios de Seguridad\FormGestionPermisos.Designer.cs">
+    <Compile Include="Formularios de Seguridad\Gestion Grupos\FormAltaGrupo.Designer.cs">
+      <DependentUpon>FormAltaGrupo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\Gestion de Permisos\FormGestionPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios de Seguridad\Gestion de Permisos\FormGestionPermisos.Designer.cs">
       <DependentUpon>FormGestionPermisos.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios de Seguridad\Gestion de Usuarios\FormAltaUsuario.cs">
@@ -251,7 +257,7 @@
     <EmbeddedResource Include="Formularios Cliente\FormGestionClientes.resx">
       <DependentUpon>FormGestionClientes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Formularios de Seguridad\FormGestionPermisos.resx">
+    <EmbeddedResource Include="Formularios de Seguridad\Gestion de Permisos\FormGestionPermisos.resx">
       <DependentUpon>FormGestionPermisos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios de Seguridad\Gestion de Usuarios\FormAltaUsuario.resx">
@@ -259,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios de Seguridad\Gestion de Usuarios\FormGestionUsuarios.resx">
       <DependentUpon>FormGestionUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios de Seguridad\Gestion Grupos\FormAltaGrupo.resx">
+      <DependentUpon>FormAltaGrupo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios de Seguridad\Gestion Grupos\FormGestionGrupos.resx">
       <DependentUpon>FormGestionGrupos.cs</DependentUpon>

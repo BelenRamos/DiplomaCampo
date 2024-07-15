@@ -1,157 +1,114 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using Datos;
 using Modelo;
 
-namespace Datos.RepoSeguridad
+namespace Datos
 {
-    public class RepoGrupos : RepositorioMaestro
+    public class RepoGrupos
     {
-        public List<Grupos> ObtenerTodosLosGrupos()
+        private readonly string _connectionString;
+
+        public RepoGrupos()
         {
-            List<Grupos> grupos = new List<Grupos>();
-            string consultaSQL = "SELECT * FROM Grupos";
-
-            try
-            {
-                DataTable tablaGrupos = ExecuteReader(consultaSQL);
-                grupos = ConvertirDataTableALista(tablaGrupos);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener todos los grupos: " + ex.Message);
-                throw;
-            }
-
-            return grupos;
+            _connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
         }
 
-        public List<Grupos> ObtenerGruposPorUsuario(int userID)
+        public IEnumerable<Grupos> ObtenerTodos()
         {
-            List<Grupos> grupos = new List<Grupos>();
-            string consultaSQL = "SELECT g.* FROM Grupos g INNER JOIN UxG u ON g.idGrupo = u.ID_Group WHERE u.ID_User = @UserID";
+            var Grupos = new List<Grupos>();
 
-            try
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                parametros.Add(new SqlParameter("@UserID", userID));
-                DataTable tablaGrupos = ExecuteReader(consultaSQL);
-                grupos = ConvertirDataTableALista(tablaGrupos);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener grupos por usuario: " + ex.Message);
-                throw;
-            }
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Grupos", connection);
+                SqlDataReader reader = command.ExecuteReader();
 
-            return grupos;
-        }
-
-        public List<Grupos> ObtenerGruposNoAsociadosAUsuario(int userID)
-        {
-            List<Grupos> grupos = new List<Grupos>();
-            string consultaSQL = "SELECT g.* FROM Grupos g WHERE g.idGrupo NOT IN (SELECT ID_Group FROM UxG WHERE ID_User = @UserID)";
-
-            try
-            {
-                parametros.Add(new SqlParameter("@UserID", userID));
-                DataTable tablaGrupos = ExecuteReader(consultaSQL);
-                grupos = ConvertirDataTableALista(tablaGrupos);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener grupos no asociados a usuario: " + ex.Message);
-                throw;
-            }
-
-            return grupos;
-        }
-
-        public Grupos ObtenerGrupoPorID(int idGrupo)
-        {
-            Grupos grupo = null;
-            string consultaSQL = "SELECT * FROM Grupos WHERE idGrupo = @ID";
-
-            try
-            {
-                parametros.Clear();
-                parametros.Add(new SqlParameter("@ID", idGrupo));
-                DataTable tablaGrupo = ExecuteReader(consultaSQL);
-                if (tablaGrupo.Rows.Count > 0)
+                while (reader.Read())
                 {
-                    grupo = ConvertirDataRowAGrupo(tablaGrupo.Rows[0]);
+                    var grupos = new Grupos
+                    {
+                        idGrupo = (int)reader["idGrupo"],
+                        nombreGrupo = reader["nombreGrupo"].ToString(),
+                        habilitado = (byte?)reader["habilitado"]
+                    };
+
+                    Grupos.Add(grupos);
                 }
             }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener grupo por ID: " + ex.Message);
-                throw;
-            }
 
-            return grupo;
+            return Grupos;
         }
 
-        public List<Grupos> ObtenerGruposAsociadosAPermiso(int permisoID)
+        public Grupos ObtenerPorId(int id)
         {
-            List<Grupos> grupos = new List<Grupos>();
-            string consultaSQL = "SELECT G.* FROM Grupos G JOIN PxG ON G.idGrupo = PxG.ID_Group WHERE PxG.ID_Permission = @permisoID";
+            Grupos Grupos = null;
 
-            try
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                parametros.Add(new SqlParameter("@permisoID", permisoID));
-                DataTable tablaGrupos = ExecuteReader(consultaSQL);
-                grupos = ConvertirDataTableALista(tablaGrupos);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener grupos asociados a permiso: " + ex.Message);
-                throw;
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Grupos WHERE idGrupo = @id", connection);
+                command.Parameters.AddWithValue("@id", id);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    Grupos = new Grupos
+                    {
+                        idGrupo = (int)reader["idGrupo"],
+                        nombreGrupo = reader["nombreGrupo"].ToString(),
+                        habilitado = (byte?)reader["habilitado"]
+                    };
+                }
             }
 
-            return grupos;
+            return Grupos;
         }
 
-        public List<Grupos> ObtenerGruposNoAsociadosAPermiso(int permisoID)
+        public void Agregar(Grupos Grupos)
         {
-            List<Grupos> grupos = new List<Grupos>();
-            string consultaSQL = "SELECT G.* FROM Grupos G LEFT JOIN PxG ON G.idGrupo = PxG.ID_Group AND PxG.ID_Permission = @permisoID WHERE PxG.ID_Group IS NULL";
-
-            try
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                parametros.Add(new SqlParameter("@permisoID", permisoID));
-                DataTable tablaGrupos = ExecuteReader(consultaSQL);
-                grupos = ConvertirDataTableALista(tablaGrupos);
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error al obtener grupos no asociados a permiso: " + ex.Message);
-                throw;
-            }
+                connection.Open();
+                SqlCommand command = new SqlCommand(
+                    "INSERT INTO Grupos (idGrupo, nombreGrupo, habilitado) VALUES (@idGrupo, @nombreGrupo, @habilitado)", connection);
 
-            return grupos;
+                command.Parameters.AddWithValue("@idGrupo", Grupos.idGrupo);
+                command.Parameters.AddWithValue("@nombreGrupo", Grupos.nombreGrupo);
+                command.Parameters.AddWithValue("@habilitado", Grupos.habilitado);
+
+                command.ExecuteNonQuery();
+            }
         }
 
-        private List<Grupos> ConvertirDataTableALista(DataTable tabla)
+        public void Actualizar(Grupos Grupos)
         {
-            List<Grupos> grupos = new List<Grupos>();
-
-            foreach (DataRow fila in tabla.Rows)
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                grupos.Add(ConvertirDataRowAGrupo(fila));
-            }
+                connection.Open();
+                SqlCommand command = new SqlCommand(
+                    "UPDATE Grupos SET nombreGrupo = @nombreGrupo, habilitado = @habilitado WHERE idGrupo = @idGrupo", connection);
 
-            return grupos;
+                command.Parameters.AddWithValue("@idGrupo", Grupos.idGrupo);
+                command.Parameters.AddWithValue("@nombreGrupo", Grupos.nombreGrupo);
+                command.Parameters.AddWithValue("@habilitado", Grupos.habilitado);
+
+                command.ExecuteNonQuery();
+            }
         }
 
-        private Grupos ConvertirDataRowAGrupo(DataRow fila)
+        public void Eliminar(int id)
         {
-            return new Grupos
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                idGrupo = Convert.ToInt32(fila["idGrupo"]),
-                nombreGrupo = fila["nombreGrupo"].ToString(),
-                habilitado = fila["habilitado"] != DBNull.Value ? (byte?)Convert.ToByte(fila["habilitado"]) : null
-            };
+                connection.Open();
+                SqlCommand command = new SqlCommand("DELETE FROM Grupos WHERE idGrupo = @id", connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
