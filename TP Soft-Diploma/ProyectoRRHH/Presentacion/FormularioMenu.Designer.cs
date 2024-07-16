@@ -39,11 +39,9 @@
             this.btnPerfiles = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.panelBarra = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelseparacion = new System.Windows.Forms.Panel();
             this.panelFormularios = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
-            this.panelBarra.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -60,7 +58,7 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(200, 496);
+            this.panelMenu.Size = new System.Drawing.Size(200, 489);
             this.panelMenu.TabIndex = 0;
             // 
             // btnSeguridad
@@ -196,21 +194,11 @@
             // panelBarra
             // 
             this.panelBarra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(31)))), ((int)(((byte)(48)))));
-            this.panelBarra.Controls.Add(this.label1);
             this.panelBarra.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelBarra.Location = new System.Drawing.Point(200, 0);
             this.panelBarra.Name = "panelBarra";
-            this.panelBarra.Size = new System.Drawing.Size(984, 50);
+            this.panelBarra.Size = new System.Drawing.Size(539, 50);
             this.panelBarra.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "lbForm";
             // 
             // panelseparacion
             // 
@@ -218,7 +206,7 @@
             this.panelseparacion.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelseparacion.Location = new System.Drawing.Point(200, 50);
             this.panelseparacion.Name = "panelseparacion";
-            this.panelseparacion.Size = new System.Drawing.Size(984, 8);
+            this.panelseparacion.Size = new System.Drawing.Size(539, 8);
             this.panelseparacion.TabIndex = 2;
             // 
             // panelFormularios
@@ -227,14 +215,14 @@
             this.panelFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFormularios.Location = new System.Drawing.Point(200, 58);
             this.panelFormularios.Name = "panelFormularios";
-            this.panelFormularios.Size = new System.Drawing.Size(984, 438);
+            this.panelFormularios.Size = new System.Drawing.Size(539, 431);
             this.panelFormularios.TabIndex = 3;
             // 
             // FormularioMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 496);
+            this.ClientSize = new System.Drawing.Size(739, 489);
             this.Controls.Add(this.panelFormularios);
             this.Controls.Add(this.panelseparacion);
             this.Controls.Add(this.panelBarra);
@@ -242,8 +230,6 @@
             this.Name = "FormularioMenu";
             this.Text = "FormularioMenu";
             this.panelMenu.ResumeLayout(false);
-            this.panelBarra.ResumeLayout(false);
-            this.panelBarra.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -260,7 +246,6 @@
         private System.Windows.Forms.Panel panelseparacion;
         private System.Windows.Forms.Panel panelFormularios;
         private System.Windows.Forms.Button btnPostulantes;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSeguridad;
         private System.Windows.Forms.Button btnDashboard;
     }
