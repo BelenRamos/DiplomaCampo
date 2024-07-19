@@ -40,9 +40,9 @@
             // 
             this.dataUsuarios.AllowUserToAddRows = false;
             this.dataUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataUsuarios.Location = new System.Drawing.Point(12, 78);
+            this.dataUsuarios.Location = new System.Drawing.Point(177, 44);
             this.dataUsuarios.Name = "dataUsuarios";
-            this.dataUsuarios.Size = new System.Drawing.Size(483, 271);
+            this.dataUsuarios.Size = new System.Drawing.Size(393, 271);
             this.dataUsuarios.TabIndex = 0;
             // 
             // btnBajaUsuario
@@ -51,7 +51,7 @@
             this.btnBajaUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBajaUsuario.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnBajaUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.btnBajaUsuario.Location = new System.Drawing.Point(564, 193);
+            this.btnBajaUsuario.Location = new System.Drawing.Point(23, 183);
             this.btnBajaUsuario.Name = "btnBajaUsuario";
             this.btnBajaUsuario.Size = new System.Drawing.Size(121, 33);
             this.btnBajaUsuario.TabIndex = 6;
@@ -64,7 +64,7 @@
             this.btnModificarUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificarUsuario.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnModificarUsuario.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnModificarUsuario.Location = new System.Drawing.Point(564, 138);
+            this.btnModificarUsuario.Location = new System.Drawing.Point(23, 128);
             this.btnModificarUsuario.Name = "btnModificarUsuario";
             this.btnModificarUsuario.Size = new System.Drawing.Size(121, 33);
             this.btnModificarUsuario.TabIndex = 5;
@@ -77,7 +77,7 @@
             this.btnAltaUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAltaUsuario.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnAltaUsuario.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnAltaUsuario.Location = new System.Drawing.Point(564, 81);
+            this.btnAltaUsuario.Location = new System.Drawing.Point(23, 71);
             this.btnAltaUsuario.Name = "btnAltaUsuario";
             this.btnAltaUsuario.Size = new System.Drawing.Size(121, 33);
             this.btnAltaUsuario.TabIndex = 4;
@@ -91,7 +91,7 @@
             this.btnPermisosUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPermisosUsuarios.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnPermisosUsuarios.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.btnPermisosUsuarios.Location = new System.Drawing.Point(564, 246);
+            this.btnPermisosUsuarios.Location = new System.Drawing.Point(23, 236);
             this.btnPermisosUsuarios.Name = "btnPermisosUsuarios";
             this.btnPermisosUsuarios.Size = new System.Drawing.Size(121, 56);
             this.btnPermisosUsuarios.TabIndex = 7;
@@ -104,7 +104,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.ClientSize = new System.Drawing.Size(730, 361);
+            this.ClientSize = new System.Drawing.Size(601, 337);
             this.Controls.Add(this.btnPermisosUsuarios);
             this.Controls.Add(this.btnBajaUsuario);
             this.Controls.Add(this.btnModificarUsuario);

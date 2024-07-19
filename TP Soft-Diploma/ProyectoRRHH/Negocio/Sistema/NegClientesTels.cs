@@ -1,51 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using Modelo;
+﻿using System.Collections.Generic;
 using Datos;
+using Modelo;
 
-namespace Negocio
+namespace Negocios
 {
-    public class NegClientesTels
+    public class NegClientesTelefonos
     {
-        private static NegClientesTels instancia;
-        private RepoClientesTels repositorioClientesTels;
+        private readonly RepoClientesTelefonos _repoClientesTelefonos;
 
-        private NegClientesTels()
+        public NegClientesTelefonos(string connectionString)
         {
-            repositorioClientesTels = new RepoClientesTels();
+            _repoClientesTelefonos = new RepoClientesTelefonos(connectionString);
         }
 
-        public static NegClientesTels ObtenerInstancia()
+        public List<Clientes_Telefonos> ObtenerTelefonosPorClienteId(int id_cliente)
         {
-            if (instancia == null)
-            {
-                instancia = new NegClientesTels();
-            }
-            return instancia;
+            return _repoClientesTelefonos.GetTelefonosByClienteId(id_cliente);
         }
 
-        public List<Clientes_Telefonos> ObtenerTodosLosTelefonos()
+        public void AgregarTelefono(Clientes_Telefonos telefono)
         {
-            try
-            {
-                return repositorioClientesTels.ObtenerTodosLosTelefonos();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            _repoClientesTelefonos.AddTelefono(telefono);
         }
 
-        public List<Clientes_Telefonos> ObtenerTelefonosPorIDCliente(int idCliente)
+        public void EliminarTelefono(int id_cliente, string telefono)
         {
-            try
-            {
-                return repositorioClientesTels.ObtenerTelefonosPorIDCliente(idCliente);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            _repoClientesTelefonos.DeleteTelefono(id_cliente, telefono);
         }
     }
 }

@@ -40,10 +40,10 @@
             // dgvPostulantes
             // 
             this.dgvPostulantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPostulantes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dgvPostulantes.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvPostulantes.Location = new System.Drawing.Point(0, 0);
             this.dgvPostulantes.Name = "dgvPostulantes";
-            this.dgvPostulantes.Size = new System.Drawing.Size(755, 301);
+            this.dgvPostulantes.Size = new System.Drawing.Size(523, 221);
             this.dgvPostulantes.TabIndex = 0;
             // 
             // btnAgregarPostulante
@@ -51,7 +51,7 @@
             this.btnAgregarPostulante.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarPostulante.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnAgregarPostulante.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnAgregarPostulante.Location = new System.Drawing.Point(814, 98);
+            this.btnAgregarPostulante.Location = new System.Drawing.Point(32, 289);
             this.btnAgregarPostulante.Name = "btnAgregarPostulante";
             this.btnAgregarPostulante.Size = new System.Drawing.Size(121, 33);
             this.btnAgregarPostulante.TabIndex = 1;
@@ -64,7 +64,7 @@
             this.btnModificarPostulante.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificarPostulante.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnModificarPostulante.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnModificarPostulante.Location = new System.Drawing.Point(814, 137);
+            this.btnModificarPostulante.Location = new System.Drawing.Point(211, 289);
             this.btnModificarPostulante.Name = "btnModificarPostulante";
             this.btnModificarPostulante.Size = new System.Drawing.Size(121, 33);
             this.btnModificarPostulante.TabIndex = 2;
@@ -78,7 +78,7 @@
             this.btnEliminarPostulante.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminarPostulante.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnEliminarPostulante.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.btnEliminarPostulante.Location = new System.Drawing.Point(814, 176);
+            this.btnEliminarPostulante.Location = new System.Drawing.Point(390, 347);
             this.btnEliminarPostulante.Name = "btnEliminarPostulante";
             this.btnEliminarPostulante.Size = new System.Drawing.Size(121, 33);
             this.btnEliminarPostulante.TabIndex = 3;
@@ -95,7 +95,7 @@
             this.comboCandidatos.Items.AddRange(new object[] {
             "Candidatos",
             "No candidatos"});
-            this.comboCandidatos.Location = new System.Drawing.Point(814, 41);
+            this.comboCandidatos.Location = new System.Drawing.Point(32, 239);
             this.comboCandidatos.Name = "comboCandidatos";
             this.comboCandidatos.Size = new System.Drawing.Size(121, 28);
             this.comboCandidatos.TabIndex = 4;
@@ -105,7 +105,7 @@
             this.btnCandidato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCandidato.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnCandidato.ForeColor = System.Drawing.Color.Tan;
-            this.btnCandidato.Location = new System.Drawing.Point(814, 215);
+            this.btnCandidato.Location = new System.Drawing.Point(390, 289);
             this.btnCandidato.Name = "btnCandidato";
             this.btnCandidato.Size = new System.Drawing.Size(121, 33);
             this.btnCandidato.TabIndex = 5;
@@ -117,7 +117,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.ClientSize = new System.Drawing.Size(968, 301);
+            this.ClientSize = new System.Drawing.Size(523, 392);
             this.Controls.Add(this.btnCandidato);
             this.Controls.Add(this.comboCandidatos);
             this.Controls.Add(this.btnEliminarPostulante);

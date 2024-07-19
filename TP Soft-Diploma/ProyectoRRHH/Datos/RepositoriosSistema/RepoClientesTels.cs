@@ -6,47 +6,63 @@ using Modelo;
 
 namespace Datos
 {
-    public class RepoClientesTels : RepositorioMaestro
+    public class RepoClientesTelefonos
     {
-        public List<Clientes_Telefonos> ObtenerTodosLosTelefonos()
+        private readonly string _connectionString;
+
+        public RepoClientesTelefonos(string connectionString)
         {
-            List<Clientes_Telefonos> telefonos = new List<Clientes_Telefonos>();
-            string consultaSQL = "SELECT * FROM Clientes_Telefonos"; // Ajusta esto según el nombre de tu tabla de teléfonos de clientes
+            _connectionString = connectionString;
+        }
 
-            DataTable tablaTelefonos = ExecuteReader(consultaSQL);
+        public List<Clientes_Telefonos> GetTelefonosByClienteId(int id_cliente)
+        {
+            var telefonos = new List<Clientes_Telefonos>();
 
-            foreach (DataRow fila in tablaTelefonos.Rows)
+            using (var connection = new SqlConnection(_connectionString))
             {
-                Clientes_Telefonos telefono = new Clientes_Telefonos
+                var command = new SqlCommand("SELECT id_cliente, telefono FROM Clientes_Telefonos WHERE id_cliente = @id_cliente", connection);
+                command.Parameters.AddWithValue("@id_cliente", id_cliente);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
-                    id_cliente = Convert.ToInt32(fila["id_cliente"]),
-                    telefono = fila["telefono"].ToString(),
-                    // Ajusta el mapeo de propiedades según tu clase Clientes_Telefonos
-                };
-                telefonos.Add(telefono);
+                    while (reader.Read())
+                    {
+                        var telefono = new Clientes_Telefonos
+                        {
+                            id_cliente = reader.GetInt32(0),
+                            telefono = reader.GetString(1)
+                        };
+                        telefonos.Add(telefono);
+                    }
+                }
             }
+
             return telefonos;
         }
 
-        public List<Clientes_Telefonos> ObtenerTelefonosPorIDCliente(int idCliente)
+        public void AddTelefono(Clientes_Telefonos telefono)
         {
-            List<Clientes_Telefonos> telefonos = new List<Clientes_Telefonos>();
-            string consultaSQL = "SELECT * FROM Clientes_Telefonos WHERE id_cliente = @ID_Cliente";
-            parametros.Add(new SqlParameter("@ID_Cliente", idCliente));
-            DataTable tablaTelefonos = ExecuteReader(consultaSQL);
-
-            foreach (DataRow fila in tablaTelefonos.Rows)
+            using (var connection = new SqlConnection(_connectionString))
             {
-                Clientes_Telefonos telefono = new Clientes_Telefonos
-                {
-                    id_cliente = Convert.ToInt32(fila["id_cliente"]),
-                    telefono = fila["telefono"].ToString(),
-                    // Ajusta el mapeo de propiedades según tu clase Clientes_Telefonos
-                };
-                telefonos.Add(telefono);
+                var command = new SqlCommand("INSERT INTO Clientes_Telefonos (id_cliente, telefono) VALUES (@id_cliente, @telefono)", connection);
+                command.Parameters.AddWithValue("@id_cliente", telefono.id_cliente);
+                command.Parameters.AddWithValue("@telefono", telefono.telefono);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
-            return telefonos;
+        }
+
+        public void DeleteTelefono(int id_cliente, string telefono)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand("DELETE FROM Clientes_Telefonos WHERE id_cliente = @id_cliente AND telefono = @telefono", connection);
+                command.Parameters.AddWithValue("@id_cliente", id_cliente);
+                command.Parameters.AddWithValue("@telefono", telefono);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
-

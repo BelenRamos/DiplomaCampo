@@ -40,9 +40,9 @@
             this.treePermisos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treePermisos.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.treePermisos.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.treePermisos.Location = new System.Drawing.Point(33, 25);
+            this.treePermisos.Location = new System.Drawing.Point(201, 38);
             this.treePermisos.Name = "treePermisos";
-            this.treePermisos.Size = new System.Drawing.Size(471, 267);
+            this.treePermisos.Size = new System.Drawing.Size(299, 320);
             this.treePermisos.TabIndex = 1;
             // 
             // btnBajaEliminar
@@ -51,7 +51,7 @@
             this.btnBajaEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBajaEliminar.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnBajaEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.btnBajaEliminar.Location = new System.Drawing.Point(549, 156);
+            this.btnBajaEliminar.Location = new System.Drawing.Point(40, 149);
             this.btnBajaEliminar.Name = "btnBajaEliminar";
             this.btnBajaEliminar.Size = new System.Drawing.Size(121, 33);
             this.btnBajaEliminar.TabIndex = 9;
@@ -63,7 +63,7 @@
             this.btnModificarPermiso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificarPermiso.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnModificarPermiso.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnModificarPermiso.Location = new System.Drawing.Point(549, 101);
+            this.btnModificarPermiso.Location = new System.Drawing.Point(40, 91);
             this.btnModificarPermiso.Name = "btnModificarPermiso";
             this.btnModificarPermiso.Size = new System.Drawing.Size(121, 33);
             this.btnModificarPermiso.TabIndex = 8;
@@ -75,7 +75,7 @@
             this.btnAltaPermiso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAltaPermiso.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnAltaPermiso.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnAltaPermiso.Location = new System.Drawing.Point(549, 44);
+            this.btnAltaPermiso.Location = new System.Drawing.Point(40, 38);
             this.btnAltaPermiso.Name = "btnAltaPermiso";
             this.btnAltaPermiso.Size = new System.Drawing.Size(121, 33);
             this.btnAltaPermiso.TabIndex = 7;
@@ -87,7 +87,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.ClientSize = new System.Drawing.Size(703, 333);
+            this.ClientSize = new System.Drawing.Size(523, 392);
             this.Controls.Add(this.btnBajaEliminar);
             this.Controls.Add(this.btnModificarPermiso);
             this.Controls.Add(this.btnAltaPermiso);

@@ -6,54 +6,34 @@ using Modelo;
 
 namespace Datos
 {
-    public class RepoTurnosReuniones : RepositorioMaestro
+    public class RepoTurnosReuniones
     {
-        public List<TurnosReuniones> ObtenerTodosLosTurnosReuniones()
+        private string connectionString = "data source=.;initial catalog=db_RRHH;integrated security=True;encrypt=True;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework";
+
+        public List<TurnosReuniones> ObtenerTurnosReuniones()
         {
-            List<TurnosReuniones> turnosReuniones = new List<TurnosReuniones>();
-            string consultaSQL = "SELECT * FROM TurnosReuniones"; // Ajusta esto según el nombre de tu tabla de turnos de reuniones
-
-            DataTable tablaTurnosReuniones = ExecuteReader(consultaSQL);
-
-            foreach (DataRow fila in tablaTurnosReuniones.Rows)
+            List<TurnosReuniones> turnosReunionesList = new List<TurnosReuniones>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                TurnosReuniones turnoReunion = new TurnosReuniones
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM TurnosReuniones", conn))
                 {
-                    fecha = Convert.ToDateTime(fila["fecha"]),
-                    horario = (TimeSpan)fila["horario"],
-                    disponible = fila["disponible"] != DBNull.Value ? (byte?)Convert.ToByte(fila["disponible"]) : null,
-                    nro_reunion = Convert.ToInt32(fila["nro_reunion"]),
-                    id_cliente = fila["id_cliente"] != DBNull.Value ? (int?)Convert.ToInt32(fila["id_cliente"]) : null,
-                    // Ajusta el mapeo de propiedades según tu clase TurnosReuniones
-                };
-                turnosReuniones.Add(turnoReunion);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        TurnosReuniones turnoReunion = new TurnosReuniones
+                        {
+                            fecha = reader.GetDateTime(0),
+                            horario = reader.GetTimeSpan(1),
+                            disponible = reader.IsDBNull(2) ? (byte?)null : reader.GetByte(2),
+                            nro_reunion = reader.GetInt32(3),
+                            id_cliente = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4)
+                        };
+                        turnosReunionesList.Add(turnoReunion);
+                    }
+                }
             }
-            return turnosReuniones;
-        }
-
-        public TurnosReuniones ObtenerTurnoReunionPorClave(DateTime fecha, TimeSpan horario, int nro_reunion)
-        {
-            TurnosReuniones turnoReunion = null;
-            string consultaSQL = "SELECT * FROM TurnosReuniones WHERE fecha = @Fecha AND horario = @Horario AND nro_reunion = @Nro_Reunion";
-            parametros.Add(new SqlParameter("@Fecha", fecha));
-            parametros.Add(new SqlParameter("@Horario", horario));
-            parametros.Add(new SqlParameter("@Nro_Reunion", nro_reunion));
-            DataTable tablaTurnosReuniones = ExecuteReader(consultaSQL);
-
-            if (tablaTurnosReuniones.Rows.Count > 0)
-            {
-                DataRow fila = tablaTurnosReuniones.Rows[0];
-                turnoReunion = new TurnosReuniones
-                {
-                    fecha = Convert.ToDateTime(fila["fecha"]),
-                    horario = (TimeSpan)fila["horario"],
-                    disponible = fila["disponible"] != DBNull.Value ? (byte?)Convert.ToByte(fila["disponible"]) : null,
-                    nro_reunion = Convert.ToInt32(fila["nro_reunion"]),
-                    id_cliente = fila["id_cliente"] != DBNull.Value ? (int?)Convert.ToInt32(fila["id_cliente"]) : null,
-                    // Ajusta el mapeo de propiedades según tu clase TurnosReuniones
-                };
-            }
-            return turnoReunion;
+            return turnosReunionesList;
         }
     }
 }

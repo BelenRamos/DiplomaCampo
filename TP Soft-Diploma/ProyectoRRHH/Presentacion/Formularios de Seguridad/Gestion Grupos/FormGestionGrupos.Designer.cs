@@ -39,7 +39,7 @@
             // dataGrupos
             // 
             this.dataGrupos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrupos.Location = new System.Drawing.Point(12, 34);
+            this.dataGrupos.Location = new System.Drawing.Point(194, 34);
             this.dataGrupos.Name = "dataGrupos";
             this.dataGrupos.Size = new System.Drawing.Size(384, 206);
             this.dataGrupos.TabIndex = 0;
@@ -50,7 +50,7 @@
             this.btnBajaGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBajaGrupos.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnBajaGrupos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.btnBajaGrupos.Location = new System.Drawing.Point(450, 174);
+            this.btnBajaGrupos.Location = new System.Drawing.Point(33, 160);
             this.btnBajaGrupos.Name = "btnBajaGrupos";
             this.btnBajaGrupos.Size = new System.Drawing.Size(121, 33);
             this.btnBajaGrupos.TabIndex = 12;
@@ -63,7 +63,7 @@
             this.btnModificarGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificarGrupos.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnModificarGrupos.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnModificarGrupos.Location = new System.Drawing.Point(450, 119);
+            this.btnModificarGrupos.Location = new System.Drawing.Point(33, 105);
             this.btnModificarGrupos.Name = "btnModificarGrupos";
             this.btnModificarGrupos.Size = new System.Drawing.Size(121, 33);
             this.btnModificarGrupos.TabIndex = 11;
@@ -76,7 +76,7 @@
             this.btnAltaGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAltaGrupos.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnAltaGrupos.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnAltaGrupos.Location = new System.Drawing.Point(450, 62);
+            this.btnAltaGrupos.Location = new System.Drawing.Point(33, 48);
             this.btnAltaGrupos.Name = "btnAltaGrupos";
             this.btnAltaGrupos.Size = new System.Drawing.Size(121, 33);
             this.btnAltaGrupos.TabIndex = 10;
@@ -90,7 +90,7 @@
             this.treeGrupos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeGrupos.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.treeGrupos.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.treeGrupos.Location = new System.Drawing.Point(48, 246);
+            this.treeGrupos.Location = new System.Drawing.Point(238, 262);
             this.treeGrupos.Name = "treeGrupos";
             this.treeGrupos.Size = new System.Drawing.Size(281, 111);
             this.treeGrupos.TabIndex = 13;

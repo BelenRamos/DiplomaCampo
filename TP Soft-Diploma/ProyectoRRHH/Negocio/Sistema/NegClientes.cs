@@ -1,149 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Datos;
 using Modelo;
 
-namespace Negocio
+namespace Negocios
 {
     public class NegClientes
     {
-        private static NegClientes instancia;
-        private RepoClientes repositorio;
-        private List<Clientes> clientes;
+        private readonly RepoClientes _repoClientes;
 
-        private NegClientes()
+        public NegClientes(string connectionString)
         {
-            repositorio = new RepoClientes();
-            clientes = new List<Clientes>();
+            _repoClientes = new RepoClientes(connectionString);
         }
 
-        public static NegClientes ObtenerInstancia()
+        public List<Clientes> ObtenerClientes()
         {
-            if (instancia == null)
-            {
-                instancia = new NegClientes();
-            }
-            return instancia;
+            return _repoClientes.GetClientes();
         }
 
-        public List<Clientes> ObtenerTodosLosClientes()
+        public Clientes ObtenerClientePorId(int id)
         {
-            try
-            {
-                return repositorio.ObtenerTodosLosClientes();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener los clientes.", ex);
-            }
+            return _repoClientes.GetClienteById(id);
         }
 
-        public List<Clientes> ObtenerClientePorID(int idCliente)
+        public void AgregarCliente(Clientes cliente)
         {
-            try
-            {
-                return repositorio.ObtenerClientePorID(idCliente);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener el cliente por ID.", ex);
-            }
+            _repoClientes.AddCliente(cliente);
         }
 
-        public int AgregarClienteAOferta(int ofertaLaboralId, int clienteId)
+        public void ActualizarCliente(Clientes cliente)
         {
-            try
-            {
-                return repositorio.AgregarClienteAOferta(ofertaLaboralId, clienteId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al agregar el cliente a la oferta laboral.", ex);
-            }
+            _repoClientes.UpdateCliente(cliente);
         }
 
-        public int EliminarClienteDeOferta(int ofertaLaboralId, int clienteId)
+        public void EliminarCliente(int id)
         {
-            try
-            {
-                return repositorio.EliminarClienteDeOferta(ofertaLaboralId, clienteId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al eliminar el cliente de la oferta laboral.", ex);
-            }
+            _repoClientes.DeleteCliente(id);
         }
-
-        public List<int> ObtenerClientesPorOferta(int ofertaLaboralId)
-        {
-            try
-            {
-                return repositorio.ObtenerClientesPorOferta(ofertaLaboralId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener los clientes de la oferta laboral.", ex);
-            }
-        }
-
-        public int ObtenerTotalClientes()
-        {
-            return repositorio.ObtenerTotalClientes();
-        }
-
-        public int ObtenerPorcentajeClientes(int maxClientes)
-        {
-            int totalClientes = repositorio.ObtenerTotalClientes();
-            return (int)((float)totalClientes / maxClientes * 100);
-        }
-
     }
 }
-
-
-//namespace Negocio
-//{
-//    public class NegClientes
-//    {
-//        private static NegClientes instancia;
-//        private RepoClientes repositorioClientes;
-
-//        private NegClientes()
-//        {
-//            repositorioClientes = new RepoClientes();
-//        }
-
-//        public static NegClientes ObtenerInstancia()
-//        {
-//            if (instancia == null)
-//            {
-//                instancia = new NegClientes();
-//            }
-//            return instancia;
-//        }
-
-//        public List<Clientes> ObtenerTodosLosClientes()
-//        {
-//            try
-//            {
-//                return repositorioClientes.ObtenerTodosLosClientes();
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//        }
-
-//        public List<Clientes> ObtenerClientePorID(int idCliente)
-//        {
-//            try
-//            {
-//                return repositorioClientes.ObtenerClientePorID(idCliente);
-//            }
-//            catch (Exception)
-//            {
-//                throw;
-//            }
-//        }
-//    }
-//}

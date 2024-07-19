@@ -38,7 +38,8 @@
             // 
             this.btnGestionUsuarios.BackgroundImage = global::Presentacion.Properties.Resources.icons_usuario;
             this.btnGestionUsuarios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnGestionUsuarios.Location = new System.Drawing.Point(502, 170);
+            this.btnGestionUsuarios.Font = new System.Drawing.Font("Arial Narrow", 10F, System.Drawing.FontStyle.Bold);
+            this.btnGestionUsuarios.Location = new System.Drawing.Point(373, 170);
             this.btnGestionUsuarios.Name = "btnGestionUsuarios";
             this.btnGestionUsuarios.Size = new System.Drawing.Size(115, 101);
             this.btnGestionUsuarios.TabIndex = 2;
@@ -51,7 +52,8 @@
             // 
             this.btnGestionGrupos.BackgroundImage = global::Presentacion.Properties.Resources.icons_grupo;
             this.btnGestionGrupos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnGestionGrupos.Location = new System.Drawing.Point(308, 170);
+            this.btnGestionGrupos.Font = new System.Drawing.Font("Arial Narrow", 10F, System.Drawing.FontStyle.Bold);
+            this.btnGestionGrupos.Location = new System.Drawing.Point(205, 170);
             this.btnGestionGrupos.Name = "btnGestionGrupos";
             this.btnGestionGrupos.Size = new System.Drawing.Size(115, 101);
             this.btnGestionGrupos.TabIndex = 1;
@@ -64,7 +66,8 @@
             // 
             this.btnGestionPermisos.BackgroundImage = global::Presentacion.Properties.Resources.icons_derechos_de_los_usuarios;
             this.btnGestionPermisos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnGestionPermisos.Location = new System.Drawing.Point(108, 170);
+            this.btnGestionPermisos.Font = new System.Drawing.Font("Arial Narrow", 10F, System.Drawing.FontStyle.Bold);
+            this.btnGestionPermisos.Location = new System.Drawing.Point(43, 170);
             this.btnGestionPermisos.Name = "btnGestionPermisos";
             this.btnGestionPermisos.Size = new System.Drawing.Size(122, 101);
             this.btnGestionPermisos.TabIndex = 0;
@@ -76,9 +79,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(303, 49);
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 20F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Chocolate;
+            this.label1.Location = new System.Drawing.Point(128, 83);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 13);
+            this.label1.Size = new System.Drawing.Size(268, 31);
             this.label1.TabIndex = 3;
             this.label1.Text = "Gestiones de Seguridad";
             // 
@@ -87,7 +92,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.ClientSize = new System.Drawing.Size(723, 357);
+            this.ClientSize = new System.Drawing.Size(523, 392);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGestionUsuarios);
             this.Controls.Add(this.btnGestionGrupos);

@@ -1,231 +1,108 @@
-﻿using Modelo;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-
+using Modelo;
 
 namespace Datos
 {
-    public class RepoClientes : RepositorioMaestro
+    public class RepoClientes
     {
-        private string connectionString;
+        private readonly string _connectionString;
 
-        public RepoClientes()
+        public RepoClientes(string connectionString)
         {
-            // Obtener la cadena de conexión desde la configuración
-            connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
+            _connectionString = connectionString;
         }
 
-        public List<Clientes> ObtenerTodosLosClientes()
+        public List<Clientes> GetClientes()
         {
-            List<Clientes> clientes = new List<Clientes>();
-            string consultaSQL = "SELECT * FROM Clientes";
+            var clientes = new List<Clientes>();
 
-            DataTable tablaClientes = ExecuteReader(consultaSQL);
-
-            foreach (DataRow fila in tablaClientes.Rows)
+            using (var connection = new SqlConnection(_connectionString))
             {
-                Clientes cliente = new Clientes
+                var command = new SqlCommand("SELECT id, nombre, mail FROM Clientes", connection);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
-                    id = Convert.ToInt32(fila["id"]),
-                    nombre = fila["nombre"].ToString(),
-                    // Ajusta el mapeo de propiedades según tu clase Clientes
-                };
-                clientes.Add(cliente);
-            }
-            return clientes;
-        }
-
-        public List<Clientes> ObtenerClientePorID(int idCliente)
-        {
-            List<Clientes> clientes = new List<Clientes>();
-            string consultaSQL = "SELECT * FROM Clientes WHERE id = @ID_Cliente";
-            List<SqlParameter> parametros = new List<SqlParameter>
-            {
-                new SqlParameter("@ID_Cliente", idCliente)
-            };
-            DataTable tablaClientes = ExecuteReader(consultaSQL, parametros);
-
-            foreach (DataRow fila in tablaClientes.Rows)
-            {
-                Clientes cliente = new Clientes
-                {
-                    id = Convert.ToInt32(fila["id"]),
-                    nombre = fila["nombre"].ToString(),
-                    // Ajusta el mapeo de propiedades según tu clase Clientes
-                };
-                clientes.Add(cliente);
-            }
-            return clientes;
-        }
-
-        // Métodos para gestionar la tabla intermedia OL_Clientes
-        public int AgregarClienteAOferta(int ofertaLaboralId, int clienteId)
-        {
-            string consultaSQL = "INSERT INTO OL_Clientes (nro_OL, id_cliente) VALUES (@OfertaLaboralId, @ClienteId)";
-            List<SqlParameter> parametros = new List<SqlParameter>
-            {
-                new SqlParameter("@OfertaLaboralId", ofertaLaboralId),
-                new SqlParameter("@ClienteId", clienteId)
-            };
-
-            try
-            {
-                return ExecuteNonQuery(consultaSQL, parametros);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al agregar el cliente a la oferta laboral.", ex);
-            }
-        }
-
-        public int EliminarClienteDeOferta(int ofertaLaboralId, int clienteId)
-        {
-            string consultaSQL = "DELETE FROM OL_Clientes WHERE nro_OL = @OfertaLaboralId AND id_cliente = @ClienteId";
-            List<SqlParameter> parametros = new List<SqlParameter>
-            {
-                new SqlParameter("@OfertaLaboralId", ofertaLaboralId),
-                new SqlParameter("@ClienteId", clienteId)
-            };
-
-            try
-            {
-                return ExecuteNonQuery(consultaSQL, parametros);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al eliminar el cliente de la oferta laboral.", ex);
-            }
-        }
-
-        public List<int> ObtenerClientesPorOferta(int ofertaLaboralId)
-        {
-            List<int> clientes = new List<int>();
-            string consultaSQL = "SELECT id_cliente FROM OL_Clientes WHERE nro_OL = @OfertaLaboralId";
-            List<SqlParameter> parametros = new List<SqlParameter>
-            {
-                new SqlParameter("@OfertaLaboralId", ofertaLaboralId)
-            };
-
-            DataTable tablaClientes = ExecuteReader(consultaSQL, parametros);
-
-            foreach (DataRow fila in tablaClientes.Rows)
-            {
-                int clienteId = Convert.ToInt32(fila["id_cliente"]);
-                clientes.Add(clienteId);
-            }
-            return clientes;
-        }
-
-        private DataTable ExecuteReader(string consultaSQL, List<SqlParameter> parametros = null)
-        {
-            DataTable tablaResultados = new DataTable();
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
-            {
-                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
-                {
-                    if (parametros != null)
+                    while (reader.Read())
                     {
-                        comando.Parameters.AddRange(parametros.ToArray());
+                        var cliente = new Clientes
+                        {
+                            id = reader.GetInt32(0),
+                            nombre = reader.GetString(1),
+                            mail = reader.GetString(2)
+                        };
+                        clientes.Add(cliente);
                     }
-
-                    SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-                    adaptador.Fill(tablaResultados);
                 }
             }
 
-            return tablaResultados;
+            return clientes;
         }
 
-        private int ExecuteNonQuery(string consultaSQL, List<SqlParameter> parametros)
+        public Clientes GetClienteById(int id)
         {
-            int filasAfectadas = 0;
+            Clientes cliente = null;
 
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
-                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                var command = new SqlCommand("SELECT id, nombre, mail FROM Clientes WHERE id = @id", connection);
+                command.Parameters.AddWithValue("@id", id);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
-                    if (parametros != null)
+                    if (reader.Read())
                     {
-                        comando.Parameters.AddRange(parametros.ToArray());
+                        cliente = new Clientes
+                        {
+                            id = reader.GetInt32(0),
+                            nombre = reader.GetString(1),
+                            mail = reader.GetString(2)
+                        };
                     }
-
-                    conexion.Open();
-                    filasAfectadas = comando.ExecuteNonQuery();
                 }
             }
 
-            return filasAfectadas;
+            return cliente;
         }
 
-        public int ObtenerTotalClientes()
+        public void AddCliente(Clientes cliente)
         {
-            string consultaSQL = "SELECT COUNT(*) FROM Clientes";
-            int totalClientes = 0;
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
-                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
-                {
-                    conexion.Open();
-                    totalClientes = (int)comando.ExecuteScalar();
-                }
+                var command = new SqlCommand("INSERT INTO Clientes (id, nombre, mail) VALUES (@id, @nombre, @mail)", connection);
+                command.Parameters.AddWithValue("@id", cliente.id);
+                command.Parameters.AddWithValue("@nombre", cliente.nombre);
+                command.Parameters.AddWithValue("@mail", cliente.mail);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
-
-            return totalClientes;
         }
 
+        public void UpdateCliente(Clientes cliente)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand("UPDATE Clientes SET nombre = @nombre, mail = @mail WHERE id = @id", connection);
+                command.Parameters.AddWithValue("@id", cliente.id);
+                command.Parameters.AddWithValue("@nombre", cliente.nombre);
+                command.Parameters.AddWithValue("@mail", cliente.mail);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteCliente(int id)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand("DELETE FROM Clientes WHERE id = @id", connection);
+                command.Parameters.AddWithValue("@id", id);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
 
-
-
-
-//namespace Datos
-//{
-//    public class RepoClientes : RepositorioMaestro
-//    {
-//        public List<Clientes> ObtenerTodosLosClientes()
-//        {
-//            List<Clientes> clientes = new List<Clientes>();
-//            string consultaSQL = "SELECT * FROM Clientes"; // Ajusta esto según el nombre de tu tabla de clientes
-
-//            DataTable tablaClientes = ExecuteReader(consultaSQL);
-
-//            foreach (DataRow fila in tablaClientes.Rows)
-//            {
-//                Clientes cliente = new Clientes
-//                {
-//                    id = Convert.ToInt32(fila["id"]),
-//                    nombre = fila["nombre"].ToString(),
-//                    // Ajusta el mapeo de propiedades según tu clase Clientes
-//                };
-//                clientes.Add(cliente);
-//            }
-//            return clientes;
-//        }
-
-//        public List<Clientes> ObtenerClientePorID(int idCliente)
-//        {
-//            List<Clientes> clientes = new List<Clientes>();
-//            string consultaSQL = "SELECT * FROM Clientes WHERE id = @ID_Cliente";
-//            parametros.Add(new SqlParameter("@ID_Cliente", idCliente));
-//            DataTable tablaClientes = ExecuteReader(consultaSQL);
-
-//            foreach (DataRow fila in tablaClientes.Rows)
-//            {
-//                Clientes cliente = new Clientes
-//                {
-//                    id = Convert.ToInt32(fila["id"]),
-//                    nombre = fila["nombre"].ToString(),
-//                    // Ajusta el mapeo de propiedades según tu clase Clientes
-//                };
-//                clientes.Add(cliente);
-//            }
-//            return clientes;
-//        }
-//    }
-//}
