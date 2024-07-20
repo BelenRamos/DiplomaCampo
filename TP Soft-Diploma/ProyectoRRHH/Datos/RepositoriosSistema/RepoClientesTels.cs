@@ -1,68 +1,69 @@
-﻿using System;
+﻿using Modelo;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using Modelo;
 
 namespace Datos
 {
-    public class RepoClientesTelefonos
+    public class RepoClientesTels : RepositorioMaestro
     {
-        private readonly string _connectionString;
+        private string connectionString;
 
-        public RepoClientesTelefonos(string connectionString)
+        public RepoClientesTels()
         {
-            _connectionString = connectionString;
+            // Obtener la cadena de conexión desde la configuración
+            connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
         }
 
-        public List<Clientes_Telefonos> GetTelefonosByClienteId(int id_cliente)
+        public void AgregarTelefono(Clientes_Telefonos clienteTelefono)
         {
-            var telefonos = new List<Clientes_Telefonos>();
+            string consultaSQL = @"INSERT INTO Clientes_Telefonos (id_cliente, telefono) 
+                                   VALUES (@id_cliente, @telefono)";
 
-            using (var connection = new SqlConnection(_connectionString))
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@id_cliente", clienteTelefono.id_cliente));
+            parametros.Add(new SqlParameter("@telefono", clienteTelefono.telefono ?? (object)DBNull.Value));
+
+            try
             {
-                var command = new SqlCommand("SELECT id_cliente, telefono FROM Clientes_Telefonos WHERE id_cliente = @id_cliente", connection);
-                command.Parameters.AddWithValue("@id_cliente", id_cliente);
-                connection.Open();
-                using (var reader = command.ExecuteReader())
+                ExecuteNonQuery(consultaSQL);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al agregar el teléfono del cliente", ex);
+            }
+        }
+
+        public List<Clientes_Telefonos> ObtenerTelefonosPorCliente(int clienteId)
+        {
+            List<Clientes_Telefonos> telefonos = new List<Clientes_Telefonos>();
+            string consultaSQL = "SELECT * FROM Clientes_Telefonos WHERE id_cliente = @id_cliente";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@id_cliente", clienteId));
+
+            try
+            {
+                DataTable tablaTelefonos = ExecuteReader(consultaSQL);
+
+                foreach (DataRow fila in tablaTelefonos.Rows)
                 {
-                    while (reader.Read())
+                    Clientes_Telefonos telefono = new Clientes_Telefonos
                     {
-                        var telefono = new Clientes_Telefonos
-                        {
-                            id_cliente = reader.GetInt32(0),
-                            telefono = reader.GetString(1)
-                        };
-                        telefonos.Add(telefono);
-                    }
+                        id_cliente = Convert.ToInt32(fila["id_cliente"]),
+                        telefono = fila["telefono"].ToString()
+                    };
+                    telefonos.Add(telefono);
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los teléfonos del cliente", ex);
             }
 
             return telefonos;
-        }
-
-        public void AddTelefono(Clientes_Telefonos telefono)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var command = new SqlCommand("INSERT INTO Clientes_Telefonos (id_cliente, telefono) VALUES (@id_cliente, @telefono)", connection);
-                command.Parameters.AddWithValue("@id_cliente", telefono.id_cliente);
-                command.Parameters.AddWithValue("@telefono", telefono.telefono);
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-        }
-
-        public void DeleteTelefono(int id_cliente, string telefono)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var command = new SqlCommand("DELETE FROM Clientes_Telefonos WHERE id_cliente = @id_cliente AND telefono = @telefono", connection);
-                command.Parameters.AddWithValue("@id_cliente", id_cliente);
-                command.Parameters.AddWithValue("@telefono", telefono);
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
         }
     }
 }

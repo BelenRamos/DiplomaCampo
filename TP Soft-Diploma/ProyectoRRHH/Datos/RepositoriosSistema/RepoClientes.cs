@@ -1,25 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using Modelo;
 
 namespace Datos
 {
-    public class RepoClientes
+    public class RepoClientes : RepositorioMaestro 
     {
-        private readonly string _connectionString;
+        private string connectionString;
 
-        public RepoClientes(string connectionString)
+        public RepoClientes()
         {
-            _connectionString = connectionString;
+            // Obtener la cadena de conexión desde la configuración
+            connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
         }
 
         public List<Clientes> GetClientes()
         {
             var clientes = new List<Clientes>();
 
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
                 var command = new SqlCommand("SELECT id, nombre, mail FROM Clientes", connection);
                 connection.Open();
@@ -45,7 +47,7 @@ namespace Datos
         {
             Clientes cliente = null;
 
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
                 var command = new SqlCommand("SELECT id, nombre, mail FROM Clientes WHERE id = @id", connection);
                 command.Parameters.AddWithValue("@id", id);
@@ -69,7 +71,7 @@ namespace Datos
 
         public void AddCliente(Clientes cliente)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
                 var command = new SqlCommand("INSERT INTO Clientes (id, nombre, mail) VALUES (@id, @nombre, @mail)", connection);
                 command.Parameters.AddWithValue("@id", cliente.id);
@@ -82,7 +84,7 @@ namespace Datos
 
         public void UpdateCliente(Clientes cliente)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
                 var command = new SqlCommand("UPDATE Clientes SET nombre = @nombre, mail = @mail WHERE id = @id", connection);
                 command.Parameters.AddWithValue("@id", cliente.id);
@@ -95,7 +97,7 @@ namespace Datos
 
         public void DeleteCliente(int id)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
                 var command = new SqlCommand("DELETE FROM Clientes WHERE id = @id", connection);
                 command.Parameters.AddWithValue("@id", id);
@@ -103,6 +105,19 @@ namespace Datos
                 command.ExecuteNonQuery();
             }
         }
+
+        public int ObtenerTotalClientes()
+        {
+            int totalClientes = 0;
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand("SELECT COUNT(*) FROM Clientes", connection);
+                connection.Open();
+                totalClientes = (int)command.ExecuteScalar();
+            }
+
+            return totalClientes;
+        }
     }
 }
-

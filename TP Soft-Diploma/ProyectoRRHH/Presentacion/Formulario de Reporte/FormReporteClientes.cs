@@ -21,7 +21,7 @@ namespace Presentacion.Formulario_de_Reporte
 
         private void FormReporte_Load(object sender, EventArgs e)
         {
-            List<Clientes> clientes = negClientes.ObtenerTodosLosClientes();
+            List<Clientes> clientes = negClientes.ObtenerClientes();
             dgvDataClientes.DataSource = clientes;
         }
 

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Modelo;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using Modelo;
 
 namespace Datos
 {
@@ -20,195 +20,141 @@ namespace Datos
         public List<Perfiles> ObtenerTodosLosPerfiles()
         {
             List<Perfiles> perfiles = new List<Perfiles>();
-            string consultaSQL = "SELECT * FROM Perfiles"; // Ajusta esto según el nombre de tu tabla de perfiles
+            string consultaSQL = "SELECT * FROM Perfiles";
 
-            DataTable tablaPerfiles = ExecuteReader(consultaSQL);
-
-            foreach (DataRow fila in tablaPerfiles.Rows)
+            try
             {
-                Perfiles perfil = new Perfiles
+                DataTable tablaPerfiles = ExecuteReader(consultaSQL);
+
+                foreach (DataRow fila in tablaPerfiles.Rows)
                 {
-                    id = Convert.ToInt32(fila["id"]),
-                    nombre = fila["nombre"].ToString(),
-                    descripcion = fila["descripcion"].ToString(),
-                    // Ajusta el mapeo de propiedades según tu clase Perfiles
-                };
-                perfiles.Add(perfil);
+                    Perfiles perfil = new Perfiles
+                    {
+                        id = Convert.ToInt32(fila["id"]),
+                        nombre = fila["nombre"].ToString(),
+                        descripcion = fila["descripcion"].ToString()
+                    };
+                    perfiles.Add(perfil);
+                }
             }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                throw new Exception("Error al obtener los perfiles", ex);
+            }
+
             return perfiles;
         }
 
-        public Perfiles ObtenerPerfilPorId(int idPerfil)
+        public Perfiles ObtenerPerfilPorId(int id)
         {
             Perfiles perfil = null;
-            string consultaSQL = "SELECT * FROM Perfiles WHERE id = @ID_Perfil";
-            List<SqlParameter> parametros = new List<SqlParameter>
-            {
-                new SqlParameter("@ID_Perfil", idPerfil)
-            };
-            DataTable tablaPerfiles = ExecuteReader(consultaSQL, parametros);
+            string consultaSQL = "SELECT * FROM Perfiles WHERE id = @id";
 
-            if (tablaPerfiles.Rows.Count > 0)
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@id", id));
+
+            try
             {
-                DataRow fila = tablaPerfiles.Rows[0];
-                perfil = new Perfiles
+                DataTable tablaPerfil = ExecuteReader(consultaSQL);
+
+                if (tablaPerfil.Rows.Count > 0)
                 {
-                    id = Convert.ToInt32(fila["id"]),
-                    nombre = fila["nombre"].ToString(),
-                    descripcion = fila["descripcion"].ToString(),
-                    // Ajusta el mapeo de propiedades según tu clase Perfiles
-                };
+                    DataRow fila = tablaPerfil.Rows[0];
+                    perfil = new Perfiles
+                    {
+                        id = Convert.ToInt32(fila["id"]),
+                        nombre = fila["nombre"].ToString(),
+                        descripcion = fila["descripcion"].ToString()
+                    };
+                }
             }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                throw new Exception("Error al obtener el perfil por ID", ex);
+            }
+
             return perfil;
         }
 
-        // Métodos para gestionar la tabla intermedia OL_Perfiles
-        public int AgregarPerfilAOferta(int ofertaLaboralId, int perfilId)
+        public int AltaPerfil(Perfiles perfil)
         {
-            string consultaSQL = "INSERT INTO OL_Perfiles (nro_OL, id_perfil) VALUES (@OfertaLaboralId, @PerfilId)";
-            List<SqlParameter> parametros = new List<SqlParameter>
-            {
-                new SqlParameter("@OfertaLaboralId", ofertaLaboralId),
-                new SqlParameter("@PerfilId", perfilId)
-            };
+            string consultaSQL = @"INSERT INTO Perfiles (id, nombre, descripcion) 
+                                   VALUES (@id, @nombre, @descripcion)";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@id", perfil.id));
+            parametros.Add(new SqlParameter("@nombre", perfil.nombre ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@descripcion", perfil.descripcion ?? (object)DBNull.Value));
 
             try
             {
-                return ExecuteNonQuery(consultaSQL, parametros);
+                return ExecuteNonQuery(consultaSQL);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al agregar el perfil a la oferta laboral.", ex);
+                // Manejo de excepciones
+                throw new Exception("Error al dar de alta el perfil", ex);
             }
         }
 
-        public int EliminarPerfilDeOferta(int ofertaLaboralId, int perfilId)
+        public int BajaPerfil(int id)
         {
-            string consultaSQL = "DELETE FROM OL_Perfiles WHERE nro_OL = @OfertaLaboralId AND id_perfil = @PerfilId";
-            List<SqlParameter> parametros = new List<SqlParameter>
-            {
-                new SqlParameter("@OfertaLaboralId", ofertaLaboralId),
-                new SqlParameter("@PerfilId", perfilId)
-            };
+            string consultaSQL = "DELETE FROM Perfiles WHERE id = @id";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@id", id));
 
             try
             {
-                return ExecuteNonQuery(consultaSQL, parametros);
+                return ExecuteNonQuery(consultaSQL);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al eliminar el perfil de la oferta laboral.", ex);
+                // Manejo de excepciones
+                throw new Exception("Error al dar de baja el perfil", ex);
             }
         }
 
-        public List<int> ObtenerPerfilesPorOferta(int ofertaLaboralId)
+        public int ModificarPerfil(Perfiles perfil)
         {
-            List<int> perfiles = new List<int>();
-            string consultaSQL = "SELECT id_perfil FROM OL_Perfiles WHERE nro_OL = @OfertaLaboralId";
-            List<SqlParameter> parametros = new List<SqlParameter>
-            {
-                new SqlParameter("@OfertaLaboralId", ofertaLaboralId)
-            };
+            string consultaSQL = @"UPDATE Perfiles 
+                                   SET nombre = @nombre, 
+                                       descripcion = @descripcion 
+                                   WHERE id = @id";
 
-            DataTable tablaPerfiles = ExecuteReader(consultaSQL, parametros);
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@id", perfil.id));
+            parametros.Add(new SqlParameter("@nombre", perfil.nombre ?? (object)DBNull.Value));
+            parametros.Add(new SqlParameter("@descripcion", perfil.descripcion ?? (object)DBNull.Value));
 
-            foreach (DataRow fila in tablaPerfiles.Rows)
+            try
             {
-                int perfilId = Convert.ToInt32(fila["id_perfil"]);
-                perfiles.Add(perfilId);
+                return ExecuteNonQuery(consultaSQL);
             }
-            return perfiles;
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                throw new Exception("Error al modificar el perfil", ex);
+            }
         }
 
-        private DataTable ExecuteReader(string consultaSQL, List<SqlParameter> parametros = null)
+        public int ObtenerTotalPerfiles()
         {
-            DataTable tablaResultados = new DataTable();
+            string consultaSQL = "SELECT COUNT(*) FROM Perfiles";
+            int totalPerfiles = 0;
 
             using (SqlConnection conexion = new SqlConnection(connectionString))
             {
                 using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
                 {
-                    if (parametros != null)
-                    {
-                        comando.Parameters.AddRange(parametros.ToArray());
-                    }
-
-                    SqlDataAdapter adaptador = new SqlDataAdapter(comando);
-                    adaptador.Fill(tablaResultados);
-                }
-            }
-
-            return tablaResultados;
-        }
-
-        private int ExecuteNonQuery(string consultaSQL, List<SqlParameter> parametros)
-        {
-            int filasAfectadas = 0;
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
-            {
-                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
-                {
-                    if (parametros != null)
-                    {
-                        comando.Parameters.AddRange(parametros.ToArray());
-                    }
-
                     conexion.Open();
-                    filasAfectadas = comando.ExecuteNonQuery();
+                    totalPerfiles = (int)comando.ExecuteScalar();
                 }
             }
 
-            return filasAfectadas;
+            return totalPerfiles;
         }
     }
 }
-
-//namespace Datos
-//{
-//    public class RepoPerfiles : RepositorioMaestro
-//    {
-//        public List<Perfiles> ObtenerTodosLosPerfiles()
-//        {
-//            List<Perfiles> perfiles = new List<Perfiles>();
-//            string consultaSQL = "SELECT * FROM Perfiles"; // Ajusta esto según el nombre de tu tabla de perfiles
-
-//            DataTable tablaPerfiles = ExecuteReader(consultaSQL);
-
-//            foreach (DataRow fila in tablaPerfiles.Rows)
-//            {
-//                Perfiles perfil = new Perfiles
-//                {
-//                    id = Convert.ToInt32(fila["id"]),
-//                    nombre = fila["nombre"].ToString(),
-//                    descripcion = fila["descripcion"].ToString(),
-//                    // Ajusta el mapeo de propiedades según tu clase Perfiles
-//                };
-//                perfiles.Add(perfil);
-//            }
-//            return perfiles;
-//        }
-
-//        public Perfiles ObtenerPerfilPorId(int idPerfil)
-//        {
-//            Perfiles perfil = null;
-//            string consultaSQL = "SELECT * FROM Perfiles WHERE id = @ID_Perfil";
-//            parametros.Add(new SqlParameter("@ID_Perfil", idPerfil));
-//            DataTable tablaPerfiles = ExecuteReader(consultaSQL);
-
-//            if (tablaPerfiles.Rows.Count > 0)
-//            {
-//                DataRow fila = tablaPerfiles.Rows[0];
-//                perfil = new Perfiles
-//                {
-//                    id = Convert.ToInt32(fila["id"]),
-//                    nombre = fila["nombre"].ToString(),
-//                    descripcion = fila["descripcion"].ToString(),
-//                    // Ajusta el mapeo de propiedades según tu clase Perfiles
-//                };
-//            }
-//            return perfil;
-//        }
-//    }
-//}
-

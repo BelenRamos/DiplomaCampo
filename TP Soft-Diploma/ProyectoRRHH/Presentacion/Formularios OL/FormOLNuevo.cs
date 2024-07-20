@@ -33,7 +33,7 @@ namespace Presentacion.Formularios_OL
         {
             try
             {
-                List<Clientes> clientes = negClientes.ObtenerTodosLosClientes();
+                List<Clientes> clientes = negClientes.ObtenerClientes();
                 cbClientes.DataSource = clientes;
                 cbClientes.DisplayMember = "nombre";
                 cbClientes.ValueMember = "id";

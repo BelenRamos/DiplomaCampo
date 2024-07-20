@@ -222,6 +222,12 @@
     <Compile Include="Formularios de Seguridad\Gestion de Usuarios\FormPermisosUsuario.Designer.cs">
       <DependentUpon>FormPermisosUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios Perfiles\FormGestionPerfiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios Perfiles\FormGestionPerfiles.Designer.cs">
+      <DependentUpon>FormGestionPerfiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios Postulantes\FormPostulanteNuevo.cs">
       <SubType>Form</SubType>
     </Compile>

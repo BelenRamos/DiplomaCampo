@@ -2,40 +2,56 @@
 using Datos;
 using Modelo;
 
-namespace Negocios
+namespace Negocio
 {
     public class NegClientes
     {
-        private readonly RepoClientes _repoClientes;
+        private readonly RepoClientes repoClientes;
+        private static NegClientes instancia;
 
-        public NegClientes(string connectionString)
+        public NegClientes()
         {
-            _repoClientes = new RepoClientes(connectionString);
+            repoClientes = new RepoClientes();
         }
 
         public List<Clientes> ObtenerClientes()
         {
-            return _repoClientes.GetClientes();
+            return repoClientes.GetClientes();
         }
 
         public Clientes ObtenerClientePorId(int id)
         {
-            return _repoClientes.GetClienteById(id);
+            return repoClientes.GetClienteById(id);
         }
 
         public void AgregarCliente(Clientes cliente)
         {
-            _repoClientes.AddCliente(cliente);
+            repoClientes.AddCliente(cliente);
         }
 
         public void ActualizarCliente(Clientes cliente)
         {
-            _repoClientes.UpdateCliente(cliente);
+            repoClientes.UpdateCliente(cliente);
         }
 
         public void EliminarCliente(int id)
         {
-            _repoClientes.DeleteCliente(id);
+            repoClientes.DeleteCliente(id);
+        }
+
+        public static NegClientes ObtenerInstancia()
+        {
+            if (instancia == null)
+            {
+                instancia = new NegClientes();
+            }
+            return instancia;
+        }
+
+        public int ObtenerPorcentajeClientes(int maxClientes)
+        {
+            int totalClientes = repoClientes.ObtenerTotalClientes();
+            return (int)((float)totalClientes / maxClientes * 100);
         }
     }
 }

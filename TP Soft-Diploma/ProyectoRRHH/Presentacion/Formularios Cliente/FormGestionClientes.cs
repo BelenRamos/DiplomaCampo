@@ -1,4 +1,5 @@
-﻿using Negocios;
+﻿using Negocio;
+using Presentacion.Formularios_Cliente;
 using System;
 using System.Windows.Forms;
 
@@ -6,8 +7,8 @@ namespace Presentacion
 {
     public partial class FormGestionClientes : Form
     {
-        private NegClientes _negClientes;
-        private string _connectionString = "your_connection_string_here"; // Define tu cadena de conexión
+        private NegClientes negClientes;
+        private NegClientesTels negClientesTelefonos;
 
         public FormGestionClientes()
         {
@@ -16,10 +17,11 @@ namespace Presentacion
 
         private void FormGestionClientes_Load(object sender, EventArgs e)
         {
-            _negClientes = new NegClientes(_connectionString);
+            negClientes = NegClientes.ObtenerInstancia();
+            negClientesTelefonos = NegClientesTels.ObtenerInstancia();
             try
             {
-                dataClientes.DataSource = _negClientes.ObtenerClientes();
+                dataClientes.DataSource = negClientes.ObtenerClientes();
             }
             catch (Exception ex)
             {
@@ -29,12 +31,21 @@ namespace Presentacion
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-
+            var formNuevoCliente = new FormNuevoCliente(negClientes, negClientesTelefonos);
+            formNuevoCliente.ShowDialog();
+            try
+            {
+                dataClientes.DataSource = negClientes.ObtenerClientes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
-
+            // Implementación de modificar cliente (si es necesario)
         }
 
         private void btnEliminarCliente_Click(object sender, EventArgs e)
@@ -47,8 +58,8 @@ namespace Presentacion
                     try
                     {
                         int id = (int)dataClientes.SelectedRows[0].Cells["id"].Value;
-                        _negClientes.EliminarCliente(id);
-                        dataClientes.DataSource = _negClientes.ObtenerClientes();
+                        negClientes.EliminarCliente(id);
+                        dataClientes.DataSource = negClientes.ObtenerClientes();
                     }
                     catch (Exception ex)
                     {

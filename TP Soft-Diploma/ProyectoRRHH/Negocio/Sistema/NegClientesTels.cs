@@ -1,31 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using Modelo;
 using Datos;
-using Modelo;
+using System;
+using System.Collections.Generic;
 
-namespace Negocios
+namespace Negocio
 {
-    public class NegClientesTelefonos
+    public class NegClientesTels
     {
-        private readonly RepoClientesTelefonos _repoClientesTelefonos;
+        private static NegClientesTels instancia;
+        private RepoClientesTels repositorio;
+        private List<Clientes_Telefonos> clientesTelefonos;
 
-        public NegClientesTelefonos(string connectionString)
+        private NegClientesTels()
         {
-            _repoClientesTelefonos = new RepoClientesTelefonos(connectionString);
+            repositorio = new RepoClientesTels();
+            clientesTelefonos = new List<Clientes_Telefonos>();
         }
 
-        public List<Clientes_Telefonos> ObtenerTelefonosPorClienteId(int id_cliente)
+        public static NegClientesTels ObtenerInstancia()
         {
-            return _repoClientesTelefonos.GetTelefonosByClienteId(id_cliente);
+            if (instancia == null)
+            {
+                instancia = new NegClientesTels();
+            }
+            return instancia;
         }
 
-        public void AgregarTelefono(Clientes_Telefonos telefono)
+        public void AgregarTelefono(Clientes_Telefonos clienteTelefono)
         {
-            _repoClientesTelefonos.AddTelefono(telefono);
+            repositorio.AgregarTelefono(clienteTelefono);
         }
 
-        public void EliminarTelefono(int id_cliente, string telefono)
+        public List<Clientes_Telefonos> ObtenerTelefonosPorCliente(int clienteId)
         {
-            _repoClientesTelefonos.DeleteTelefono(id_cliente, telefono);
+            return repositorio.ObtenerTelefonosPorCliente(clienteId);
         }
     }
 }

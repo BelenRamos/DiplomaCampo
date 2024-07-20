@@ -30,109 +30,86 @@ namespace Negocio
         {
             try
             {
-                return repositorio.ObtenerTodosLosPerfiles();
+                if (perfiles.Count > 0)
+                {
+                    return perfiles;
+                }
+                else
+                {
+                    perfiles = repositorio.ObtenerTodosLosPerfiles();
+                    return perfiles;
+                }
             }
             catch (Exception ex)
             {
+                // Manejo de excepciones
                 throw new Exception("Error al obtener los perfiles.", ex);
             }
         }
 
-        public Perfiles ObtenerPerfilPorId(int idPerfil)
+        public Perfiles ObtenerPerfilPorId(int id)
         {
             try
             {
-                return repositorio.ObtenerPerfilPorId(idPerfil);
+                return repositorio.ObtenerPerfilPorId(id);
             }
             catch (Exception ex)
             {
+                // Manejo de excepciones
                 throw new Exception("Error al obtener el perfil por ID.", ex);
             }
         }
 
-        public int AgregarPerfilAOferta(int ofertaLaboralId, int perfilId)
+        public int AltaPerfil(Perfiles perfil)
         {
             try
             {
-                return repositorio.AgregarPerfilAOferta(ofertaLaboralId, perfilId);
+                return repositorio.AltaPerfil(perfil);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al agregar el perfil a la oferta laboral.", ex);
+                // Manejo de excepciones
+                throw new Exception("Error al dar de alta el perfil.", ex);
             }
         }
 
-        public int EliminarPerfilDeOferta(int ofertaLaboralId, int perfilId)
+        public int BajaPerfil(int id)
         {
             try
             {
-                return repositorio.EliminarPerfilDeOferta(ofertaLaboralId, perfilId);
+                return repositorio.BajaPerfil(id);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al eliminar el perfil de la oferta laboral.", ex);
+                // Manejo de excepciones
+                throw new Exception("Error al dar de baja el perfil.", ex);
             }
         }
 
-        public List<int> ObtenerPerfilesPorOferta(int ofertaLaboralId)
+        public int ModificarPerfil(Perfiles perfil)
         {
             try
             {
-                return repositorio.ObtenerPerfilesPorOferta(ofertaLaboralId);
+                return repositorio.ModificarPerfil(perfil);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener los perfiles de la oferta laboral.", ex);
+                // Manejo de excepciones
+                throw new Exception("Error al modificar el perfil.", ex);
+            }
+        }
+
+        public int ObtenerTotalPerfiles()
+        {
+            try
+            {
+                return repositorio.ObtenerTotalPerfiles();
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                throw new Exception("Error al obtener el total de perfiles.", ex);
             }
         }
     }
 }
-
-
-//namespace Negocio
-//{
-//    public class NegPerfiles
-//    {
-//        private static NegPerfiles instancia;
-//        private RepoPerfiles repositorioPerfiles;
-
-//        private NegPerfiles()
-//        {
-//            repositorioPerfiles = new RepoPerfiles();
-//        }
-
-//        public static NegPerfiles ObtenerInstancia()
-//        {
-//            if (instancia == null)
-//            {
-//                instancia = new NegPerfiles();
-//            }
-//            return instancia;
-//        }
-
-//        public List<Perfiles> ObtenerTodosLosPerfiles()
-//        {
-//            try
-//            {
-//                return repositorioPerfiles.ObtenerTodosLosPerfiles();
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//        }
-
-//        public Perfiles ObtenerPerfilPorId(int idPerfil)
-//        {
-//            try
-//            {
-//                return repositorioPerfiles.ObtenerPerfilPorId(idPerfil);
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//        }
-//    }
-//}
-
