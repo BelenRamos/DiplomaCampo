@@ -6,7 +6,6 @@ namespace Negocio
 {
     public class NegClientes
     {
-        private readonly RepoClientes repoClientes;
         private static NegClientes instancia;
 
         public NegClientes()
