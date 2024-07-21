@@ -28,6 +28,30 @@ namespace Presentacion.Formularios_Postulantes
                 string telefono = txtTelefono.Text;
                 DateTime fechaNacimiento = dtpFechaNacimiento.Value;
 
+                // Validar que todos los campos estén completos
+                if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(apellido) ||
+                    string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(telefono))
+                {
+                    MessageBox.Show("Por favor, complete todos los campos.");
+                    return;
+                }
+
+                // Validar formato de email
+                if (!email.Contains("@") || !email.EndsWith(".com"))
+                {
+                    MessageBox.Show("Por favor, ingrese un email válido.");
+                    return;
+                }
+
+                // Validar que la fecha de nacimiento sea para mayores de 18 años
+                int edad = DateTime.Now.Year - fechaNacimiento.Year;
+                if (fechaNacimiento > DateTime.Now.AddYears(-edad)) edad--;
+                if (edad < 18)
+                {
+                    MessageBox.Show("El postulante debe ser mayor de 18 años.");
+                    return;
+                }
+
                 int numero;
                 if (esModificacion)
                 {
@@ -102,4 +126,3 @@ namespace Presentacion.Formularios_Postulantes
         }
     }
 }
-

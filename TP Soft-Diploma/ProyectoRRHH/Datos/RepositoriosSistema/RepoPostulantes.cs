@@ -157,6 +157,47 @@ namespace Datos
             return totalPostulantes;
         }
 
+        public List<Postulantes> ObtenerPostulantesFiltrados(string filtro)
+        {
+            List<Postulantes> postulantes = new List<Postulantes>();
+            string consultaSQL = "SELECT * FROM Postulantes";
+
+            if (filtro == "Candidatos")
+            {
+                consultaSQL += " WHERE esCandidato = 1";
+            }
+            else if (filtro == "No Candidatos")
+            {
+                consultaSQL += " WHERE esCandidato = 0";
+            }
+
+            try
+            {
+                DataTable tablaPostulantes = ExecuteReader(consultaSQL);
+
+                foreach (DataRow fila in tablaPostulantes.Rows)
+                {
+                    Postulantes postulante = new Postulantes
+                    {
+                        numero = Convert.ToInt32(fila["numero"]),
+                        nombre = fila["nombre"].ToString(),
+                        apellido = fila["apellido"].ToString(),
+                        mail = fila["mail"].ToString(),
+                        telefono = fila["telefono"].ToString(),
+                        fechaNacimiento = fila["fechaNacimiento"] != DBNull.Value ? Convert.ToDateTime(fila["fechaNacimiento"]) : (DateTime?)null,
+                        esCandidato = fila["esCandidato"] != DBNull.Value ? Convert.ToByte(fila["esCandidato"]) : (byte?)null
+                    };
+                    postulantes.Add(postulante);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los postulantes", ex);
+            }
+
+            return postulantes;
+        }
+
 
     }
 }

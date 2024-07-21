@@ -7,18 +7,39 @@ namespace Presentacion
 {
     public partial class FormGestionPostulantes : Form
     {
-        NegPostulantes postulantes;
+        private NegPostulantes postulantes;
+
         public FormGestionPostulantes()
         {
             InitializeComponent();
+            postulantes = NegPostulantes.ObtenerInstancia();
         }
 
         private void FormGestionPostulantes_Load(object sender, EventArgs e)
         {
-            postulantes = NegPostulantes.ObtenerInstancia();
+            InicializarComboCandidatos();
+            CargarPostulantes();
+        }
+
+        private void InicializarComboCandidatos()
+        {
+            comboCandidatos.Items.Add("Todos");
+            comboCandidatos.Items.Add("Candidatos");
+            comboCandidatos.Items.Add("No Candidatos");
+            comboCandidatos.SelectedIndex = 0;
+            comboCandidatos.SelectedIndexChanged += ComboCandidatos_SelectedIndexChanged;
+        }
+
+        private void ComboCandidatos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarPostulantes(comboCandidatos.SelectedItem.ToString());
+        }
+
+        private void CargarPostulantes(string filtro = "Todos")
+        {
             try
             {
-                dgvPostulantes.DataSource = postulantes.ObtenerTodosLosPostulantes();
+                dgvPostulantes.DataSource = postulantes.ObtenerPostulantesFiltrados(filtro);
             }
             catch (Exception ex)
             {
@@ -33,14 +54,8 @@ namespace Presentacion
             {
                 if (formulario.ShowDialog() == DialogResult.OK)
                 {
-                    try
-                    {
-                        dgvPostulantes.DataSource = postulantes.ObtenerTodosLosPostulantes();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.ToString());
-                    }
+                    // Refresca los datos después de agregar un nuevo postulante
+                    CargarPostulantes(comboCandidatos.SelectedItem.ToString());
                 }
             }
         }
@@ -65,14 +80,8 @@ namespace Presentacion
                         if (resultado > 0)
                         {
                             MessageBox.Show("Postulante eliminado correctamente.");
-                            try
-                            {
-                                dgvPostulantes.DataSource = postulantes.ObtenerTodosLosPostulantes();
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.ToString());
-                            }
+                            // Refresca los datos después de eliminar un postulante
+                            CargarPostulantes(comboCandidatos.SelectedItem.ToString());
                         }
                         else
                         {
@@ -113,7 +122,11 @@ namespace Presentacion
                     {
                         // Pasa los datos del postulante al formulario de modificación
                         formulario.CargarDatosParaModificacion(numero, nombre, apellido, email, telefono, fechaNacimiento);
-                        formulario.ShowDialog();
+                        if (formulario.ShowDialog() == DialogResult.OK)
+                        {
+                            // Refresca los datos después de modificar un postulante
+                            CargarPostulantes(comboCandidatos.SelectedItem.ToString());
+                        }
                     }
                 }
                 else
@@ -126,8 +139,5 @@ namespace Presentacion
                 MessageBox.Show("Por favor, seleccione un postulante para modificar.");
             }
         }
-
-
-
     }
 }

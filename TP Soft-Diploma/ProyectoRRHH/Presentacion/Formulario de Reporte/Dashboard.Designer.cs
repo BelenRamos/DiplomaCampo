@@ -45,7 +45,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.btnGenerarReporteCliente);
             this.panel1.Controls.Add(this.pbClientes);
-            this.panel1.Location = new System.Drawing.Point(135, 12);
+            this.panel1.Location = new System.Drawing.Point(15, 53);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(496, 121);
             this.panel1.TabIndex = 4;
@@ -88,7 +88,7 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.btnGenerarReportePostulante);
             this.panel2.Controls.Add(this.pbPostulantes);
-            this.panel2.Location = new System.Drawing.Point(135, 187);
+            this.panel2.Location = new System.Drawing.Point(12, 225);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(496, 121);
             this.panel2.TabIndex = 8;
@@ -129,7 +129,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.ClientSize = new System.Drawing.Size(735, 320);
+            this.ClientSize = new System.Drawing.Size(523, 392);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "Dashboard";

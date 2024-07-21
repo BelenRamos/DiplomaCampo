@@ -61,6 +61,21 @@ namespace Presentacion.Formularios_Cliente
         {
             try
             {
+                // Validar que todos los campos estén completos
+                if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtMail.Text) || telefonos.Count == 0)
+                {
+                    MessageBox.Show("Por favor, complete todos los campos y agregue al menos un número de teléfono.");
+                    return;
+                }
+
+                // Validar formato de email
+                string email = txtMail.Text;
+                if (!email.Contains("@") || !email.EndsWith(".com"))
+                {
+                    MessageBox.Show("Por favor, ingrese un email válido.");
+                    return;
+                }
+
                 if (clienteExistente == null)
                 {
                     // Crear nuevo cliente

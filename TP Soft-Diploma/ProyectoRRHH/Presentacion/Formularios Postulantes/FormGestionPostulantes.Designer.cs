@@ -90,11 +90,8 @@
             // 
             this.comboCandidatos.BackColor = System.Drawing.Color.WhiteSmoke;
             this.comboCandidatos.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
-            this.comboCandidatos.ForeColor = System.Drawing.Color.RosyBrown;
+            this.comboCandidatos.ForeColor = System.Drawing.Color.Black;
             this.comboCandidatos.FormattingEnabled = true;
-            this.comboCandidatos.Items.AddRange(new object[] {
-            "Candidatos",
-            "No candidatos"});
             this.comboCandidatos.Location = new System.Drawing.Point(32, 239);
             this.comboCandidatos.Name = "comboCandidatos";
             this.comboCandidatos.Size = new System.Drawing.Size(121, 28);
