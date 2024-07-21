@@ -299,6 +299,9 @@
     <EmbeddedResource Include="Formularios de Seguridad\Gestion de Usuarios\FormPermisosUsuario.resx">
       <DependentUpon>FormPermisosUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios Perfiles\FormGestionPerfiles.resx">
+      <DependentUpon>FormGestionPerfiles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios Postulantes\FormPostulanteNuevo.resx">
       <DependentUpon>FormPostulanteNuevo.cs</DependentUpon>
     </EmbeddedResource>

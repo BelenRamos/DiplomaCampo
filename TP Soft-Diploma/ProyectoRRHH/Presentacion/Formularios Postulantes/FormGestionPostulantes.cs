@@ -1,14 +1,6 @@
-﻿using Modelo;
-using Negocio;
+﻿using Negocio;
 using Presentacion.Formularios_Postulantes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentacion
@@ -24,11 +16,6 @@ namespace Presentacion
         private void FormGestionPostulantes_Load(object sender, EventArgs e)
         {
             postulantes = NegPostulantes.ObtenerInstancia();
-            CargarPostulantes();
-        }
-
-        private void CargarPostulantes()
-        {
             try
             {
                 dgvPostulantes.DataSource = postulantes.ObtenerTodosLosPostulantes();
@@ -46,8 +33,14 @@ namespace Presentacion
             {
                 if (formulario.ShowDialog() == DialogResult.OK)
                 {
-                    // Actualiza la vista después de agregar el postulante
-                    CargarPostulantes();
+                    try
+                    {
+                        dgvPostulantes.DataSource = postulantes.ObtenerTodosLosPostulantes();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
             }
         }
@@ -72,8 +65,14 @@ namespace Presentacion
                         if (resultado > 0)
                         {
                             MessageBox.Show("Postulante eliminado correctamente.");
-                            // Actualiza la vista después de la eliminación
-                            CargarPostulantes();
+                            try
+                            {
+                                dgvPostulantes.DataSource = postulantes.ObtenerTodosLosPostulantes();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                            }
                         }
                         else
                         {

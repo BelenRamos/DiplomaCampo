@@ -65,5 +65,22 @@ namespace Datos
 
             return telefonos;
         }
+
+        public void EliminarTelefonosPorClienteId(int clienteId)
+        {
+            string consultaSQL = "DELETE FROM Clientes_Telefonos WHERE id_cliente = @id_cliente";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@id_cliente", clienteId));
+
+            try
+            {
+                ExecuteNonQuery(consultaSQL);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar los teléfonos del cliente", ex);
+            }
+        }
     }
 }

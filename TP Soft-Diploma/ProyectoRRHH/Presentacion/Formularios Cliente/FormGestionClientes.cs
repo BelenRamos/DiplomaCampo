@@ -45,8 +45,27 @@ namespace Presentacion
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
-            // Implementación de modificar cliente (si es necesario)
+            if (dataClientes.SelectedRows.Count > 0)
+            {
+                int id = (int)dataClientes.SelectedRows[0].Cells["id"].Value;
+                var cliente = negClientes.ObtenerClientePorId(id);
+                var formNuevoCliente = new FormNuevoCliente(negClientes, negClientesTelefonos, cliente);
+                formNuevoCliente.ShowDialog();
+                try
+                {
+                    dataClientes.DataSource = negClientes.ObtenerClientes();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un cliente para modificar.");
+            }
         }
+
 
         private void btnEliminarCliente_Click(object sender, EventArgs e)
         {

@@ -7,7 +7,7 @@ using Modelo;
 
 namespace Datos
 {
-    public class RepoClientes : RepositorioMaestro 
+    public class RepoClientes : RepositorioMaestro
     {
         private string connectionString;
 
@@ -43,7 +43,7 @@ namespace Datos
             return clientes;
         }
 
-        public Clientes GetClienteById(int id)
+        public Clientes ObtenerClienteById(int id)
         {
             Clientes cliente = null;
 
@@ -69,7 +69,7 @@ namespace Datos
             return cliente;
         }
 
-        public void AddCliente(Clientes cliente)
+        public void AgregarCliente(Clientes cliente)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -82,7 +82,7 @@ namespace Datos
             }
         }
 
-        public void UpdateCliente(Clientes cliente)
+        public void ActualizarCliente(Clientes cliente)
         {
             using (var connection = new SqlConnection(connectionString))
             {
@@ -95,14 +95,43 @@ namespace Datos
             }
         }
 
-        public void DeleteCliente(int id)
+        public int EliminarCliente(int id)
         {
-            using (var connection = new SqlConnection(connectionString))
+            using (SqlConnection conexion = new SqlConnection(connectionString))
             {
-                var command = new SqlCommand("DELETE FROM Clientes WHERE id = @id", connection);
-                command.Parameters.AddWithValue("@id", id);
-                connection.Open();
-                command.ExecuteNonQuery();
+                SqlTransaction transaction = null;
+                try
+                {
+                    conexion.Open();
+                    transaction = conexion.BeginTransaction();
+
+                    // Eliminar los teléfonos del cliente
+                    string consultaEliminarTelefonos = "DELETE FROM Clientes_Telefonos WHERE id_cliente = @id_cliente";
+                    using (SqlCommand comandoEliminarTelefonos = new SqlCommand(consultaEliminarTelefonos, conexion, transaction))
+                    {
+                        comandoEliminarTelefonos.Parameters.AddWithValue("@id_cliente", id);
+                        comandoEliminarTelefonos.ExecuteNonQuery();
+                    }
+
+                    // Eliminar el cliente
+                    string consultaEliminarCliente = "DELETE FROM Clientes WHERE id = @id";
+                    using (SqlCommand comandoEliminarCliente = new SqlCommand(consultaEliminarCliente, conexion, transaction))
+                    {
+                        comandoEliminarCliente.Parameters.AddWithValue("@id", id);
+                        comandoEliminarCliente.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    if (transaction != null)
+                    {
+                        transaction.Rollback();
+                    }
+                    throw new Exception("Error al eliminar el cliente", ex);
+                }
             }
         }
 
@@ -118,6 +147,24 @@ namespace Datos
             }
 
             return totalClientes;
+        }
+
+        public int ObtenerUltimoId()
+        {
+            string consultaSQL = "SELECT ISNULL(MAX(id), 0) FROM Clientes";
+            try
+            {
+                DataTable result = ExecuteReader(consultaSQL);
+                if (result.Rows.Count > 0)
+                {
+                    return Convert.ToInt32(result.Rows[0][0]);
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el último id del cliente", ex);
+            }
         }
     }
 }

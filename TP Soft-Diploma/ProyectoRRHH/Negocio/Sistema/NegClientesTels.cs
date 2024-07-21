@@ -1,20 +1,17 @@
-﻿using Modelo;
+﻿using System.Collections.Generic;
 using Datos;
-using System;
-using System.Collections.Generic;
+using Modelo;
 
 namespace Negocio
 {
     public class NegClientesTels
     {
         private static NegClientesTels instancia;
-        private RepoClientesTels repositorio;
-        private List<Clientes_Telefonos> clientesTelefonos;
+        private RepoClientesTels repoClientesTels;
 
         private NegClientesTels()
         {
-            repositorio = new RepoClientesTels();
-            clientesTelefonos = new List<Clientes_Telefonos>();
+            repoClientesTels = new RepoClientesTels();
         }
 
         public static NegClientesTels ObtenerInstancia()
@@ -26,14 +23,19 @@ namespace Negocio
             return instancia;
         }
 
-        public void AgregarTelefono(Clientes_Telefonos clienteTelefono)
+        public List<Clientes_Telefonos> ObtenerTelefonosPorClienteId(int clienteId)
         {
-            repositorio.AgregarTelefono(clienteTelefono);
+            return repoClientesTels.ObtenerTelefonosPorCliente(clienteId);
         }
 
-        public List<Clientes_Telefonos> ObtenerTelefonosPorCliente(int clienteId)
+        public void EliminarTelefonosPorClienteId(int clienteId)
         {
-            return repositorio.ObtenerTelefonosPorCliente(clienteId);
+            repoClientesTels.EliminarTelefonosPorClienteId(clienteId);
+        }
+
+        public void AgregarTelefono(Clientes_Telefonos clienteTelefono)
+        {
+            repoClientesTels.AgregarTelefono(clienteTelefono);
         }
     }
 }

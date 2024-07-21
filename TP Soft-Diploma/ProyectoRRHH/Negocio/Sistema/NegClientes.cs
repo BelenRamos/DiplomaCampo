@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Datos;
 using Modelo;
 
@@ -7,35 +9,11 @@ namespace Negocio
     public class NegClientes
     {
         private static NegClientes instancia;
+        private RepoClientes repoClientes;
 
-        public NegClientes()
+        private NegClientes()
         {
             repoClientes = new RepoClientes();
-        }
-
-        public List<Clientes> ObtenerClientes()
-        {
-            return repoClientes.GetClientes();
-        }
-
-        public Clientes ObtenerClientePorId(int id)
-        {
-            return repoClientes.GetClienteById(id);
-        }
-
-        public void AgregarCliente(Clientes cliente)
-        {
-            repoClientes.AddCliente(cliente);
-        }
-
-        public void ActualizarCliente(Clientes cliente)
-        {
-            repoClientes.UpdateCliente(cliente);
-        }
-
-        public void EliminarCliente(int id)
-        {
-            repoClientes.DeleteCliente(id);
         }
 
         public static NegClientes ObtenerInstancia()
@@ -47,10 +25,43 @@ namespace Negocio
             return instancia;
         }
 
+        public List<Clientes> ObtenerClientes()
+        {
+            return repoClientes.GetClientes();
+        }
+
+        public Clientes ObtenerClientePorId(int id)
+        {
+            return repoClientes.ObtenerClienteById(id);
+        }
+
+        public void AgregarCliente(Clientes cliente)
+        {
+            cliente.id = repoClientes.ObtenerUltimoId() + 1;
+            repoClientes.AgregarCliente(cliente);
+        }
+
+        public void ModificarCliente(Clientes cliente)
+        {
+            repoClientes.ActualizarCliente(cliente);
+        }
+
+        public void EliminarCliente(int id)
+        {
+            repoClientes.EliminarCliente(id);
+        }
+
+        public int ObtenerUltimoId()
+        {
+            return repoClientes.ObtenerUltimoId();
+        }
+
         public int ObtenerPorcentajeClientes(int maxClientes)
         {
-            int totalClientes = repoClientes.ObtenerTotalClientes();
-            return (int)((float)totalClientes / maxClientes * 100);
+            int totalPostulantes = repoClientes.ObtenerTotalClientes();
+            return (int)((float)totalPostulantes / maxClientes * 100);
         }
     }
+
+
 }
