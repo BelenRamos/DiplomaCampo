@@ -99,7 +99,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.RosyBrown;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancelar.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
-            this.btnCancelar.Location = new System.Drawing.Point(187, 335);
+            this.btnCancelar.Location = new System.Drawing.Point(199, 312);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(88, 31);
             this.btnCancelar.TabIndex = 14;
@@ -112,7 +112,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardar.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(15)))), ((int)(((byte)(20)))));
-            this.btnGuardar.Location = new System.Drawing.Point(90, 335);
+            this.btnGuardar.Location = new System.Drawing.Point(102, 312);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(87, 31);
             this.btnGuardar.TabIndex = 13;
@@ -145,7 +145,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(405, 439);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(98)))), ((int)(((byte)(138)))));
+            this.ClientSize = new System.Drawing.Size(386, 372);
             this.Controls.Add(this.listTelefonos);
             this.Controls.Add(this.btnAgregarTelefono);
             this.Controls.Add(this.txtTelefono);

@@ -228,6 +228,12 @@
     <Compile Include="Formularios Perfiles\FormGestionPerfiles.Designer.cs">
       <DependentUpon>FormGestionPerfiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios Perfiles\FormNuevoPerfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios Perfiles\FormNuevoPerfil.Designer.cs">
+      <DependentUpon>FormNuevoPerfil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios Postulantes\FormPostulanteNuevo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios Perfiles\FormGestionPerfiles.resx">
       <DependentUpon>FormGestionPerfiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios Perfiles\FormNuevoPerfil.resx">
+      <DependentUpon>FormNuevoPerfil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios Postulantes\FormPostulanteNuevo.resx">
       <DependentUpon>FormPostulanteNuevo.cs</DependentUpon>

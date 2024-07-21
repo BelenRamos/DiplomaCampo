@@ -64,11 +64,11 @@ namespace Negocio
         {
             try
             {
+                perfil.id = repositorio.ObtenerUltimoId() + 1;
                 return repositorio.AltaPerfil(perfil);
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones
                 throw new Exception("Error al dar de alta el perfil.", ex);
             }
         }
@@ -96,19 +96,6 @@ namespace Negocio
             {
                 // Manejo de excepciones
                 throw new Exception("Error al modificar el perfil.", ex);
-            }
-        }
-
-        public int ObtenerTotalPerfiles()
-        {
-            try
-            {
-                return repositorio.ObtenerTotalPerfiles();
-            }
-            catch (Exception ex)
-            {
-                // Manejo de excepciones
-                throw new Exception("Error al obtener el total de perfiles.", ex);
             }
         }
     }

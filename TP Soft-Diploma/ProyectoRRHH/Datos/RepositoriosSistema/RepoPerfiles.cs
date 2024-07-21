@@ -140,21 +140,22 @@ namespace Datos
             }
         }
 
-        public int ObtenerTotalPerfiles()
+        public int ObtenerUltimoId()
         {
-            string consultaSQL = "SELECT COUNT(*) FROM Perfiles";
-            int totalPerfiles = 0;
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            string consultaSQL = "SELECT ISNULL(MAX(id), 0) FROM Perfiles";
+            try
             {
-                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                DataTable result = ExecuteReader(consultaSQL);
+                if (result.Rows.Count > 0)
                 {
-                    conexion.Open();
-                    totalPerfiles = (int)comando.ExecuteScalar();
+                    return Convert.ToInt32(result.Rows[0][0]);
                 }
+                return 0;
             }
-
-            return totalPerfiles;
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el último ID de perfil", ex);
+            }
         }
     }
 }
