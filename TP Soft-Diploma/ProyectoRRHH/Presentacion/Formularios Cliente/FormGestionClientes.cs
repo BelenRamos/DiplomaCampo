@@ -1,6 +1,8 @@
 ﻿using Negocio;
 using Presentacion.Formularios_Cliente;
 using System;
+using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Presentacion
@@ -9,16 +11,20 @@ namespace Presentacion
     {
         private NegClientes negClientes;
         private NegClientesTels negClientesTelefonos;
+        private NegMensajes negMensajes;
 
         public FormGestionClientes()
         {
             InitializeComponent();
+            this.tabClientes.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
         }
 
         private void FormGestionClientes_Load(object sender, EventArgs e)
         {
             negClientes = NegClientes.ObtenerInstancia();
             negClientesTelefonos = NegClientesTels.ObtenerInstancia();
+            negMensajes = NegMensajes.ObtenerInstancia();
+
             try
             {
                 dataClientes.DataSource = negClientes.ObtenerClientes();
@@ -27,6 +33,14 @@ namespace Presentacion
             {
                 MessageBox.Show(ex.ToString());
             }
+
+            // Inicializar el DataGridView para mensajes
+            InicializarDataGridViewMensajes();
+        }
+
+        private void InicializarDataGridViewMensajes()
+        {
+            dgvMensajes.AutoGenerateColumns = true;
         }
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
@@ -66,7 +80,6 @@ namespace Presentacion
             }
         }
 
-
         private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
             if (dataClientes.SelectedRows.Count > 0)
@@ -79,6 +92,8 @@ namespace Presentacion
                         int id = (int)dataClientes.SelectedRows[0].Cells["id"].Value;
                         negClientes.EliminarCliente(id);
                         dataClientes.DataSource = negClientes.ObtenerClientes();
+                        // Limpiar los mensajes
+                        dgvMensajes.DataSource = null;
                     }
                     catch (Exception ex)
                     {
@@ -89,6 +104,34 @@ namespace Presentacion
             else
             {
                 MessageBox.Show("Por favor, selecciona un cliente para eliminar.");
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabClientes.SelectedTab == tabMensajes)
+            {
+                CargarTodosLosMensajes();
+            }
+        }
+
+        private void CargarTodosLosMensajes()
+        {
+            try
+            {
+                var mensajes = negMensajes.ObtenerTodosLosMensajes();
+                dgvMensajes.DataSource = mensajes.Select(m => new
+                {
+                    m.numero,
+                    m.asunto,
+                    m.contenido,
+                    m.emisor,
+                    m.receptor
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar todos los mensajes: " + ex.ToString());
             }
         }
     }

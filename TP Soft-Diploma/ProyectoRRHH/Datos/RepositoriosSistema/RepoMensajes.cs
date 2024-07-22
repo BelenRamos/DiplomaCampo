@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using Modelo;
@@ -8,49 +9,96 @@ namespace Datos
 {
     public class RepoMensajes : RepositorioMaestro
     {
-        public List<Mensajes> ObtenerTodosLosMensajes()
+        private string connectionString;
+
+        public RepoMensajes()
         {
-            List<Mensajes> mensajes = new List<Mensajes>();
-            string consultaSQL = "SELECT * FROM Mensajes"; // Ajusta esto según el nombre de tu tabla de mensajes
+            // Obtener la cadena de conexión desde la configuración
+            connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
+        }
 
-            DataTable tablaMensajes = ExecuteReader(consultaSQL);
+        public List<Mensajes> GetMensajes()
+        {
+            var mensajes = new List<Mensajes>();
 
-            foreach (DataRow fila in tablaMensajes.Rows)
+            using (var connection = new SqlConnection(connectionString))
             {
-                Mensajes mensaje = new Mensajes
+                var command = new SqlCommand("SELECT numero, asunto, contenido, emisor, receptor FROM Mensajes", connection);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
-                    numero = Convert.ToInt32(fila["numero"]),
-                    asunto = fila["asunto"].ToString(),
-                    contenido = fila["contenido"].ToString(),
-                    emisor = fila["emisor"] != DBNull.Value ? (int?)Convert.ToInt32(fila["emisor"]) : null,
-                    receptor = fila["receptor"] != DBNull.Value ? (int?)Convert.ToInt32(fila["receptor"]) : null,
-                    // Ajusta el mapeo de propiedades según tu clase Mensajes
-                };
-                mensajes.Add(mensaje);
+                    while (reader.Read())
+                    {
+                        var mensaje = new Mensajes
+                        {
+                            numero = reader.GetInt32(0),
+                            asunto = reader.IsDBNull(1) ? null : reader.GetString(1),
+                            contenido = reader.IsDBNull(2) ? null : reader.GetString(2),
+                            emisor = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
+                            receptor = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4)
+                        };
+                        mensajes.Add(mensaje);
+                    }
+                }
             }
+
             return mensajes;
         }
 
-        public List<Mensajes> ObtenerMensajePorNumero(int numeroMensaje)
+        public Mensajes ObtenerMensajePorNumero(int numero)
         {
-            List<Mensajes> mensajes = new List<Mensajes>();
-            string consultaSQL = "SELECT * FROM Mensajes WHERE numero = @Numero_Mensaje";
-            parametros.Add(new SqlParameter("@Numero_Mensaje", numeroMensaje));
-            DataTable tablaMensajes = ExecuteReader(consultaSQL);
+            Mensajes mensaje = null;
 
-            foreach (DataRow fila in tablaMensajes.Rows)
+            using (var connection = new SqlConnection(connectionString))
             {
-                Mensajes mensaje = new Mensajes
+                var command = new SqlCommand("SELECT numero, asunto, contenido, emisor, receptor FROM Mensajes WHERE numero = @numero", connection);
+                command.Parameters.AddWithValue("@numero", numero);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
-                    numero = Convert.ToInt32(fila["numero"]),
-                    asunto = fila["asunto"].ToString(),
-                    contenido = fila["contenido"].ToString(),
-                    emisor = fila["emisor"] != DBNull.Value ? (int?)Convert.ToInt32(fila["emisor"]) : null,
-                    receptor = fila["receptor"] != DBNull.Value ? (int?)Convert.ToInt32(fila["receptor"]) : null,
-                    // Ajusta el mapeo de propiedades según tu clase Mensajes
-                };
-                mensajes.Add(mensaje);
+                    if (reader.Read())
+                    {
+                        mensaje = new Mensajes
+                        {
+                            numero = reader.GetInt32(0),
+                            asunto = reader.IsDBNull(1) ? null : reader.GetString(1),
+                            contenido = reader.IsDBNull(2) ? null : reader.GetString(2),
+                            emisor = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
+                            receptor = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4)
+                        };
+                    }
+                }
             }
+
+            return mensaje;
+        }
+
+        public List<Mensajes> ObtenerMensajesPorCliente(int clienteId)
+        {
+            var mensajes = new List<Mensajes>();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand("SELECT numero, asunto, contenido, emisor, receptor FROM Mensajes WHERE emisor = @clienteId OR receptor = @clienteId", connection);
+                command.Parameters.AddWithValue("@clienteId", clienteId);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var mensaje = new Mensajes
+                        {
+                            numero = reader.GetInt32(0),
+                            asunto = reader.IsDBNull(1) ? null : reader.GetString(1),
+                            contenido = reader.IsDBNull(2) ? null : reader.GetString(2),
+                            emisor = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
+                            receptor = reader.IsDBNull(4) ? (int?)null : reader.GetInt32(4)
+                        };
+                        mensajes.Add(mensaje);
+                    }
+                }
+            }
+
             return mensajes;
         }
     }

@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using Modelo;
+﻿using Modelo;
 using Datos;
+using System;
+using System.Collections.Generic;
 
 namespace Negocio
 {
     public class NegMensajes
     {
         private static NegMensajes instancia;
-        private RepoMensajes repositorioMensajes;
+        private RepoMensajes repositorio;
 
         private NegMensajes()
         {
-            repositorioMensajes = new RepoMensajes();
+            repositorio = new RepoMensajes();
         }
 
         public static NegMensajes ObtenerInstancia()
@@ -28,25 +28,24 @@ namespace Negocio
         {
             try
             {
-                return repositorioMensajes.ObtenerTodosLosMensajes();
+                return repositorio.GetMensajes();
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al obtener todos los mensajes.", ex);
             }
         }
 
-        public List<Mensajes> ObtenerMensajePorNumero(int numeroMensaje)
+        public List<Mensajes> ObtenerMensajesPorCliente(int clienteId)
         {
             try
             {
-                return repositorioMensajes.ObtenerMensajePorNumero(numeroMensaje);
+                return repositorio.ObtenerMensajesPorCliente(clienteId);
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al obtener los mensajes del cliente.", ex);
             }
         }
     }
 }
-

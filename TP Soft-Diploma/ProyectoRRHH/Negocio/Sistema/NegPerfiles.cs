@@ -81,10 +81,11 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones
+                // Manejo de excepciones, puedes lanzarla nuevamente o manejarla de otra manera según tus necesidades.
                 throw new Exception("Error al dar de baja el perfil.", ex);
             }
         }
+
 
         public int ModificarPerfil(Perfiles perfil)
         {

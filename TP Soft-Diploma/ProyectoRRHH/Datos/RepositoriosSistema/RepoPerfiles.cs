@@ -117,6 +117,7 @@ namespace Datos
             }
         }
 
+
         public int ModificarPerfil(Perfiles perfil)
         {
             string consultaSQL = @"UPDATE Perfiles 
