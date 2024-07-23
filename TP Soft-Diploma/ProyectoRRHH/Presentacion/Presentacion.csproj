@@ -222,6 +222,18 @@
     <Compile Include="Formularios de Seguridad\Gestion de Usuarios\FormPermisosUsuario.Designer.cs">
       <DependentUpon>FormPermisosUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios OL\FormPostulantesOL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios OL\FormPostulantesOL.Designer.cs">
+      <DependentUpon>FormPostulantesOL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios OL\FormRequisitosOL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios OL\FormRequisitosOL.Designer.cs">
+      <DependentUpon>FormRequisitosOL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios Perfiles\FormGestionPerfiles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +316,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios de Seguridad\Gestion de Usuarios\FormPermisosUsuario.resx">
       <DependentUpon>FormPermisosUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios OL\FormPostulantesOL.resx">
+      <DependentUpon>FormPostulantesOL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios OL\FormRequisitosOL.resx">
+      <DependentUpon>FormRequisitosOL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios Perfiles\FormGestionPerfiles.resx">
       <DependentUpon>FormGestionPerfiles.cs</DependentUpon>

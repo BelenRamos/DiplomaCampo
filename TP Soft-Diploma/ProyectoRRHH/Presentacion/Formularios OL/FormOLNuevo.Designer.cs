@@ -181,6 +181,7 @@
             this.Controls.Add(this.btnGuardar);
             this.Name = "FormOLNuevo";
             this.Text = "FormOLNuevo";
+            this.Load += new System.EventHandler(this.FormOLNuevo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

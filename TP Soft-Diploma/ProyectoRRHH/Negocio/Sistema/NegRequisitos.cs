@@ -86,76 +86,10 @@ namespace Negocio
             }
         }
 
-        public List<int> ObtenerRequisitosPorOferta(int ofertaLaboralId)
+        public List<Requisitos> ObtenerRequisitosPorOferta(int numeroOferta)
         {
-            try
-            {
-                return repositorio.ObtenerRequisitosPorOferta(ofertaLaboralId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener los requisitos de la oferta laboral.", ex);
-            }
+            return repositorio.ObtenerRequisitosPorOferta(numeroOferta);
         }
     }
 }
 
-
-//{
-//    public class NegRequisitos
-//    {
-//        private static NegRequisitos instancia;
-//        private RepoRequisitos repositorioRequisitos;
-
-//        private NegRequisitos()
-//        {
-//            repositorioRequisitos = new RepoRequisitos();
-//        }
-
-//        public static NegRequisitos ObtenerInstancia()
-//        {
-//            if (instancia == null)
-//            {
-//                instancia = new NegRequisitos();
-//            }
-//            return instancia;
-//        }
-
-//        public List<(int Id, string Descripcion)> ObtenerRequisitos()
-//        {
-//            try
-//            {
-//                return repositorioRequisitos.ObtenerRequisitos();
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//        }
-
-
-//        public Requisitos ObtenerRequisitoPorID(int idRequisito)
-//        {
-//            try
-//            {
-//                return repositorioRequisitos.ObtenerRequisitoPorID(idRequisito);
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//        }
-
-//        public List<string> ObtenerDescripcionesRequisitos()
-//        {
-//            try
-//            {
-//                return repositorioRequisitos.ObtenerDescripcionesRequisitos();
-//            }
-//            catch (Exception ex)
-//            {
-//                throw ex;
-//            }
-//        }
-//    }
-//}

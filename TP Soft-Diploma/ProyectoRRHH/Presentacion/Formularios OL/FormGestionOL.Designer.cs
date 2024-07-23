@@ -30,10 +30,12 @@
         {
             this.dgvOfertasLaborales = new System.Windows.Forms.DataGridView();
             this.btnPublicar = new System.Windows.Forms.Button();
-            this.comboPerfiles = new System.Windows.Forms.ComboBox();
+            this.comboEstados = new System.Windows.Forms.ComboBox();
             this.btnEliminarOL = new System.Windows.Forms.Button();
             this.btnModificarOL = new System.Windows.Forms.Button();
             this.btnAgregarOL = new System.Windows.Forms.Button();
+            this.btnCerrarPublicacion = new System.Windows.Forms.Button();
+            this.btnRequistosOl = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOfertasLaborales)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,7 +45,7 @@
             this.dgvOfertasLaborales.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvOfertasLaborales.Location = new System.Drawing.Point(0, 0);
             this.dgvOfertasLaborales.Name = "dgvOfertasLaborales";
-            this.dgvOfertasLaborales.Size = new System.Drawing.Size(523, 217);
+            this.dgvOfertasLaborales.Size = new System.Drawing.Size(523, 183);
             this.dgvOfertasLaborales.TabIndex = 0;
             // 
             // btnPublicar
@@ -51,26 +53,27 @@
             this.btnPublicar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPublicar.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnPublicar.ForeColor = System.Drawing.Color.Tan;
-            this.btnPublicar.Location = new System.Drawing.Point(378, 279);
+            this.btnPublicar.Location = new System.Drawing.Point(390, 288);
             this.btnPublicar.Name = "btnPublicar";
             this.btnPublicar.Size = new System.Drawing.Size(121, 33);
             this.btnPublicar.TabIndex = 10;
             this.btnPublicar.Text = "Publicar";
             this.btnPublicar.UseVisualStyleBackColor = true;
+            this.btnPublicar.Click += new System.EventHandler(this.btnPublicar_Click);
             // 
-            // comboPerfiles
+            // comboEstados
             // 
-            this.comboPerfiles.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.comboPerfiles.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
-            this.comboPerfiles.ForeColor = System.Drawing.Color.RosyBrown;
-            this.comboPerfiles.FormattingEnabled = true;
-            this.comboPerfiles.Items.AddRange(new object[] {
+            this.comboEstados.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.comboEstados.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold);
+            this.comboEstados.ForeColor = System.Drawing.Color.DimGray;
+            this.comboEstados.FormattingEnabled = true;
+            this.comboEstados.Items.AddRange(new object[] {
             "Candidatos",
             "No candidatos"});
-            this.comboPerfiles.Location = new System.Drawing.Point(42, 223);
-            this.comboPerfiles.Name = "comboPerfiles";
-            this.comboPerfiles.Size = new System.Drawing.Size(121, 28);
-            this.comboPerfiles.TabIndex = 9;
+            this.comboEstados.Location = new System.Drawing.Point(390, 189);
+            this.comboEstados.Name = "comboEstados";
+            this.comboEstados.Size = new System.Drawing.Size(121, 24);
+            this.comboEstados.TabIndex = 9;
             // 
             // btnEliminarOL
             // 
@@ -78,7 +81,7 @@
             this.btnEliminarOL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminarOL.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnEliminarOL.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.btnEliminarOL.Location = new System.Drawing.Point(390, 347);
+            this.btnEliminarOL.Location = new System.Drawing.Point(45, 271);
             this.btnEliminarOL.Name = "btnEliminarOL";
             this.btnEliminarOL.Size = new System.Drawing.Size(121, 33);
             this.btnEliminarOL.TabIndex = 8;
@@ -91,7 +94,7 @@
             this.btnModificarOL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificarOL.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnModificarOL.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnModificarOL.Location = new System.Drawing.Point(213, 279);
+            this.btnModificarOL.Location = new System.Drawing.Point(45, 232);
             this.btnModificarOL.Name = "btnModificarOL";
             this.btnModificarOL.Size = new System.Drawing.Size(121, 33);
             this.btnModificarOL.TabIndex = 7;
@@ -104,7 +107,7 @@
             this.btnAgregarOL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarOL.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnAgregarOL.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnAgregarOL.Location = new System.Drawing.Point(42, 279);
+            this.btnAgregarOL.Location = new System.Drawing.Point(45, 190);
             this.btnAgregarOL.Name = "btnAgregarOL";
             this.btnAgregarOL.Size = new System.Drawing.Size(121, 33);
             this.btnAgregarOL.TabIndex = 6;
@@ -112,14 +115,42 @@
             this.btnAgregarOL.UseVisualStyleBackColor = true;
             this.btnAgregarOL.Click += new System.EventHandler(this.btnAgregarOL_Click);
             // 
+            // btnCerrarPublicacion
+            // 
+            this.btnCerrarPublicacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarPublicacion.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
+            this.btnCerrarPublicacion.ForeColor = System.Drawing.Color.Tan;
+            this.btnCerrarPublicacion.Location = new System.Drawing.Point(390, 327);
+            this.btnCerrarPublicacion.Name = "btnCerrarPublicacion";
+            this.btnCerrarPublicacion.Size = new System.Drawing.Size(121, 33);
+            this.btnCerrarPublicacion.TabIndex = 11;
+            this.btnCerrarPublicacion.Text = "Cerrar";
+            this.btnCerrarPublicacion.UseVisualStyleBackColor = true;
+            this.btnCerrarPublicacion.Click += new System.EventHandler(this.btnCerrarPublicacion_Click);
+            // 
+            // btnRequistosOl
+            // 
+            this.btnRequistosOl.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRequistosOl.Font = new System.Drawing.Font("Arial Narrow", 10F, System.Drawing.FontStyle.Bold);
+            this.btnRequistosOl.ForeColor = System.Drawing.Color.CadetBlue;
+            this.btnRequistosOl.Location = new System.Drawing.Point(390, 219);
+            this.btnRequistosOl.Name = "btnRequistosOl";
+            this.btnRequistosOl.Size = new System.Drawing.Size(121, 32);
+            this.btnRequistosOl.TabIndex = 12;
+            this.btnRequistosOl.Text = "Requisitos";
+            this.btnRequistosOl.UseVisualStyleBackColor = true;
+            this.btnRequistosOl.Click += new System.EventHandler(this.btnRequistosOl_Click);
+            // 
             // FormGestionOL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
             this.ClientSize = new System.Drawing.Size(523, 392);
+            this.Controls.Add(this.btnRequistosOl);
+            this.Controls.Add(this.btnCerrarPublicacion);
             this.Controls.Add(this.btnPublicar);
-            this.Controls.Add(this.comboPerfiles);
+            this.Controls.Add(this.comboEstados);
             this.Controls.Add(this.btnEliminarOL);
             this.Controls.Add(this.btnModificarOL);
             this.Controls.Add(this.btnAgregarOL);
@@ -136,9 +167,11 @@
 
         private System.Windows.Forms.DataGridView dgvOfertasLaborales;
         private System.Windows.Forms.Button btnPublicar;
-        private System.Windows.Forms.ComboBox comboPerfiles;
+        private System.Windows.Forms.ComboBox comboEstados;
         private System.Windows.Forms.Button btnEliminarOL;
         private System.Windows.Forms.Button btnModificarOL;
         private System.Windows.Forms.Button btnAgregarOL;
+        private System.Windows.Forms.Button btnCerrarPublicacion;
+        private System.Windows.Forms.Button btnRequistosOl;
     }
 }

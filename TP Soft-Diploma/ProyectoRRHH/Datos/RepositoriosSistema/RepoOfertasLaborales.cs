@@ -1,133 +1,119 @@
-﻿using Modelo;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using Modelo;
 
 namespace Datos
 {
-    public class RepoOfertasLaborales : RepositorioMaestro
+    public class RepoOfertasLaborales
     {
-        public int AltaOfertaLaboral(Ofertas_Laborales oferta, List<int> clienteIds, List<int> estadoIds, List<int> perfilIds, List<int> requisitoIds)
+        private string connectionString;
+
+        public RepoOfertasLaborales()
         {
-            string consultaSQL = @"INSERT INTO Ofertas_Laborales (numero, titulo, descripcion, fechaCreacion, fechaPublicacion, fechaCierre) 
-                                   VALUES (@numero, @titulo, @descripcion, @fechaCreacion, @fechaPublicacion, @fechaCierre);
-                                   SELECT SCOPE_IDENTITY();";
-
-            parametros.Clear();
-            parametros.Add(new SqlParameter("@numero", oferta.numero));
-            parametros.Add(new SqlParameter("@titulo", oferta.titulo ?? (object)DBNull.Value));
-            parametros.Add(new SqlParameter("@descripcion", oferta.descripcion ?? (object)DBNull.Value));
-            parametros.Add(new SqlParameter("@fechaCreacion", oferta.fechaCreacion.HasValue ? (object)oferta.fechaCreacion.Value : DBNull.Value));
-            parametros.Add(new SqlParameter("@fechaPublicacion", oferta.fechaPublicacion.HasValue ? (object)oferta.fechaPublicacion.Value : DBNull.Value));
-            parametros.Add(new SqlParameter("@fechaCierre", oferta.fechaCierre.HasValue ? (object)oferta.fechaCierre.Value : DBNull.Value));
-
-            try
-            {
-                int ofertaId = Convert.ToInt32(ExecuteScalar(consultaSQL, parametros)); // Obtener el ID de la nueva oferta
-                InsertarRelaciones(ofertaId, "Clientes_Ofertas", "clienteId", clienteIds);
-                InsertarRelaciones(ofertaId, "Estados_Ofertas", "estadoId", estadoIds);
-                InsertarRelaciones(ofertaId, "Perfiles_Ofertas", "perfilId", perfilIds);
-                InsertarRelaciones(ofertaId, "Requisitos_Ofertas", "requisitoId", requisitoIds);
-
-                return ofertaId;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al dar de alta la oferta laboral", ex);
-            }
+            connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
         }
 
-        private void InsertarRelaciones(int ofertaId, string tabla, string columnaRelacion, List<int> ids)
+
+
+        public List<Ofertas_Laborales> ObtenerOfertasLaborales()
         {
-            if (ids != null)
+            var ofertasLaborales = new List<Ofertas_Laborales>();
+
+            using (var connection = new SqlConnection(connectionString))
             {
-                foreach (int id in ids)
+                var command = new SqlCommand("SELECT numero, titulo, descripcion, fechaCreacion, fechaPublicacion, fechaCierre FROM Ofertas_Laborales", connection);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
-                    string consultaSQL = $"INSERT INTO {tabla} (ofertaId, {columnaRelacion}) VALUES (@ofertaId, @{columnaRelacion})";
-                    var parametrosRelacion = new List<SqlParameter>
+                    while (reader.Read())
                     {
-                        new SqlParameter("@ofertaId", ofertaId),
-                        new SqlParameter($"@{columnaRelacion}", id)
-                    };
-                    ExecuteNonQuery(consultaSQL, parametrosRelacion);
+                        var ofertaLaboral = new Ofertas_Laborales
+                        {
+                            numero = reader.GetInt32(0),
+                            titulo = reader.IsDBNull(1) ? null : reader.GetString(1),
+                            descripcion = reader.IsDBNull(2) ? null : reader.GetString(2),
+                            fechaCreacion = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
+                            fechaPublicacion = reader.IsDBNull(4) ? (DateTime?)null : reader.GetDateTime(4),
+                            fechaCierre = reader.IsDBNull(5) ? (DateTime?)null : reader.GetDateTime(5)
+                        };
+                        ofertasLaborales.Add(ofertaLaboral);
+                    }
                 }
-            }
-        }
-
-        public List<Ofertas_Laborales> ObtenerTodasLasOfertasLaborales()
-        {
-            List<Ofertas_Laborales> ofertasLaborales = new List<Ofertas_Laborales>();
-            string consultaSQL = "SELECT * FROM Ofertas_Laborales";
-
-            try
-            {
-                DataTable tablaOfertas = ExecuteReader(consultaSQL);
-
-                foreach (DataRow fila in tablaOfertas.Rows)
-                {
-                    Ofertas_Laborales oferta = new Ofertas_Laborales
-                    {
-                        numero = Convert.ToInt32(fila["numero"]),
-                        titulo = fila["titulo"].ToString(),
-                        descripcion = fila["descripcion"].ToString(),
-                        fechaCreacion = fila["fechaCreacion"] != DBNull.Value ? Convert.ToDateTime(fila["fechaCreacion"]) : (DateTime?)null,
-                        fechaPublicacion = fila["fechaPublicacion"] != DBNull.Value ? Convert.ToDateTime(fila["fechaPublicacion"]) : (DateTime?)null,
-                        fechaCierre = fila["fechaCierre"] != DBNull.Value ? Convert.ToDateTime(fila["fechaCierre"]) : (DateTime?)null
-                    };
-                    ofertasLaborales.Add(oferta);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener las ofertas laborales", ex);
             }
 
             return ofertasLaborales;
         }
 
-        public int BajaOfertaLaboral(int numero)
+        public Ofertas_Laborales ObtenerOfertaLaboralPorNumero(int numero)
         {
-            string consultaSQL = "DELETE FROM Ofertas_Laborales WHERE numero = @numero";
+            Ofertas_Laborales ofertaLaboral = null;
 
-            parametros.Clear();
-            parametros.Add(new SqlParameter("@numero", numero));
-
-            try
+            using (var connection = new SqlConnection(connectionString))
             {
-                return ExecuteNonQuery(consultaSQL, parametros);
+                var command = new SqlCommand("SELECT numero, titulo, descripcion, fechaCreacion, fechaPublicacion, fechaCierre FROM Ofertas_Laborales WHERE numero = @numero", connection);
+                command.Parameters.AddWithValue("@numero", numero);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        ofertaLaboral = new Ofertas_Laborales
+                        {
+                            numero = reader.GetInt32(0),
+                            titulo = reader.IsDBNull(1) ? null : reader.GetString(1),
+                            descripcion = reader.IsDBNull(2) ? null : reader.GetString(2),
+                            fechaCreacion = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
+                            fechaPublicacion = reader.IsDBNull(4) ? (DateTime?)null : reader.GetDateTime(4),
+                            fechaCierre = reader.IsDBNull(5) ? (DateTime?)null : reader.GetDateTime(5)
+                        };
+                    }
+                }
             }
-            catch (Exception ex)
+
+            return ofertaLaboral;
+        }
+
+        public void AgregarOfertaLaboral(Ofertas_Laborales ofertaLaboral)
+        {
+            using (var connection = new SqlConnection(connectionString))
             {
-                throw new Exception("Error al dar de baja la oferta laboral", ex);
+                var command = new SqlCommand("INSERT INTO Ofertas_Laborales (numero, titulo, descripcion, fechaCreacion) VALUES (@numero, @titulo, @descripcion, @fechaCreacion)", connection);
+                command.Parameters.AddWithValue("@numero", ofertaLaboral.numero);
+                command.Parameters.AddWithValue("@titulo", ofertaLaboral.titulo ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@descripcion", ofertaLaboral.descripcion ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@fechaCreacion", ofertaLaboral.fechaCreacion ?? (object)DBNull.Value);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
-        public int ModificarOfertaLaboral(Ofertas_Laborales oferta)
+        public void ActualizarOfertaLaboral(Ofertas_Laborales ofertaLaboral)
         {
-            string consultaSQL = @"UPDATE Ofertas_Laborales 
-                                   SET titulo = @titulo, 
-                                       descripcion = @descripcion, 
-                                       fechaCreacion = @fechaCreacion, 
-                                       fechaPublicacion = @fechaPublicacion, 
-                                       fechaCierre = @fechaCierre 
-                                   WHERE numero = @numero";
-
-            parametros.Clear();
-            parametros.Add(new SqlParameter("@numero", oferta.numero));
-            parametros.Add(new SqlParameter("@titulo", oferta.titulo ?? (object)DBNull.Value));
-            parametros.Add(new SqlParameter("@descripcion", oferta.descripcion ?? (object)DBNull.Value));
-            parametros.Add(new SqlParameter("@fechaCreacion", oferta.fechaCreacion.HasValue ? (object)oferta.fechaCreacion.Value : DBNull.Value));
-            parametros.Add(new SqlParameter("@fechaPublicacion", oferta.fechaPublicacion.HasValue ? (object)oferta.fechaPublicacion.Value : DBNull.Value));
-            parametros.Add(new SqlParameter("@fechaCierre", oferta.fechaCierre.HasValue ? (object)oferta.fechaCierre.Value : DBNull.Value));
-
-            try
+            using (var connection = new SqlConnection(connectionString))
             {
-                return ExecuteNonQuery(consultaSQL, parametros);
+                var command = new SqlCommand("UPDATE Ofertas_Laborales SET titulo = @titulo, descripcion = @descripcion, fechaCreacion = @fechaCreacion, fechaPublicacion = @fechaPublicacion, fechaCierre = @fechaCierre WHERE numero = @numero", connection);
+                command.Parameters.AddWithValue("@numero", ofertaLaboral.numero);
+                command.Parameters.AddWithValue("@titulo", ofertaLaboral.titulo ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@descripcion", ofertaLaboral.descripcion ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@fechaCreacion", ofertaLaboral.fechaCreacion ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@fechaPublicacion", ofertaLaboral.fechaPublicacion ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@fechaCierre", ofertaLaboral.fechaCierre ?? (object)DBNull.Value);
+                connection.Open();
+                command.ExecuteNonQuery();
             }
-            catch (Exception ex)
+        }
+
+        public int EliminarOfertaLaboral(int numero)
+        {
+            using (var connection = new SqlConnection(connectionString))
             {
-                throw new Exception("Error al modificar la oferta laboral", ex);
+                var command = new SqlCommand("DELETE FROM Ofertas_Laborales WHERE numero = @numero", connection);
+                command.Parameters.AddWithValue("@numero", numero);
+                connection.Open();
+                return command.ExecuteNonQuery();
             }
         }
 
@@ -136,12 +122,12 @@ namespace Datos
             string consultaSQL = "SELECT ISNULL(MAX(numero), 0) FROM Ofertas_Laborales";
             try
             {
-                DataTable result = ExecuteReader(consultaSQL);
-                if (result.Rows.Count > 0)
+                using (var connection = new SqlConnection(connectionString))
                 {
-                    return Convert.ToInt32(result.Rows[0][0]);
+                    var command = new SqlCommand(consultaSQL, connection);
+                    connection.Open();
+                    return Convert.ToInt32(command.ExecuteScalar());
                 }
-                return 0;
             }
             catch (Exception ex)
             {
@@ -149,63 +135,63 @@ namespace Datos
             }
         }
 
-        private int ExecuteNonQuery(string consultaSQL, List<SqlParameter> parametros)
+        public List<Ofertas_Laborales> ObtenerOfertasPorEstado(int codigoEstado)
         {
-            int filasAfectadas = 0;
-            string connectionString = "data source=.;initial catalog=db_RRHH;integrated security=True;encrypt=True;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework";
+            var ofertasLaborales = new List<Ofertas_Laborales>();
 
-            using (SqlConnection conexion = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                var command = new SqlCommand("SELECT numero, titulo, descripcion, fechaCreacion, fechaPublicacion, fechaCierre FROM Ofertas_Laborales WHERE estado = @codigoEstado", connection);
+                command.Parameters.AddWithValue("@codigoEstado", codigoEstado);
+                connection.Open();
+                using (var reader = command.ExecuteReader())
                 {
-                    if (parametros != null)
+                    while (reader.Read())
                     {
-                        comando.Parameters.AddRange(parametros.ToArray());
-                    }
-                    conexion.Open();
-                    filasAfectadas = comando.ExecuteNonQuery();
-                }
-            }
-            return filasAfectadas;
-        }
-
-        private object ExecuteScalar(string consultaSQL, List<SqlParameter> parametros)
-        {
-            object resultado = null;
-            string connectionString = "data source=.;initial catalog=db_RRHH;integrated security=True;encrypt=True;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework";
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
-            {
-                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
-                {
-                    if (parametros != null)
-                    {
-                        comando.Parameters.AddRange(parametros.ToArray());
-                    }
-                    conexion.Open();
-                    resultado = comando.ExecuteScalar();
-                }
-            }
-            return resultado;
-        }
-
-        private DataTable ExecuteReader(string consultaSQL)
-        {
-            DataTable dataTable = new DataTable();
-            string connectionString = "data source=.;initial catalog=db_RRHH;integrated security=True;encrypt=True;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework";
-
-            using (SqlConnection conexion = new SqlConnection(connectionString))
-            {
-                using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
-                {
-                    conexion.Open();
-                    using (SqlDataReader reader = comando.ExecuteReader())
-                    {
-                        dataTable.Load(reader);
+                        var ofertaLaboral = new Ofertas_Laborales
+                        {
+                            numero = reader.GetInt32(0),
+                            titulo = reader.IsDBNull(1) ? null : reader.GetString(1),
+                            descripcion = reader.IsDBNull(2) ? null : reader.GetString(2),
+                            fechaCreacion = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
+                            fechaPublicacion = reader.IsDBNull(4) ? (DateTime?)null : reader.GetDateTime(4),
+                            fechaCierre = reader.IsDBNull(5) ? (DateTime?)null : reader.GetDateTime(5)
+                        };
+                        ofertasLaborales.Add(ofertaLaboral);
                     }
                 }
             }
-            return dataTable;
+
+            return ofertasLaborales;
         }
+
+        public void PublicarOfertaLaboral(int numero, DateTime fechaPublicacion)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand("UPDATE Ofertas_Laborales SET fechaPublicacion = @fechaPublicacion, estado = @estado WHERE numero = @numero", connection);
+                command.Parameters.AddWithValue("@numero", numero);
+                command.Parameters.AddWithValue("@fechaPublicacion", fechaPublicacion);
+                command.Parameters.AddWithValue("@estado", 4); // Código para "Publicación"
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void CerrarOfertaLaboral(int numero)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand("UPDATE Ofertas_Laborales SET estado = @estado WHERE numero = @numero", connection);
+                command.Parameters.AddWithValue("@numero", numero);
+                command.Parameters.AddWithValue("@estado", 5); // Código para "Recepción de candidaturas" (o el código correspondiente)
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
+
     }
 }

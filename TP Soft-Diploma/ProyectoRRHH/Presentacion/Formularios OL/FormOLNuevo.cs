@@ -13,6 +13,7 @@ namespace Presentacion.Formularios_OL
         private NegRequisitos negRequisitos;
         private NegOfertasLaborales negOfertasLaborales;
         private Ofertas_Laborales ofertaActual;
+        internal Ofertas_Laborales Oferta;
 
         public bool EsAlta { get; internal set; }
 
@@ -25,8 +26,6 @@ namespace Presentacion.Formularios_OL
             negOfertasLaborales = NegOfertasLaborales.ObtenerInstancia();
 
             CargarClientes();
-            CargarRequisitos();
-            CargarUltimoNumeroOferta();
         }
 
         private void CargarClientes()
@@ -44,34 +43,6 @@ namespace Presentacion.Formularios_OL
             }
         }
 
-        private void CargarRequisitos()
-        {
-            try
-            {
-                List<Requisitos> requisitos = negRequisitos.ObtenerRequisitos();
-                clbRequisitos.DataSource = requisitos;
-                clbRequisitos.DisplayMember = "descripcion";
-                clbRequisitos.ValueMember = "codigo";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar los requisitos: " + ex.Message);
-            }
-        }
-
-        private void CargarUltimoNumeroOferta()
-        {
-            try
-            {
-                int ultimoNumeroOferta = negOfertasLaborales.ObtenerUltimoNumero();
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al obtener el último número de oferta: " + ex.Message);
-            }
-        }
-
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -80,24 +51,26 @@ namespace Presentacion.Formularios_OL
                 {
                     ofertaActual = new Ofertas_Laborales();
                     ofertaActual.numero = negOfertasLaborales.ObtenerUltimoNumero() + 1;
-                    //ofertaActual.Estados = new List<Estados> { negEstados.ObtenerEstadoPorCodigo("1") };
                 }
 
                 ofertaActual.titulo = txtTitulo.Text;
                 ofertaActual.descripcion = txtDescripcion.Text;
                 ofertaActual.fechaCreacion = dtpCreacion.Value;
 
-                ofertaActual.Clientes = new List<Clientes> { (Clientes)cbClientes.SelectedItem };
+                var clienteSeleccionado = (Clientes)cbClientes.SelectedItem;
+                List<int> clienteIds = new List<int> { clienteSeleccionado.id };
 
-                ofertaActual.Requisitos = new List<Requisitos>();
+                List<int> requisitoIds = new List<int>();
                 foreach (var item in clbRequisitos.CheckedItems)
                 {
-                    ofertaActual.Requisitos.Add((Requisitos)item);
+                    requisitoIds.Add(((Requisitos)item).id);
                 }
 
-                //negOfertasLaborales.GuardarOfertaLaboral(ofertaActual);
+                // Llama al método para guardar la oferta
+                negOfertasLaborales.AltaOfertaLaboral(ofertaActual, clienteIds, new List<int>(), new List<int>(), requisitoIds);
 
                 MessageBox.Show("Oferta Laboral guardada exitosamente.");
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
@@ -110,9 +83,25 @@ namespace Presentacion.Formularios_OL
         {
             this.Close();
         }
+
+        private void FormOLNuevo_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Requisitos> requisitos = negRequisitos.ObtenerRequisitos();
+                clbRequisitos.Items.Clear();
+                foreach (var requisito in requisitos)
+                {
+                    clbRequisitos.Items.Add(requisito);
+                }
+
+                // Configurar DisplayMember para mostrar la descripción del requisito
+                clbRequisitos.DisplayMember = "descripcion";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los requisitos: " + ex.Message);
+            }
+        }
     }
 }
-
-
-
-

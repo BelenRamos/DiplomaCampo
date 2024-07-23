@@ -67,6 +67,8 @@ namespace Datos
             }
         }
 
+
+
         protected int ExecuteNonQuery(string query, SqlTransaction transaction)
         {
             using (SqlCommand comando = new SqlCommand(query, transaction.Connection, transaction))
