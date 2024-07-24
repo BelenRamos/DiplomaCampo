@@ -214,54 +214,44 @@ namespace Datos.RepoSeguridad
             }
         }
 
-
-        private int AltaUsuarioTransaccion(Usuarios usuario, SqlTransaction transaction)
+        public Usuarios ValidarUsuario(string email, string contrasenia)
         {
-            string consultaSQL = @"INSERT INTO Usuarios (idUsuario, nombreUsuario, contrasenia, emailUsuario, habilitado, legajo) 
-                                   VALUES (@idUsuario, @nombreUsuario, @contrasenia, @emailUsuario, @habilitado, @legajo)";
+            Usuarios usuario = null;
+            string consultaSQL = "SELECT * FROM Usuarios WHERE emailUsuario = @Email AND contrasenia = @Contrasenia";
 
-            using (SqlCommand command = new SqlCommand(consultaSQL, transaction.Connection, transaction))
+            try
             {
-                command.Parameters.AddWithValue("@idUsuario", usuario.idUsuario);
-                command.Parameters.AddWithValue("@nombreUsuario", usuario.nombreUsuario ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@contrasenia", usuario.contrasenia ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@emailUsuario", usuario.emailUsuario ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@habilitado", usuario.habilitado ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@legajo", usuario.legajo ?? (object)DBNull.Value);
-
-                return command.ExecuteNonQuery();
-            }
-        }
-
-        private void AsignarUsuarioAGrupo(int idUsuario, int idGrupo, SqlTransaction transaction)
-        {
-            string consultaSQL = @"INSERT INTO Usuarios_Grupos (idUsuario, idGrupo) VALUES (@idUsuario, @idGrupo)";
-
-            using (SqlCommand command = new SqlCommand(consultaSQL, transaction.Connection, transaction))
-            {
-                command.Parameters.AddWithValue("@idUsuario", idUsuario);
-                command.Parameters.AddWithValue("@idGrupo", idGrupo);
-
-                command.ExecuteNonQuery();
-            }
-        }
-
-        private void AsignarPermisosAUsuario(int idUsuario, List<int> permisos, SqlTransaction transaction)
-        {
-            foreach (int permiso in permisos)
-            {
-                string consultaSQL = @"INSERT INTO Usuarios_Permisos (idUsuario, idPermiso) VALUES (@idUsuario, @idPermiso)";
-
-                using (SqlCommand command = new SqlCommand(consultaSQL, transaction.Connection, transaction))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    command.Parameters.Clear();
-                    command.Parameters.AddWithValue("@idUsuario", idUsuario);
-                    command.Parameters.AddWithValue("@idPermiso", permiso);
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(consultaSQL, connection);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Contrasenia", contrasenia);
+                    SqlDataReader reader = command.ExecuteReader();
 
-                    command.ExecuteNonQuery();
+                    if (reader.Read())
+                    {
+                        usuario = new Usuarios
+                        {
+                            idUsuario = (int)reader["idUsuario"],
+                            nombreUsuario = reader["nombreUsuario"].ToString(),
+                            contrasenia = reader["contrasenia"].ToString(),
+                            emailUsuario = reader["emailUsuario"].ToString(),
+                            habilitado = reader["habilitado"] != DBNull.Value ? (byte?)Convert.ToByte(reader["habilitado"]) : null,
+                            legajo = reader["legajo"] != DBNull.Value ? (int?)Convert.ToInt32(reader["legajo"]) : null
+                        };
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al validar usuario: " + ex.Message);
+                throw;
+            }
+
+            return usuario;
         }
+
 
 
     }

@@ -11,7 +11,7 @@ namespace Negocio
         private RepoUsuarios repositorio;
         private List<Usuarios> usuarios;
 
-        private NegUsuarios()
+        public NegUsuarios()
         {
             repositorio = new RepoUsuarios();
             usuarios = new List<Usuarios>();
@@ -127,9 +127,14 @@ namespace Negocio
         }
 
         public List<Permisos> ObtenerPermisosPorUsuario(int idUsuario)
-    {
-        return repositorio.ObtenerPermisosPorUsuario(idUsuario);
-    }
+        {
+            return repositorio.ObtenerPermisosPorUsuario(idUsuario);
+        }
+
+        public Usuarios ValidarUsuario(string email, string contrasenia)
+        {
+            return repositorio.ValidarUsuario(email, contrasenia);
+        }
 
     }
 }

@@ -41,7 +41,9 @@
             this.panelBarra = new System.Windows.Forms.Panel();
             this.panelseparacion = new System.Windows.Forms.Panel();
             this.panelFormularios = new System.Windows.Forms.Panel();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
+            this.panelBarra.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -194,6 +196,7 @@
             // panelBarra
             // 
             this.panelBarra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(31)))), ((int)(((byte)(48)))));
+            this.panelBarra.Controls.Add(this.btnCerrarSesion);
             this.panelBarra.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelBarra.Location = new System.Drawing.Point(200, 0);
             this.panelBarra.Name = "panelBarra";
@@ -218,6 +221,19 @@
             this.panelFormularios.Size = new System.Drawing.Size(539, 431);
             this.panelFormularios.TabIndex = 3;
             // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarSesion.Font = new System.Drawing.Font("Arial Narrow", 9F);
+            this.btnCerrarSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(72)))), ((int)(((byte)(54)))));
+            this.btnCerrarSesion.Location = new System.Drawing.Point(451, 3);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(85, 32);
+            this.btnCerrarSesion.TabIndex = 12;
+            this.btnCerrarSesion.Text = "Cerrar Sesion";
+            this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            // 
             // FormularioMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,6 +246,7 @@
             this.Name = "FormularioMenu";
             this.Text = "FormularioMenu";
             this.panelMenu.ResumeLayout(false);
+            this.panelBarra.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -248,5 +265,6 @@
         private System.Windows.Forms.Button btnPostulantes;
         private System.Windows.Forms.Button btnSeguridad;
         private System.Windows.Forms.Button btnDashboard;
+        private System.Windows.Forms.Button btnCerrarSesion;
     }
 }

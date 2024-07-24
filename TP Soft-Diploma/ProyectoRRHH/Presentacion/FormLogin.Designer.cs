@@ -97,17 +97,19 @@
             // txtMailUsu
             // 
             this.txtMailUsu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMailUsu.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Underline);
             this.txtMailUsu.Location = new System.Drawing.Point(34, 146);
             this.txtMailUsu.Name = "txtMailUsu";
-            this.txtMailUsu.Size = new System.Drawing.Size(264, 20);
+            this.txtMailUsu.Size = new System.Drawing.Size(264, 25);
             this.txtMailUsu.TabIndex = 9;
             // 
             // txtContra
             // 
             this.txtContra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtContra.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Underline);
             this.txtContra.Location = new System.Drawing.Point(34, 237);
             this.txtContra.Name = "txtContra";
-            this.txtContra.Size = new System.Drawing.Size(264, 20);
+            this.txtContra.Size = new System.Drawing.Size(264, 25);
             this.txtContra.TabIndex = 10;
             // 
             // btnIngresar
@@ -121,6 +123,7 @@
             this.btnIngresar.TabIndex = 11;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
             // button1
             // 

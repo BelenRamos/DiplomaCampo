@@ -73,5 +73,20 @@ namespace Presentacion
         {
             OpenChildForm(new Formularios_de_Seguridad.MenuSeguridad());
         }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormLogin formLogin = new FormLogin();
+                formLogin.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cerrar sesión: " + ex.Message);
+            }
+        }
+    
     }
 }
