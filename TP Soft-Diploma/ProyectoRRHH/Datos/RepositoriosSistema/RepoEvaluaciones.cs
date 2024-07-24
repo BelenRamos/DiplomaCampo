@@ -1,57 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using Modelo;
 
 namespace Datos
 {
-    public class RepoEvaluaciones : RepositorioMaestro
+    public class RepoEvaluaciones
     {
-        public List<Evaluaciones> ObtenerTodasLasEvaluaciones()
+        private string connectionString;
+        public RepoEvaluaciones()
         {
-            List<Evaluaciones> evaluaciones = new List<Evaluaciones>();
-            string consultaSQL = "SELECT * FROM Evaluaciones"; // Ajusta esto según el nombre de tu tabla de evaluaciones
-
-            DataTable tablaEvaluaciones = ExecuteReader(consultaSQL);
-
-            foreach (DataRow fila in tablaEvaluaciones.Rows)
-            {
-                Evaluaciones evaluacion = new Evaluaciones
-                {
-                    numero = Convert.ToInt32(fila["numero"]),
-                    descripcion = fila["descripcion"].ToString(),
-                    resultado = fila["resultado"].ToString(),
-                    fechaEvaluacion = fila["fechaEvaluacion"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(fila["fechaEvaluacion"]) : null,
-                    profesional = fila["profesional"].ToString(),
-                    // Ajusta el mapeo de propiedades según tu clase Evaluaciones
-                };
-                evaluaciones.Add(evaluacion);
-            }
-            return evaluaciones;
+            connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
         }
 
-        public List<Evaluaciones> ObtenerEvaluacionPorNumero(int numeroEvaluacion)
+        public List<(string NombrePostulante, string ResultadoEvaluacion)> ObtenerCandidatosConEvaluacion(int numeroOL)
         {
-            List<Evaluaciones> evaluaciones = new List<Evaluaciones>();
-            string consultaSQL = "SELECT * FROM Evaluaciones WHERE numero = @Numero_Evaluacion";
-            parametros.Add(new SqlParameter("@Numero_Evaluacion", numeroEvaluacion));
-            DataTable tablaEvaluaciones = ExecuteReader(consultaSQL);
+            var candidatosConEvaluacion = new List<(string NombrePostulante, string ResultadoEvaluacion)>();
 
-            foreach (DataRow fila in tablaEvaluaciones.Rows)
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                Evaluaciones evaluacion = new Evaluaciones
+                string query = @"
+                    SELECT p.nombre + ' ' + p.apellido AS NombrePostulante, e.resultado AS ResultadoEvaluacion
+                    FROM Postulantes p
+                    JOIN OL_Postulantes olp ON p.numero = olp.nro_postulante
+                    JOIN Evaluciones_Postulantes ep ON p.numero = ep.nro_postulante
+                    JOIN Evaluaciones e ON ep.nro_evaluacion = e.numero
+                    WHERE olp.nro_OL = @numeroOL";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    numero = Convert.ToInt32(fila["numero"]),
-                    descripcion = fila["descripcion"].ToString(),
-                    resultado = fila["resultado"].ToString(),
-                    fechaEvaluacion = fila["fechaEvaluacion"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(fila["fechaEvaluacion"]) : null,
-                    profesional = fila["profesional"].ToString(),
-                    // Ajusta el mapeo de propiedades según tu clase Evaluaciones
-                };
-                evaluaciones.Add(evaluacion);
+                    command.Parameters.AddWithValue("@numeroOL", numeroOL);
+
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string nombrePostulante = reader.GetString(0);
+                            string resultadoEvaluacion = reader.GetString(1);
+
+                            candidatosConEvaluacion.Add((nombrePostulante, resultadoEvaluacion));
+                        }
+                    }
+                }
             }
-            return evaluaciones;
+
+            return candidatosConEvaluacion;
         }
     }
 }

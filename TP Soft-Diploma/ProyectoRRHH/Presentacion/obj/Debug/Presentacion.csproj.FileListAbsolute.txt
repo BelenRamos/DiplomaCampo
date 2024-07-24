@@ -79,7 +79,6 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_OL.FormGestionOL.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_OL.FormOLNuevo.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_Postulantes.FormPermisosUsuario.resources
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_OL.FormPostulantesOL.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_OL.FormRequisitosOL.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_Perfiles.FormGestionPerfiles.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_Perfiles.FormNuevoPerfil.resources
@@ -93,3 +92,4 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presenta.BC77CD05.Up2Date
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.exe
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.pdb
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_OL.FormCandidatosOL.resources

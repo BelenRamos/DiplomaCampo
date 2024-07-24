@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using Modelo;
+﻿using System.Collections.Generic;
 using Datos;
+using Modelo;
 
 namespace Negocio
 {
     public class NegEvaluaciones
     {
-        private static NegEvaluaciones instancia;
-        private RepoEvaluaciones repositorioEvaluaciones;
+        private RepoEvaluaciones repoEvaluaciones;
+
+        private static NegEvaluaciones instancia = null;
 
         private NegEvaluaciones()
         {
-            repositorioEvaluaciones = new RepoEvaluaciones();
+            repoEvaluaciones = new RepoEvaluaciones();
         }
 
         public static NegEvaluaciones ObtenerInstancia()
@@ -24,30 +24,9 @@ namespace Negocio
             return instancia;
         }
 
-        public List<Evaluaciones> ObtenerTodasLasEvaluaciones()
+        public List<(string NombrePostulante, string ResultadoEvaluacion)> ObtenerCandidatosConEvaluacion(int numeroOL)
         {
-            try
-            {
-                return repositorioEvaluaciones.ObtenerTodasLasEvaluaciones();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public List<Evaluaciones> ObtenerEvaluacionPorNumero(int numeroEvaluacion)
-        {
-            try
-            {
-                return repositorioEvaluaciones.ObtenerEvaluacionPorNumero(numeroEvaluacion);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return repoEvaluaciones.ObtenerCandidatosConEvaluacion(numeroOL);
         }
     }
 }
-
-

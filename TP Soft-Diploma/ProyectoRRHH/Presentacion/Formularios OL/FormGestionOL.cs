@@ -139,12 +139,12 @@ namespace Presentacion.Formularios_OL
             }
         }
 
-        private void btnCerrarPublicacion_Click(object sender, EventArgs e)
+        private void btnSeleccionCandidato_Click(object sender, EventArgs e)
         {
             if (dgvOfertasLaborales.SelectedRows.Count > 0)
             {
                 var ofertaSeleccionada = (Ofertas_Laborales)dgvOfertasLaborales.SelectedRows[0].DataBoundItem;
-                using (FormPostulantesOL formulario = new FormPostulantesOL(ofertaSeleccionada.numero))
+                using (FormCandidatosOL formulario = new FormCandidatosOL(ofertaSeleccionada.numero))
                 {
                     formulario.ShowDialog();
                 }

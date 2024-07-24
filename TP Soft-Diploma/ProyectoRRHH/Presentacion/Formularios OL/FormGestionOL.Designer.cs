@@ -34,7 +34,7 @@
             this.btnEliminarOL = new System.Windows.Forms.Button();
             this.btnModificarOL = new System.Windows.Forms.Button();
             this.btnAgregarOL = new System.Windows.Forms.Button();
-            this.btnCerrarPublicacion = new System.Windows.Forms.Button();
+            this.btnSeleccionCandidato = new System.Windows.Forms.Button();
             this.btnRequistosOl = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOfertasLaborales)).BeginInit();
             this.SuspendLayout();
@@ -115,18 +115,18 @@
             this.btnAgregarOL.UseVisualStyleBackColor = true;
             this.btnAgregarOL.Click += new System.EventHandler(this.btnAgregarOL_Click);
             // 
-            // btnCerrarPublicacion
+            // btnSeleccionCandidato
             // 
-            this.btnCerrarPublicacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarPublicacion.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
-            this.btnCerrarPublicacion.ForeColor = System.Drawing.Color.Tan;
-            this.btnCerrarPublicacion.Location = new System.Drawing.Point(390, 327);
-            this.btnCerrarPublicacion.Name = "btnCerrarPublicacion";
-            this.btnCerrarPublicacion.Size = new System.Drawing.Size(121, 33);
-            this.btnCerrarPublicacion.TabIndex = 11;
-            this.btnCerrarPublicacion.Text = "Cerrar";
-            this.btnCerrarPublicacion.UseVisualStyleBackColor = true;
-            this.btnCerrarPublicacion.Click += new System.EventHandler(this.btnCerrarPublicacion_Click);
+            this.btnSeleccionCandidato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSeleccionCandidato.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
+            this.btnSeleccionCandidato.ForeColor = System.Drawing.Color.Tan;
+            this.btnSeleccionCandidato.Location = new System.Drawing.Point(390, 327);
+            this.btnSeleccionCandidato.Name = "btnSeleccionCandidato";
+            this.btnSeleccionCandidato.Size = new System.Drawing.Size(121, 33);
+            this.btnSeleccionCandidato.TabIndex = 11;
+            this.btnSeleccionCandidato.Text = "Seleccion";
+            this.btnSeleccionCandidato.UseVisualStyleBackColor = true;
+            this.btnSeleccionCandidato.Click += new System.EventHandler(this.btnSeleccionCandidato_Click);
             // 
             // btnRequistosOl
             // 
@@ -148,7 +148,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
             this.ClientSize = new System.Drawing.Size(523, 392);
             this.Controls.Add(this.btnRequistosOl);
-            this.Controls.Add(this.btnCerrarPublicacion);
+            this.Controls.Add(this.btnSeleccionCandidato);
             this.Controls.Add(this.btnPublicar);
             this.Controls.Add(this.comboEstados);
             this.Controls.Add(this.btnEliminarOL);
@@ -171,7 +171,7 @@
         private System.Windows.Forms.Button btnEliminarOL;
         private System.Windows.Forms.Button btnModificarOL;
         private System.Windows.Forms.Button btnAgregarOL;
-        private System.Windows.Forms.Button btnCerrarPublicacion;
+        private System.Windows.Forms.Button btnSeleccionCandidato;
         private System.Windows.Forms.Button btnRequistosOl;
     }
 }
