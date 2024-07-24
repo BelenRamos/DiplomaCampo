@@ -26,23 +26,24 @@ namespace Presentacion.Formularios_OL
 
                 listaCandidatos.Items.Clear();
                 listaCandidatos.View = View.Details;
-                listaCandidatos.Columns.Add("Nombre Postulante", -2, HorizontalAlignment.Left);
+                listaCandidatos.Columns.Add("Nombre Postulante", -1, HorizontalAlignment.Left);
                 listaCandidatos.Columns.Add("Resultado Evaluación", -2, HorizontalAlignment.Left);
 
                 foreach (var candidato in candidatosConEvaluacion)
                 {
                     var item = new ListViewItem(candidato.NombrePostulante);
                     item.SubItems.Add(candidato.ResultadoEvaluacion);
-                    // Opcional: almacenar más datos en el Tag si es necesario
-                    // item.Tag = candidato;
                     listaCandidatos.Items.Add(item);
                 }
+
+                listaCandidatos.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los candidatos: " + ex.Message);
             }
         }
+
 
 
         private void btnSeleccionCandidato_Click(object sender, EventArgs e)

@@ -21,12 +21,12 @@ namespace Datos
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = @"
-                    SELECT p.nombre + ' ' + p.apellido AS NombrePostulante, e.resultado AS ResultadoEvaluacion
-                    FROM Postulantes p
-                    JOIN OL_Postulantes olp ON p.numero = olp.nro_postulante
-                    JOIN Evaluciones_Postulantes ep ON p.numero = ep.nro_postulante
-                    JOIN Evaluaciones e ON ep.nro_evaluacion = e.numero
-                    WHERE olp.nro_OL = @numeroOL";
+            SELECT p.nombre + ' ' + p.apellido AS NombrePostulante, e.resultado AS ResultadoEvaluacion
+            FROM Postulantes p
+            JOIN OL_Postulantes olp ON p.numero = olp.nro_postulante
+            JOIN Evaluciones_Postulantes ep ON p.numero = ep.nro_postulante
+            JOIN Evaluaciones e ON ep.nro_evaluacion = e.numero
+            WHERE olp.nro_OL = @numeroOL";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -37,8 +37,8 @@ namespace Datos
                     {
                         while (reader.Read())
                         {
-                            string nombrePostulante = reader.GetString(0);
-                            string resultadoEvaluacion = reader.GetString(1);
+                            string nombrePostulante = reader.IsDBNull(0) ? string.Empty : reader.GetString(0);
+                            string resultadoEvaluacion = reader.IsDBNull(1) ? string.Empty : reader.GetString(1);
 
                             candidatosConEvaluacion.Add((nombrePostulante, resultadoEvaluacion));
                         }
@@ -48,5 +48,6 @@ namespace Datos
 
             return candidatosConEvaluacion;
         }
+
     }
 }
