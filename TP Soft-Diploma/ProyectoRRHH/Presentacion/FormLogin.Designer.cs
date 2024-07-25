@@ -97,7 +97,7 @@
             // txtMailUsu
             // 
             this.txtMailUsu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMailUsu.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Underline);
+            this.txtMailUsu.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMailUsu.Location = new System.Drawing.Point(34, 146);
             this.txtMailUsu.Name = "txtMailUsu";
             this.txtMailUsu.Size = new System.Drawing.Size(264, 25);
@@ -106,7 +106,7 @@
             // txtContra
             // 
             this.txtContra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtContra.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Underline);
+            this.txtContra.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContra.Location = new System.Drawing.Point(34, 237);
             this.txtContra.Name = "txtContra";
             this.txtContra.Size = new System.Drawing.Size(264, 25);

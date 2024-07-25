@@ -12,11 +12,13 @@ namespace Presentacion
         private NegClientes negClientes;
         private NegClientesTels negClientesTelefonos;
         private NegMensajes negMensajes;
+        private NegUsuarios negUsuarios;
 
         public FormGestionClientes()
         {
             InitializeComponent();
             this.tabClientes.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            negUsuarios = NegUsuarios.ObtenerInstancia();
         }
 
         private void FormGestionClientes_Load(object sender, EventArgs e)
@@ -43,8 +45,36 @@ namespace Presentacion
             dgvMensajes.AutoGenerateColumns = true;
         }
 
+        private bool UsuarioEsSupervisor()
+        {
+            try
+            {
+                // Obtén el idUsuario del usuario actualmente autenticado
+                int idUsuarioActual = ObtenerGrupoUsuario(); 
+
+                // Obtén el grupo del usuario actual
+                var grupoUsuarioActual = negUsuarios.ObtenerGrupoUsuario(idUsuarioActual);
+                return grupoUsuarioActual == 2; // Grupo 2 es Supervisores
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar el grupo del usuario: " + ex.Message);
+                return false;
+            }
+        }
+
+        private int ObtenerGrupoUsuario()
+        {
+            throw new NotImplementedException();
+        }
+
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
+            if (!UsuarioEsSupervisor())
+            {
+                MessageBox.Show("No tiene permiso para eliminar clientes.");
+                return;
+            }
             var formNuevoCliente = new FormNuevoCliente(negClientes, negClientesTelefonos);
             formNuevoCliente.ShowDialog();
             try
@@ -59,6 +89,12 @@ namespace Presentacion
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
+            if (!UsuarioEsSupervisor())
+            {
+                MessageBox.Show("No tiene permiso para eliminar clientes.");
+                return;
+            }
+
             if (dataClientes.SelectedRows.Count > 0)
             {
                 int id = (int)dataClientes.SelectedRows[0].Cells["id"].Value;
@@ -82,6 +118,12 @@ namespace Presentacion
 
         private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
+            if (!UsuarioEsSupervisor())
+            {
+                MessageBox.Show("No tiene permiso para eliminar clientes.");
+                return;
+            }
+
             if (dataClientes.SelectedRows.Count > 0)
             {
                 var result = MessageBox.Show("¿Estás seguro de que deseas eliminar este cliente?", "Confirmación de eliminación", MessageBoxButtons.YesNo);

@@ -121,6 +121,7 @@
     <Compile Include="NegReportes.cs" />
     <Compile Include="Seguridad\NegGrupos.cs" />
     <Compile Include="Seguridad\NegPermisos.cs" />
+    <Compile Include="Seguridad\NegSessionManager.cs" />
     <Compile Include="Seguridad\NegUsuarios.cs" />
     <Compile Include="Sistema\NegClientes.cs" />
     <Compile Include="Sistema\NegClientesTels.cs" />

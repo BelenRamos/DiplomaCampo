@@ -8,6 +8,8 @@ namespace Modelo
 
     public partial class Usuarios
     {
+        public int userId;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuarios()
         {

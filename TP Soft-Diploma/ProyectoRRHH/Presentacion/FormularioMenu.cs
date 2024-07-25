@@ -2,29 +2,28 @@
 using Presentacion.Formularios_Perfiles;
 using System;
 using System.Windows.Forms;
+using Negocio;
 
 namespace Presentacion
 {
     public partial class FormularioMenu : Form
     {
-
         private Form currentChildForm;
-        //Constructor
+        private NegUsuarios negUsuarios;
+
         public FormularioMenu()
         {
             InitializeComponent();
-            
+            negUsuarios = NegUsuarios.ObtenerInstancia();
         }
 
         private void OpenChildForm(Form childForm)
         {
-            //open only form
             if (currentChildForm != null)
             {
                 currentChildForm.Close();
             }
             currentChildForm = childForm;
-            //End
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
@@ -32,46 +31,95 @@ namespace Presentacion
             panelFormularios.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            
         }
 
+        private bool UsuarioTienePermiso(string permisoNombre)
+        {
+            return negUsuarios.PermisosUsuarioActual.Exists(p => p.nombrePermiso == permisoNombre);
+        }
 
-        //        //Eventos
         private void btnPerfiles_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FormGestionPerfiles());
+            if (UsuarioTienePermiso("VER_FORMULARIO_GestionPerfiles"))
+            {
+                OpenChildForm(new FormGestionPerfiles());
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para acceder a este formulario.");
+            }
         }
-        
+
         private void btnOL_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FormGestionOL());
+            if (UsuarioTienePermiso("VER_FORMULARIO_GestionOL"))
+            {
+                OpenChildForm(new FormGestionOL());
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para acceder a este formulario.");
+            }
         }
 
         private void btnTurnos_Click(object sender, EventArgs e)
         {
-            //ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new FormPortaldeTurnos());
+            if (UsuarioTienePermiso("VER_PORTAL_TURNOS"))
+            {
+                OpenChildForm(new FormPortaldeTurnos());
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para acceder a este formulario.");
+            }
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            //ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new FormGestionClientes());
+            if (UsuarioTienePermiso("VER_FORMULARIO_GestionClientes"))
+            {
+                OpenChildForm(new FormGestionClientes());
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para acceder a este formulario.");
+            }
         }
 
         private void btnPostulantes_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FormGestionPostulantes());
+            if (UsuarioTienePermiso("VER_FORMULARIO_GestionPostulante"))
+            {
+                OpenChildForm(new FormGestionPostulantes());
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para acceder a este formulario.");
+            }
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Formulario_de_Reporte.Dashboard());
+            if (UsuarioTienePermiso("VER_DASHBOARD"))
+            {
+                OpenChildForm(new Formulario_de_Reporte.Dashboard());
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para acceder a este formulario.");
+            }
         }
 
         private void btnSeguridad_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Formularios_de_Seguridad.MenuSeguridad());
+            if (UsuarioTienePermiso("VER_MENU_SEGURIDAD"))
+            {
+                OpenChildForm(new Formularios_de_Seguridad.MenuSeguridad());
+            }
+            else
+            {
+                MessageBox.Show("No tiene permiso para acceder a este formulario.");
+            }
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -87,6 +135,5 @@ namespace Presentacion
                 MessageBox.Show("Error al cerrar sesión: " + ex.Message);
             }
         }
-    
     }
 }

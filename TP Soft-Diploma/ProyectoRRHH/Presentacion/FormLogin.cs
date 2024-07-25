@@ -1,6 +1,7 @@
 ﻿using Modelo;
 using Negocio;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Presentacion
@@ -12,13 +13,11 @@ namespace Presentacion
         public FormLogin()
         {
             InitializeComponent();
-            negUsuarios = new NegUsuarios();
+            negUsuarios = NegUsuarios.ObtenerInstancia();
         }
 
-
-
         private void btnIngresar_Click(object sender, EventArgs e)
-        { 
+        {
             string email = txtMailUsu.Text.Trim();
             string contrasenia = txtContra.Text.Trim();
 
@@ -28,9 +27,10 @@ namespace Presentacion
 
                 if (usuario != null)
                 {
-                    // Usuario validado correctamente
                     if (usuario.habilitado.HasValue && usuario.habilitado.Value == 1)
                     {
+                        negUsuarios.EstablecerUsuarioActual(usuario);
+
                         MessageBox.Show("Login exitoso");
                         FormularioMenu formularioMenu = new FormularioMenu();
                         formularioMenu.FormClosed += (s, args) => Application.Exit();

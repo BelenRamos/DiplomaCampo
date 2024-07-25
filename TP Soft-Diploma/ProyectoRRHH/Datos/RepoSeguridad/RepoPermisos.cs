@@ -9,18 +9,18 @@ namespace Datos
 {
     public class RepoPermisos
     {
-        private readonly string _connectionString;
+        private readonly string connectionString;
 
         public RepoPermisos()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
+            connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
         }
 
         public IEnumerable<Permisos> ObtenerTodos()
         {
             var permisos = new List<Permisos>();
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand("SELECT * FROM Permisos", connection);
@@ -46,7 +46,7 @@ namespace Datos
         {
             Permisos permiso = null;
 
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand("SELECT * FROM Permisos WHERE idPermiso = @id", connection);
@@ -69,7 +69,7 @@ namespace Datos
 
         public void Agregar(Permisos permiso)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(
@@ -85,7 +85,7 @@ namespace Datos
 
         public void Actualizar(Permisos permiso)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(
@@ -101,7 +101,7 @@ namespace Datos
 
         public void Eliminar(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand("DELETE FROM Permisos WHERE idPermiso = @id", connection);
@@ -109,6 +109,52 @@ namespace Datos
 
                 command.ExecuteNonQuery();
             }
+        }
+
+        public List<int> ObtenerPermisosPorUsuario(int idUsuario)
+        {
+            List<int> permisos = new List<int>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT idPermiso 
+                             FROM Usuarios_Permisos 
+                             WHERE idUsuario = @idUsuario";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    permisos.Add(reader.GetInt32(0));
+                }
+            }
+
+            return permisos;
+        }
+
+        public List<int> ObtenerPermisosPorGrupo(int idGrupo)
+        {
+            List<int> permisos = new List<int>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"SELECT idPermiso 
+                             FROM Permisos_Grupos 
+                             WHERE idGrupo = @idGrupo";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idGrupo", idGrupo);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    permisos.Add(reader.GetInt32(0));
+                }
+            }
+
+            return permisos;
         }
     }
 }

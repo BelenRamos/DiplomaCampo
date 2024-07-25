@@ -28,41 +28,63 @@ INSERT INTO Modulos (idModulo, nombreModulo) VALUES
 GO
 
 -- Insertar valores en la tabla Formularios
+-- Insertar valores en la tabla Formularios
 INSERT INTO Formularios (idForm, nombreForm, idModulo) VALUES
-(1, 'FormMenu', 1), -- Gestión de Usuarios
-(2, 'FormLogin', 4), -- Gestión de Autenticación
-(3, 'FormGestionClientes', 5), -- Gestión de Clientes
-(4, 'FormGestionOL', 8), -- Gestión de Ofertas Laborales
-(5, 'FormOLNuevo', 8), -- Gestión de Ofertas Laborales
-(6, 'FormGestionPostulantes', 6), -- Gestión de Capital Humanos
-(7, 'FormPostulanteNuevo', 6), -- Gestión de Capital Humanos
-(8, 'FormPortaldeTurnos', 7), -- Gestión de Turnos
-(9, 'FormDetalleGrupos', 2), -- Gestión de Grupos
-(10, 'FormGestionGrupos', 2), -- Gestión de Grupos
-(11, 'FormDetalleUsuario', 1), -- Gestión de Usuarios
-(12, 'FormGestionUsuarios', 1), -- Gestión de Usuarios
-(13, 'FormDetallePermiso', 3), -- Gestión de Permisos
-(14, 'FormGestionPermisos', 3),
-(15, 'FormCargarFormualrio', 4); -- Gestión de Permisos
+(1, 'Dashboard', 1),
+(2, 'FormReporteCliente', 1),
+(3, 'FormReportePostulantes', 1),
+(4, 'FormGestionClientes', 5),
+(5, 'FormNuevoCliente', 5),
+(6, 'MenuSeguridad', 9),
+(7, 'FormGestionPermisos', 9),
+(8, 'FormGestionUsuarios', 9),
+(9, 'FormAltaUsuario', 9),
+(10, 'FormPermisosUsuario', 9),
+(11, 'FormGestionGrupos', 9),
+(12, 'FormAltaGrupo', 9),
+(13, 'FormGestionOL', 8),
+(14, 'FormCandidatosOL', 8),
+(15, 'FormOLNuevo', 8),
+(16, 'FormRequistosOL', 8),
+(17, 'FormGestionPerfiles', 8),
+(18, 'FormNuevoPerfil', 8),
+(19, 'FormGestionPostulante', 6),
+(20, 'FormPostulanteNuevo', 6),
+(21, 'FormPortaldeTurnos', 7),
+(22, 'FormAgendarTurno', 7),
+(23, 'FormAgendarReunion', 7),
+(24, 'FormularioMenu', 1),
+(25, 'FormLogin', 4);
 GO
 
--- Insertar valores en la tabla Permisos
+
+-- Insertar valores en la tabla Permisos con nuevos idForm
 INSERT INTO Permisos (idPermiso, nombrePermiso, idForm) VALUES
-(1, 'VER_USUARIO', 11),
-(2, 'ABM_USUARIO', 12),
-(3, 'VER_GRUPO', 9),
-(4, 'ABM_GRUPO', 10),
-(5, 'VER_PERMISO', 13),
-(6, 'ABM_PERMISO', 14),
-(7, 'VER_CLIENTE', 3),
---(8, 'ABM_CLIENTE', 3),
-(8, 'VER_POSTULANTE', 6),
-(9, 'ABM_POSTULANTE', 7),
-(10, 'VER_TURNO', 8),
---(12, 'ABM_TURNO', 8),
-(11, 'VER_OFERTA_LABORAL', 4),
-(12, 'ABM_OFERTA_LABORAL', 5),
-(13, 'CARGAR_FORMULARIO', 3);
+(1, 'VER_DASHBOARD', 1),                  -- Dashboard
+(2, 'VER_REPORTE_CLIENTE', 2),            -- FormReporteCliente
+(3, 'VER_REPORTE_POSTULANTES', 3),        -- FormReportePostulantes
+(4, 'VER_FORMULARIO_GestionClientes', 4), -- FormGestionClientes
+(5, 'ABM_CLIENTE', 5),                    -- FormNuevoCliente
+(6, 'VER_MENU_SEGURIDAD', 6),             -- MenuSeguridad
+(7, 'VER_FORMULARIO_GestionPermisos', 7), -- FormGestionPermisos
+(8, 'VER_FROMULARIO_PERMISOSXUSUARIO', 8), -- FormPermisosUsuario
+(9, 'VER_FORMULARIO_GestionUsuarios', 9), -- FormGestionUsuarios
+(10, 'ABM_USUARIO', 10),                  -- FormAltaUsuario
+(11, 'VER_FORMULARIO_GestionGrupos', 11), -- FormGestionGrupos
+(12, 'ABM_GRUPO', 12),                    -- FormAltaGrupo
+(13, 'VER_FORMULARIO_GestionOL', 13),     -- FormGestionOL
+(14, 'VER_CANDIDATOSXOL', 14),            -- FormCandidatosOL
+(15, 'ABM_OFERTA_LABORAL', 15),           -- FormOLNuevo
+(16, 'VER_REQUISITOSXOL', 16),           -- FormRequistosOL
+(17, 'VER_FORMULARIO_GestionPerfiles', 17), -- FormGestionPerfiles
+(18, 'ABM_PERFIL', 18),                  -- FormNuevoPerfil
+(19, 'VER_FORMULARIO_GestionPostulante', 19), -- FormGestionPostulante
+(20, 'ABM_POSTULANTE', 20),              -- FormPostulanteNuevo
+(21, 'VER_PORTAL_TURNOS', 21),           -- FormPortaldeTurnos
+(22, 'ABM_TURNO', 22),                   -- FormAgendarTurno
+(23, 'ABM_REUNION', 23),                 -- FormAgendarReunion
+(24, 'VER_MENU', 24),                   -- FormularioMenu
+(25, 'ACCESO_LOGIN', 25);               -- FormLogin
 GO
 
 -- Insertar valores en la tabla SessionManager
@@ -87,80 +109,54 @@ INSERT INTO Grupos_Grupos (idGrupoPadre, idGrupoHijo) VALUES
 (1, 3);
 GO
 
--- Operadores (Grupo 1)
+-- Insertar valores en la tabla Usuarios_Permisos
+-- Todos tienen los permisos de VER_MENU y ACCESO_LOGIN
 INSERT INTO Usuarios_Permisos (idUsuario, idPermiso) VALUES
-(1, 7),   -- Usuario 1: VER_CLIENTE
-(1, 8),   -- Usuario 1: VER_POSTULANTE
-(1, 9),   -- Usuario 1: ABM_POSTULANTE
-(1, 10),  -- Usuario 1: VER_TURNO
-(1, 11),  -- Usuario 1: VER_OFERTA_LABORAL
-(1, 12),  -- Usuario 1: ABM_OFERTA_LABORAL
---
-(2, 7),   -- Usuario 2: VER_CLIENTE
-(2, 8),   -- Usuario 2: VER_POSTULANTE
-(2, 9),   -- Usuario 2: ABM_POSTULANTE
-(2, 10),  -- Usuario 2: VER_TURNO
-(2, 11),  -- Usuario 2: VER_OFERTA_LABORAL
-(2, 12),  -- Usuario 2: ABM_OFERTA_LABORAL
---
-(3, 7),   -- Usuario 3: VER_CLIENTE
-(3, 8),   -- Usuario 3: VER_POSTULANTE
-(3, 9),   -- Usuario 3: ABM_POSTULANTE
-(3, 10),  -- Usuario 3: VER_TURNO
-(3, 11),  -- Usuario 3: VER_OFERTA_LABORAL
-(3, 12),  -- Usuario 3: ABM_OFERTA_LABORAL
+(1, 24), (1, 25),
+(2, 24), (2, 25),
+(3, 24), (3, 25),
+(4, 24), (4, 25),
+(5, 24), (5, 25);
+
+-- Operadores (Grupo 1)
+-- Permisos: VER_DASHBOARD, VER_REPORTE_CLIENTE, VER_REPORTE_POSTULANTES, VER_FORMULARIOS (excepto modulo 9), VER_PORTAL_TURNOS
+INSERT INTO Usuarios_Permisos (idUsuario, idPermiso) VALUES
+(1, 1), (1, 2), (1, 3), (1, 4), (1, 13), (1, 14), (1, 16), (1, 19), (1, 21), (1, 22), (1, 23), 
+(2, 1), (2, 2), (2, 3), (2, 4), (2, 13), (2, 14), (2, 16), (2, 19), (2, 21), (2, 22), (2, 23), 
+(3, 1), (3, 2), (3, 3), (3, 4), (3, 13), (3, 14), (3, 16), (3, 19), (3, 21), (3, 22), (3, 23);
+
 -- Supervisores (Grupo 2)
-(4, 7),    -- Usuario 4: VER_CLIENTE
-(4, 8),    -- Usuario 4: VER_POSTULANTE
-(4, 9),    -- Usuario 4: ABM_POSTULANTE
-(4, 10),   -- Usuario 4: VER_TURNO
-(4, 11),   -- Usuario 4: VER_OFERTA_LABORAL
-(4, 12),   -- Usuario 4: ABM_OFERTA_LABORAL
-(4, 3),    -- Usuario 4: VER_GRUPO
-(4, 4),    -- Usuario 4: ABM_GRUPO
-(4, 1),    -- Usuario 4: VER_USUARIO
-(4, 2),    -- Usuario 4: ABM_USUARIO
-(4, 5),    -- Usuario 4: VER_PERMISO
-(4, 6),    -- Usuario 4: ABM_PERMISO
-(4, 13),   -- Usuario 4: ENVIAR_FORMULARIO
+-- Permisos: Todos excepto modulo 9
+INSERT INTO Usuarios_Permisos (idUsuario, idPermiso) VALUES
+(4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 13), (4, 14), (4, 15), (4, 16), (4, 17), (4, 18), (4, 19), (4, 20), (4, 21), (4, 22), (4, 23);
+
 -- Soporte Técnico (Grupo 3)
-(5, 3),    -- Usuario 5: VER_GRUPO
-(5, 7),    -- Usuario 5: VER_CLIENTE
-(5, 8),    -- Usuario 5: VER_POSTULANTE
-(5, 10),   -- Usuario 5: VER_TURNO
-(5, 11),   -- Usuario 5: VER_OFERTA_LABORAL
-(5, 13);   -- Usuario 5: ENVIAR_FORMULARIO
-Go
+-- Permisos: Solo modulo 9
+INSERT INTO Usuarios_Permisos (idUsuario, idPermiso) VALUES
+(5, 6), (5, 7), (5, 8), (5, 9), (5, 10), (5, 11), (5, 12);
+GO
 
 
--- Insertar valores en la tabla intermedia Permisos_Grupos
+
+-- Insertar valores en la tabla Permisos_Grupos
+-- Todos los grupos tienen permisos de VER_MENU y ACCESO_LOGIN
 INSERT INTO Permisos_Grupos (idGrupo, idPermiso) VALUES
---Operadores
-(1, 7),   -- VER_CLIENTE
-(1, 8),   -- VER_POSTULANTE
-(1, 9),   -- ABM_POSTULANTE
-(1, 10),  -- VER_TURNO
-(1, 11),  -- VER_OFERTA_LABORAL
-(1, 12),-- ABM_OFERTA_LABORAL 
---Supervisores
-(2, 7),    -- VER_CLIENTE
-(2, 8),    -- VER_POSTULANTE
-(2, 9),    -- ABM_POSTULANTE
-(2, 10),   -- VER_TURNO
-(2, 11),   -- VER_OFERTA_LABORAL
-(2, 12),   -- ABM_OFERTA_LABORAL
-(2, 3),    -- VER_GRUPO
-(2, 4),    -- ABM_GRUPO
-(2, 1),    -- VER_USUARIO
-(2, 2),    -- ABM_USUARIO
-(2, 5),    -- VER_PERMISO
-(2, 6),    -- ABM_PERMISO
-(2, 13),   -- ENVIAR_FORMULARIO
---Soporte
-(3, 3),   -- VER_GRUPO
-(3, 7),   -- VER_CLIENTE
-(3, 8),   -- VER_POSTULANTE
-(3, 10),  -- VER_TURNO
-(3, 11), --Ver ol
-(3, 13);   -- ENVIAR_FORMULARIO
+(1, 24), (1, 25),
+(2, 24), (2, 25),
+(3, 24), (3, 25);
+
+-- Operadores (Grupo 1)
+-- Permisos: VER_DASHBOARD, VER_REPORTE_CLIENTE, VER_REPORTE_POSTULANTES, VER_FORMULARIOS (excepto modulo 9), VER_PORTAL_TURNOS
+INSERT INTO Permisos_Grupos (idGrupo, idPermiso) VALUES
+(1, 1), (1, 2), (1, 3), (1, 4), (1, 13), (1, 14), (1, 16), (1, 19), (1, 21), (1, 22), (1, 23);
+
+-- Supervisores (Grupo 2)
+-- Permisos: Todos excepto modulo 9
+INSERT INTO Permisos_Grupos (idGrupo, idPermiso) VALUES
+(2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 13), (2, 14), (2, 15), (2, 16), (2, 17), (2, 18), (2, 19), (2, 20), (2, 21), (2, 22), (2, 23);
+
+-- Soporte Técnico (Grupo 3)
+-- Permisos: Solo modulo 9
+INSERT INTO Permisos_Grupos (idGrupo, idPermiso) VALUES
+(3, 6), (3, 7), (3, 8), (3, 9), (3, 10), (3, 11), (3, 12);
 GO

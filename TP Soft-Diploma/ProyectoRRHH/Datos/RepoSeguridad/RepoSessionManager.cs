@@ -7,30 +7,38 @@ namespace Datos.RepoSeguridad
 {
     public class RepoSessionManager : RepositorioMaestro
     {
-        public bool Login(string user, string pass)
+        public Usuarios Login(string email, string pass)
         {
             try
             {
-                string consultaSQL = "SELECT * FROM Usuarios WHERE Username COLLATE Latin1_General_CS_AS = @username COLLATE Latin1_General_CS_AS AND User_Password COLLATE Latin1_General_CS_AS = @password COLLATE Latin1_General_CS_AS;";
-                parametros.Add(new SqlParameter("@username", user));
+                string consultaSQL = "SELECT * FROM Usuarios WHERE emailUsuario = @username AND contrasenia = @password;";
+                parametros.Add(new SqlParameter("@username", email));
                 parametros.Add(new SqlParameter("@password", pass));
 
                 DataTable tablaUsuarios = ExecuteReader(consultaSQL);
 
                 if (tablaUsuarios.Rows.Count > 0)
                 {
-                    return true;
+                    DataRow row = tablaUsuarios.Rows[0];
+                    return new Usuarios
+                    {
+                        idUsuario = Convert.ToInt32(row["idUsuario"]),
+                        nombreUsuario = row["nombreUsuario"].ToString(),
+                        contrasenia = row["contrasenia"].ToString(),
+                        emailUsuario = row["emailUsuario"].ToString(),
+                        habilitado = row["habilitado"] as byte?,
+                        legajo = row["legajo"] as int?
+                    };
                 }
                 else
                 {
-                    return false;
+                    return null;
                 }
             }
             catch (SqlException ex)
             {
-                // Manejar la excepción según sea necesario
                 Console.WriteLine("Error en el proceso de inicio de sesión: " + ex.Message);
-                throw; // Puedes relanzar la excepción o manejarla según tu lógica de aplicación
+                throw;
             }
         }
 
@@ -47,9 +55,8 @@ namespace Datos.RepoSeguridad
             }
             catch (SqlException ex)
             {
-                // Manejar la excepción según sea necesario
                 Console.WriteLine("Error al cerrar sesión: " + ex.Message);
-                throw; // Puedes relanzar la excepción o manejarla según tu lógica de aplicación
+                throw;
             }
         }
 
@@ -67,12 +74,9 @@ namespace Datos.RepoSeguridad
             }
             catch (SqlException ex)
             {
-                // Manejar la excepción según sea necesario
                 Console.WriteLine("Error al actualizar estado de sesión: " + ex.Message);
-                throw; // Puedes relanzar la excepción o manejarla según tu lógica de aplicación
+                throw;
             }
         }
     }
 }
-
-

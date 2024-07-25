@@ -252,6 +252,69 @@ namespace Datos.RepoSeguridad
             return usuario;
         }
 
+        public List<Permisos> ObtenerPermisosUsuario(int idUsuario)
+        {
+            List<Permisos> permisos = new List<Permisos>();
+            string connectionString = "tu cadena de conexión";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT p.idPermiso, p.nombrePermiso FROM Permisos p " +
+                               "JOIN Usuarios_Permisos up ON p.idPermiso = up.idPermiso " +
+                               "WHERE up.idUsuario = @idUsuario";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Permisos permiso = new Permisos
+                    {
+                        idPermiso = (int)reader["idPermiso"],
+                        nombrePermiso = (string)reader["nombrePermiso"]
+                    };
+                    permisos.Add(permiso);
+                }
+            }
+            return permisos;
+        }
+
+        public int ObtenerGrupoUsuario(int idUsuario)
+        {
+            int idGrupo = 0; // Valor por defecto si no se encuentra el grupo
+            string consultaSQL = @"SELECT TOP 1 g.idGrupo
+                           FROM Grupos g
+                           JOIN Usuarios_Grupos ug ON g.idGrupo = ug.idGrupo
+                           WHERE ug.idUsuario = @idUsuario";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@idUsuario", idUsuario));
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(consultaSQL, connection);
+                    command.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        idGrupo = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el grupo del usuario.", ex);
+            }
+
+            return idGrupo;
+        }
+
+
+
+
 
 
     }
