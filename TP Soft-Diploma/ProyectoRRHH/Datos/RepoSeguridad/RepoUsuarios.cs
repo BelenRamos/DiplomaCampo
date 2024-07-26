@@ -311,12 +311,6 @@ namespace Datos.RepoSeguridad
 
             return idGrupo;
         }
-
-
-
-
-
-
     }
 
 }
