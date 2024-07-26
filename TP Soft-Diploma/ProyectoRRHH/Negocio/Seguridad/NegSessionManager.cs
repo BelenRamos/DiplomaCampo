@@ -1,19 +1,15 @@
-﻿using System;
-using Modelo;
+﻿using Modelo;
 using Datos.RepoSeguridad;
+using System;
 
 namespace Negocio
 {
     public class NegSessionManager
     {
-        private readonly RepoSessionManager repoSessionManager;
         private static NegSessionManager instancia;
         public Usuarios UsuarioActual { get; private set; }
 
-        private NegSessionManager()
-        {
-            repoSessionManager = new RepoSessionManager();
-        }
+        private NegSessionManager() { }
 
         public static NegSessionManager ObtenerInstancia()
         {
@@ -24,31 +20,14 @@ namespace Negocio
             return instancia;
         }
 
-        public Usuarios ValidarUsuario(string email, string pass)
+        public void EstablecerUsuarioActual(Usuarios usuario)
         {
-            try
-            {
-                return repoSessionManager.Login(email, pass);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al validar usuario.", ex);
-            }
+            UsuarioActual = usuario;
         }
 
-        public bool CerrarSesion(int userId)
+        public void CerrarSesion()
         {
-            try
-            {
-                return repoSessionManager.Logout(userId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al cerrar sesión.", ex);
-            }
+            UsuarioActual = null;
         }
-
-
-
     }
 }

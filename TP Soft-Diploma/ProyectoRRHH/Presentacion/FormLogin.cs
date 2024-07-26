@@ -9,11 +9,14 @@ namespace Presentacion
     public partial class FormLogin : Form
     {
         private readonly NegUsuarios negUsuarios;
+        private NegSessionManager sessionManager;
+
 
         public FormLogin()
         {
             InitializeComponent();
             negUsuarios = NegUsuarios.ObtenerInstancia();
+            sessionManager = NegSessionManager.ObtenerInstancia();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)

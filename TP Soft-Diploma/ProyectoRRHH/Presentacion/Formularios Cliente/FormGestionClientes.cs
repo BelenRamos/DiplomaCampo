@@ -1,4 +1,5 @@
-﻿using Negocio;
+﻿using Modelo;
+using Negocio;
 using Presentacion.Formularios_Cliente;
 using System;
 using System.Data;
@@ -13,12 +14,14 @@ namespace Presentacion
         private NegClientesTels negClientesTelefonos;
         private NegMensajes negMensajes;
         private NegUsuarios negUsuarios;
+        private NegSessionManager sessionManager;
 
         public FormGestionClientes()
         {
             InitializeComponent();
             this.tabClientes.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             negUsuarios = NegUsuarios.ObtenerInstancia();
+            sessionManager = NegSessionManager.ObtenerInstancia();
         }
 
         private void FormGestionClientes_Load(object sender, EventArgs e)
@@ -45,34 +48,47 @@ namespace Presentacion
             dgvMensajes.AutoGenerateColumns = true;
         }
 
-        private bool UsuarioEsSupervisor()
+        private bool UsuarioTienePermiso(string permisoNombre)
         {
-            try
-            {
-                // Obtén el idUsuario del usuario actualmente autenticado
-                int idUsuarioActual = ObtenerGrupoUsuario(); 
-
-                // Obtén el grupo del usuario actual
-                var grupoUsuarioActual = negUsuarios.ObtenerGrupoUsuario(idUsuarioActual);
-                return grupoUsuarioActual == 2; // Grupo 2 es Supervisores
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al verificar el grupo del usuario: " + ex.Message);
-                return false;
-            }
+            return negUsuarios.PermisosUsuarioActual.Exists(p => p.nombrePermiso == permisoNombre);
         }
 
-        private int ObtenerGrupoUsuario()
+        //private bool UsuarioEsSupervisor()
+        //{
+        //    try
+        //    {
+        //        // Obtén el idUsuario del usuario actualmente autenticado
+        //        int idUsuarioActual = ObtenerIdUsuarioActual();
+
+        //        // Obtén el grupo del usuario actual
+        //        var grupoUsuarioActual = negUsuarios.ObtenerGrupoUsuario(idUsuarioActual);
+        //        return grupoUsuarioActual == 2; // Grupo 2 es Supervisores
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al verificar el grupo del usuario: " + ex.Message);
+        //        return false;
+        //    }
+        //}
+
+        private int ObtenerIdUsuarioActual()
         {
-            throw new NotImplementedException();
+            // Supongamos que tienes una clase NegSessionManager para manejar la sesión del usuario
+            var usuarioActual = NegSessionManager.ObtenerInstancia().UsuarioActual;
+
+            if (usuarioActual == null)
+            {
+                throw new InvalidOperationException("No hay un usuario autenticado.");
+            }
+
+            return usuarioActual.idUsuario;
         }
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            if (!UsuarioEsSupervisor())
+            if (!UsuarioTienePermiso("ABM_CLIENTE"))
             {
-                MessageBox.Show("No tiene permiso para eliminar clientes.");
+                MessageBox.Show("No tiene permiso para agregar clientes.");
                 return;
             }
             var formNuevoCliente = new FormNuevoCliente(negClientes, negClientesTelefonos);
@@ -89,9 +105,9 @@ namespace Presentacion
 
         private void btnModificarCliente_Click(object sender, EventArgs e)
         {
-            if (!UsuarioEsSupervisor())
+            if (!UsuarioTienePermiso("ABM_CLIENTE"))
             {
-                MessageBox.Show("No tiene permiso para eliminar clientes.");
+                MessageBox.Show("No tiene permiso para modificar clientes.");
                 return;
             }
 
@@ -118,7 +134,7 @@ namespace Presentacion
 
         private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
-            if (!UsuarioEsSupervisor())
+            if (!UsuarioTienePermiso("ABM_CLIENTE"))
             {
                 MessageBox.Show("No tiene permiso para eliminar clientes.");
                 return;
@@ -148,6 +164,7 @@ namespace Presentacion
                 MessageBox.Show("Por favor, selecciona un cliente para eliminar.");
             }
         }
+
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
