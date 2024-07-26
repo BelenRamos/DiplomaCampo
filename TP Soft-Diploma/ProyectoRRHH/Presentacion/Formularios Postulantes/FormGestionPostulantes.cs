@@ -8,17 +8,24 @@ namespace Presentacion
     public partial class FormGestionPostulantes : Form
     {
         private NegPostulantes postulantes;
+        private NegUsuarios negUsuarios;
 
         public FormGestionPostulantes()
         {
             InitializeComponent();
             postulantes = NegPostulantes.ObtenerInstancia();
+            negUsuarios = NegUsuarios.ObtenerInstancia();
         }
 
         private void FormGestionPostulantes_Load(object sender, EventArgs e)
         {
             InicializarComboCandidatos();
             CargarPostulantes();
+        }
+
+        private bool UsuarioTienePermiso(string permisoNombre)
+        {
+            return negUsuarios.PermisosUsuarioActual.Exists(p => p.nombrePermiso == permisoNombre);
         }
 
         private void InicializarComboCandidatos()
@@ -49,7 +56,11 @@ namespace Presentacion
 
         private void btnAgregarPostulante_Click(object sender, EventArgs e)
         {
-            // Abre el formulario FormPostulanteNuevo
+            if (!UsuarioTienePermiso("ABM_POSTULANTE"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
             using (FormPostulanteNuevo formulario = new FormPostulanteNuevo())
             {
                 if (formulario.ShowDialog() == DialogResult.OK)
@@ -62,7 +73,11 @@ namespace Presentacion
 
         private void btnEliminarPostulante_Click(object sender, EventArgs e)
         {
-            // Verifica si hay una fila seleccionada en el DataGridView
+            if (!UsuarioTienePermiso("ABM_POSTULANTE"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
             if (dgvPostulantes.SelectedRows.Count > 0)
             {
                 // Obtiene el número del postulante seleccionado en la primera columna
@@ -73,7 +88,6 @@ namespace Presentacion
 
                 if (result == DialogResult.Yes)
                 {
-                    // Llama a la función de eliminación de postulante
                     try
                     {
                         int resultado = postulantes.BajaPostulante(numeroPostulante);
@@ -102,7 +116,11 @@ namespace Presentacion
 
         private void btnModificarPostulante_Click(object sender, EventArgs e)
         {
-            // Verifica si hay una fila seleccionada en el DataGridView
+            if (!UsuarioTienePermiso("ABM_POSTULANTE"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
             if (dgvPostulantes.SelectedRows.Count > 0)
             {
                 // Obtiene los datos del postulante seleccionado
@@ -112,19 +130,15 @@ namespace Presentacion
                 string email = dgvPostulantes.SelectedRows[0].Cells["Mail"].Value.ToString();
                 string telefono = dgvPostulantes.SelectedRows[0].Cells["Telefono"].Value.ToString();
 
-                // Convertir la cadena a DateTime
                 DateTime fechaNacimiento;
                 string fechaNacimientoStr = dgvPostulantes.SelectedRows[0].Cells["FechaNacimiento"].Value.ToString();
                 if (DateTime.TryParse(fechaNacimientoStr, out fechaNacimiento))
                 {
-                    // Abre el formulario FormPostulanteNuevo para modificar el postulante seleccionado
                     using (FormPostulanteNuevo formulario = new FormPostulanteNuevo())
                     {
-                        // Pasa los datos del postulante al formulario de modificación
                         formulario.CargarDatosParaModificacion(numero, nombre, apellido, email, telefono, fechaNacimiento);
                         if (formulario.ShowDialog() == DialogResult.OK)
                         {
-                            // Refresca los datos después de modificar un postulante
                             CargarPostulantes(comboCandidatos.SelectedItem.ToString());
                         }
                     }

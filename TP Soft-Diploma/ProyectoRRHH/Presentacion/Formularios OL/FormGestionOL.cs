@@ -10,10 +10,17 @@ namespace Presentacion.Formularios_OL
     {
         private NegOfertasLaborales ofertasLaborales;
         private NegEstados negEstados;
+        private NegUsuarios negUsuarios;
 
         public FormGestionOL()
         {
             InitializeComponent();
+            negUsuarios = NegUsuarios.ObtenerInstancia();
+        }
+
+        private bool UsuarioTienePermiso(string permisoNombre)
+        {
+            return negUsuarios.PermisosUsuarioActual.Exists(p => p.nombrePermiso == permisoNombre);
         }
 
         private void FormGestionOL_Load(object sender, EventArgs e)
@@ -65,6 +72,11 @@ namespace Presentacion.Formularios_OL
 
         private void btnAgregarOL_Click(object sender, EventArgs e)
         {
+            if (!UsuarioTienePermiso("ABM_OFERTA_LABORAL"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
             using (FormOLNuevo formulario = new FormOLNuevo { EsAlta = true })
             {
                 if (formulario.ShowDialog() == DialogResult.OK)
@@ -77,6 +89,11 @@ namespace Presentacion.Formularios_OL
 
         private void btnModificarOL_Click(object sender, EventArgs e)
         {
+            if (!UsuarioTienePermiso("ABM_OFERTA_LABORAL"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
             if (dgvOfertasLaborales.SelectedRows.Count > 0)
             {
                 var ofertaSeleccionada = (Ofertas_Laborales)dgvOfertasLaborales.SelectedRows[0].DataBoundItem;
@@ -97,6 +114,11 @@ namespace Presentacion.Formularios_OL
 
         private void btnEliminarOL_Click(object sender, EventArgs e)
         {
+            if (!UsuarioTienePermiso("ABM_OFERTA_LABORAL"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
             if (dgvOfertasLaborales.SelectedRows.Count > 0)
             {
                 var ofertaSeleccionada = (Ofertas_Laborales)dgvOfertasLaborales.SelectedRows[0].DataBoundItem;

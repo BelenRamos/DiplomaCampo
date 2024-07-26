@@ -121,10 +121,10 @@
             // tabMensajes
             // 
             this.tabMensajes.Controls.Add(this.dgvMensajes);
-            this.tabMensajes.Location = new System.Drawing.Point(4, 22);
+            this.tabMensajes.Location = new System.Drawing.Point(4, 25);
             this.tabMensajes.Name = "tabMensajes";
             this.tabMensajes.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMensajes.Size = new System.Drawing.Size(515, 366);
+            this.tabMensajes.Size = new System.Drawing.Size(515, 363);
             this.tabMensajes.TabIndex = 1;
             this.tabMensajes.Text = "Bandeja de mensajes";
             this.tabMensajes.UseVisualStyleBackColor = true;
@@ -135,7 +135,7 @@
             this.dgvMensajes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMensajes.Location = new System.Drawing.Point(3, 3);
             this.dgvMensajes.Name = "dgvMensajes";
-            this.dgvMensajes.Size = new System.Drawing.Size(509, 360);
+            this.dgvMensajes.Size = new System.Drawing.Size(509, 357);
             this.dgvMensajes.TabIndex = 0;
             // 
             // FormGestionClientes
@@ -146,7 +146,7 @@
             this.ClientSize = new System.Drawing.Size(523, 392);
             this.Controls.Add(this.tabClientes);
             this.Name = "FormGestionClientes";
-            this.Text = "Form1";
+            this.Text = "Gestion de Clientes";
             this.Load += new System.EventHandler(this.FormGestionClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataClientes)).EndInit();
             this.tabClientes.ResumeLayout(false);

@@ -2,12 +2,6 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentacion
@@ -16,9 +10,11 @@ namespace Presentacion
     {
         private NegTurnos negTurnos;
         private NegTurnosReuniones negTurnosReuniones;
+        private NegUsuarios negUsuarios;
         public FormPortaldeTurnos()
         {
             InitializeComponent();
+            negUsuarios = NegUsuarios.ObtenerInstancia();
             negTurnos = new NegTurnos();
             negTurnosReuniones = new NegTurnosReuniones();
         }
@@ -49,39 +45,53 @@ namespace Presentacion
 
             var fechas = new HashSet<DateTime>();
 
-            // Agregar fechas de turnos
             foreach (var turno in turnos)
             {
                 fechas.Add(turno.fecha);
             }
 
-            // Agregar fechas de reuniones
             foreach (var turnoReunion in turnosReuniones)
             {
                 fechas.Add(turnoReunion.fecha);
             }
 
-            // Mostrar fechas en el MonthCalendar
             foreach (var fecha in fechas)
             {
                 clndFechas.AddBoldedDate(fecha);
             }
             clndFechas.UpdateBoldedDates();
         }
+        private bool UsuarioTienePermiso(string permisoNombre)
+        {
+            return negUsuarios.PermisosUsuarioActual.Exists(p => p.nombrePermiso == permisoNombre);
+        }
 
 
         private void btnAgendarReunion_Click(object sender, EventArgs e)
         {
-
+            if (!UsuarioTienePermiso("ABM_TURNO"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
         }
 
         private void btnAgendarTurno_Click(object sender, EventArgs e)
         {
-
+            if (!UsuarioTienePermiso("ABM_REUNION"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
         }
 
         private void btnEliminarFecha_Click(object sender, EventArgs e)
         {
+            if (!UsuarioTienePermiso("ABM_REUNION") || !UsuarioTienePermiso("ABM_TURNO"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
 
         }
     }

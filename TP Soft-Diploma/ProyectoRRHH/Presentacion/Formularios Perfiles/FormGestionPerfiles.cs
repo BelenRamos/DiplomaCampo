@@ -6,16 +6,24 @@ using System.Windows.Forms;
 
 namespace Presentacion.Formularios_Perfiles
 {
+    
     public partial class FormGestionPerfiles : Form
     {
+        private NegUsuarios negUsuarios;
         public FormGestionPerfiles()
         {
             InitializeComponent();
+            negUsuarios = NegUsuarios.ObtenerInstancia();
         }
 
         private void FormGestionPerfiles_Load(object sender, EventArgs e)
         {
             CargarPerfilesEnLista();
+        }
+
+        private bool UsuarioTienePermiso(string permisoNombre)
+        {
+            return negUsuarios.PermisosUsuarioActual.Exists(p => p.nombrePermiso == permisoNombre);
         }
 
         private void CargarPerfilesEnLista()
@@ -39,6 +47,11 @@ namespace Presentacion.Formularios_Perfiles
 
         private void btnAgregarPerfil_Click(object sender, EventArgs e)
         {
+            if (!UsuarioTienePermiso("ABM_PERFIL"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
             FormNuevoPerfil formAlta = new FormNuevoPerfil();
             if (formAlta.ShowDialog() == DialogResult.OK)
             {
@@ -48,6 +61,11 @@ namespace Presentacion.Formularios_Perfiles
 
         private void btnEliminarPerfil_Click(object sender, EventArgs e)
         {
+            if (!UsuarioTienePermiso("ABM_PERFIL"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
             try
             {
                 if (listaPerfiles.SelectedItem == null)
@@ -86,6 +104,11 @@ namespace Presentacion.Formularios_Perfiles
 
         private void btnModificarPerfil_Click(object sender, EventArgs e)
         {
+            if (!UsuarioTienePermiso("ABM_PERFIL"))
+            {
+                MessageBox.Show("No tiene permiso para agregar clientes.");
+                return;
+            }
             try
             {
                 if (listaPerfiles.SelectedItem == null)

@@ -14,22 +14,22 @@ namespace Presentacion
         private NegClientesTels negClientesTelefonos;
         private NegMensajes negMensajes;
         private NegUsuarios negUsuarios;
-        private NegSessionManager sessionManager;
+        
 
         public FormGestionClientes()
         {
             InitializeComponent();
             this.tabClientes.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             negUsuarios = NegUsuarios.ObtenerInstancia();
-            sessionManager = NegSessionManager.ObtenerInstancia();
-        }
-
-        private void FormGestionClientes_Load(object sender, EventArgs e)
-        {
             negClientes = NegClientes.ObtenerInstancia();
             negClientesTelefonos = NegClientesTels.ObtenerInstancia();
             negMensajes = NegMensajes.ObtenerInstancia();
 
+        }
+
+        private void FormGestionClientes_Load(object sender, EventArgs e)
+        {
+            
             try
             {
                 dataClientes.DataSource = negClientes.ObtenerClientes();
@@ -53,36 +53,6 @@ namespace Presentacion
             return negUsuarios.PermisosUsuarioActual.Exists(p => p.nombrePermiso == permisoNombre);
         }
 
-        //private bool UsuarioEsSupervisor()
-        //{
-        //    try
-        //    {
-        //        // Obtén el idUsuario del usuario actualmente autenticado
-        //        int idUsuarioActual = ObtenerIdUsuarioActual();
-
-        //        // Obtén el grupo del usuario actual
-        //        var grupoUsuarioActual = negUsuarios.ObtenerGrupoUsuario(idUsuarioActual);
-        //        return grupoUsuarioActual == 2; // Grupo 2 es Supervisores
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al verificar el grupo del usuario: " + ex.Message);
-        //        return false;
-        //    }
-        //}
-
-        private int ObtenerIdUsuarioActual()
-        {
-            // Supongamos que tienes una clase NegSessionManager para manejar la sesión del usuario
-            var usuarioActual = NegSessionManager.ObtenerInstancia().UsuarioActual;
-
-            if (usuarioActual == null)
-            {
-                throw new InvalidOperationException("No hay un usuario autenticado.");
-            }
-
-            return usuarioActual.idUsuario;
-        }
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {

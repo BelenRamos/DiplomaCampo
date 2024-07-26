@@ -41,7 +41,7 @@
             this.listaPerfiles.Font = new System.Drawing.Font("Arial", 12F);
             this.listaPerfiles.FormattingEnabled = true;
             this.listaPerfiles.ItemHeight = 18;
-            this.listaPerfiles.Location = new System.Drawing.Point(293, 12);
+            this.listaPerfiles.Location = new System.Drawing.Point(293, 14);
             this.listaPerfiles.Name = "listaPerfiles";
             this.listaPerfiles.Size = new System.Drawing.Size(218, 360);
             this.listaPerfiles.TabIndex = 0;
@@ -52,9 +52,9 @@
             this.btnEliminarPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminarPerfil.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnEliminarPerfil.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.btnEliminarPerfil.Location = new System.Drawing.Point(81, 235);
+            this.btnEliminarPerfil.Location = new System.Drawing.Point(81, 271);
             this.btnEliminarPerfil.Name = "btnEliminarPerfil";
-            this.btnEliminarPerfil.Size = new System.Drawing.Size(121, 33);
+            this.btnEliminarPerfil.Size = new System.Drawing.Size(121, 38);
             this.btnEliminarPerfil.TabIndex = 11;
             this.btnEliminarPerfil.Text = "Eliminar Perfil";
             this.btnEliminarPerfil.UseVisualStyleBackColor = false;
@@ -65,9 +65,9 @@
             this.btnModificarPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificarPerfil.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnModificarPerfil.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnModificarPerfil.Location = new System.Drawing.Point(81, 174);
+            this.btnModificarPerfil.Location = new System.Drawing.Point(81, 201);
             this.btnModificarPerfil.Name = "btnModificarPerfil";
-            this.btnModificarPerfil.Size = new System.Drawing.Size(121, 33);
+            this.btnModificarPerfil.Size = new System.Drawing.Size(121, 38);
             this.btnModificarPerfil.TabIndex = 10;
             this.btnModificarPerfil.Text = "Modificar Perfil";
             this.btnModificarPerfil.UseVisualStyleBackColor = true;
@@ -78,9 +78,9 @@
             this.btnAgregarPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarPerfil.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnAgregarPerfil.ForeColor = System.Drawing.Color.RosyBrown;
-            this.btnAgregarPerfil.Location = new System.Drawing.Point(81, 78);
+            this.btnAgregarPerfil.Location = new System.Drawing.Point(81, 90);
             this.btnAgregarPerfil.Name = "btnAgregarPerfil";
-            this.btnAgregarPerfil.Size = new System.Drawing.Size(121, 70);
+            this.btnAgregarPerfil.Size = new System.Drawing.Size(121, 81);
             this.btnAgregarPerfil.TabIndex = 9;
             this.btnAgregarPerfil.Text = "Crear Nuevo Perfil";
             this.btnAgregarPerfil.UseVisualStyleBackColor = true;
@@ -88,7 +88,7 @@
             // 
             // FormGestionPerfiles
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
             this.ClientSize = new System.Drawing.Size(523, 392);
@@ -96,8 +96,9 @@
             this.Controls.Add(this.btnModificarPerfil);
             this.Controls.Add(this.btnAgregarPerfil);
             this.Controls.Add(this.listaPerfiles);
+            this.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FormGestionPerfiles";
-            this.Text = "FormGestionPerfiles";
+            this.Text = "Gestion de Perfiles";
             this.Load += new System.EventHandler(this.FormGestionPerfiles_Load);
             this.ResumeLayout(false);
 
