@@ -1,5 +1,7 @@
 ﻿using Modelo;
 using Negocio;
+using Presentacion.Formularios_Cliente;
+using Presentacion.Formularios_Turnos;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -74,6 +76,9 @@ namespace Presentacion
                 MessageBox.Show("No tiene permiso para agregar clientes.");
                 return;
             }
+            FormAgendarReunion formAgendarReunion = new FormAgendarReunion();
+            formAgendarReunion.Show();
+
         }
 
         private void btnAgendarTurno_Click(object sender, EventArgs e)
@@ -83,6 +88,9 @@ namespace Presentacion
                 MessageBox.Show("No tiene permiso para agregar clientes.");
                 return;
             }
+            FormAgendarTurno formAgendarTurno = new FormAgendarTurno();
+            formAgendarTurno.Show();
+
         }
 
         private void btnEliminarFecha_Click(object sender, EventArgs e)
@@ -91,6 +99,7 @@ namespace Presentacion
             {
                 MessageBox.Show("No tiene permiso para agregar clientes.");
                 return;
+
             }
 
         }

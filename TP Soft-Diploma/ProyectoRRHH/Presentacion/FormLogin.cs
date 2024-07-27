@@ -9,14 +9,11 @@ namespace Presentacion
     public partial class FormLogin : Form
     {
         private readonly NegUsuarios negUsuarios;
-        private NegSessionManager sessionManager;
-
 
         public FormLogin()
         {
             InitializeComponent();
             negUsuarios = NegUsuarios.ObtenerInstancia();
-            sessionManager = NegSessionManager.ObtenerInstancia();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -36,7 +33,7 @@ namespace Presentacion
 
                         MessageBox.Show("Login exitoso");
                         FormularioMenu formularioMenu = new FormularioMenu();
-                        formularioMenu.FormClosed += (s, args) => Application.Exit();
+                        formularioMenu.FormClosed += (s, args) => this.Show();
                         formularioMenu.Show();
                         this.Hide();
                     }
@@ -54,6 +51,12 @@ namespace Presentacion
             {
                 MessageBox.Show("Error al iniciar sesión: " + ex.Message);
             }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            Application.Exit();
         }
     }
 }

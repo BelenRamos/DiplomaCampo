@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace Presentacion.Formularios_Postulantes
 {
@@ -36,6 +37,13 @@ namespace Presentacion.Formularios_Postulantes
                     return;
                 }
 
+                // Validar que nombre y apellido no contengan números
+                if (nombre.Any(char.IsDigit) || apellido.Any(char.IsDigit))
+                {
+                    MessageBox.Show("El nombre y apellido no deben contener números.");
+                    return;
+                }
+
                 // Validar formato de email
                 if (!email.Contains("@") || !email.EndsWith(".com"))
                 {
@@ -49,6 +57,13 @@ namespace Presentacion.Formularios_Postulantes
                 if (edad < 18)
                 {
                     MessageBox.Show("El postulante debe ser mayor de 18 años.");
+                    return;
+                }
+
+                // Validar que el teléfono no contenga letras y tenga al menos 7 números
+                if (!telefono.All(char.IsDigit) || telefono.Length < 7)
+                {
+                    MessageBox.Show("Por favor, ingrese un teléfono válido con al menos 7 números.");
                     return;
                 }
 

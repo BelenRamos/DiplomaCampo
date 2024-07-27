@@ -89,23 +89,27 @@ namespace Negocio
         {
             try
             {
-                int resultado = repositorio.ModificarUsuario(usuario);
-                if (resultado > 0)
+                int filasAfectadas = repositorio.ModificarUsuario(usuario);
+                if (filasAfectadas > 0)
                 {
-                    // Actualizar la lista local de usuarios
                     Usuarios usuarioExistente = usuarios.Find(u => u.idUsuario == usuario.idUsuario);
                     if (usuarioExistente != null)
                     {
-                        usuarios[usuarios.IndexOf(usuarioExistente)] = usuario;
+                        usuarioExistente.nombreUsuario = usuario.nombreUsuario;
+                        usuarioExistente.contrasenia = usuario.contrasenia;
+                        usuarioExistente.emailUsuario = usuario.emailUsuario;
+                        usuarioExistente.habilitado = usuario.habilitado;
+                        usuarioExistente.legajo = usuario.legajo;
                     }
                 }
-                return resultado;
+                return filasAfectadas;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al modificar el usuario.", ex);
+                throw new Exception("Error al modificar el usuario: " + ex.Message);
             }
         }
+
 
         public int BajaUsuario(int idUsuario)
         {

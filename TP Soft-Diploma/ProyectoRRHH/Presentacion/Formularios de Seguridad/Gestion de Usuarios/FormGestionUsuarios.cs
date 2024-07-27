@@ -80,6 +80,7 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
                     catch (Exception ex)
                     {
                         MessageBox.Show("Error al modificar el usuario: " + ex.Message);
+                        Console.WriteLine(ex.ToString()); // Esto imprimirá más detalles del error en la consola
                     }
                 }
             }
@@ -88,6 +89,7 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
                 MessageBox.Show("Seleccione un usuario para modificar.");
             }
         }
+
 
         private void btnBajaUsuario_Click(object sender, EventArgs e)
         {

@@ -102,7 +102,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.RosyBrown;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancelar.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
-            this.btnCancelar.Location = new System.Drawing.Point(233, 382);
+            this.btnCancelar.Location = new System.Drawing.Point(221, 300);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(88, 31);
             this.btnCancelar.TabIndex = 14;
@@ -115,7 +115,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardar.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(15)))), ((int)(((byte)(20)))));
-            this.btnGuardar.Location = new System.Drawing.Point(118, 382);
+            this.btnGuardar.Location = new System.Drawing.Point(106, 300);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(87, 31);
             this.btnGuardar.TabIndex = 13;
@@ -163,7 +163,7 @@
             // 
             this.chkHabilitado.AutoSize = true;
             this.chkHabilitado.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
-            this.chkHabilitado.Location = new System.Drawing.Point(46, 291);
+            this.chkHabilitado.Location = new System.Drawing.Point(46, 264);
             this.chkHabilitado.Name = "chkHabilitado";
             this.chkHabilitado.Size = new System.Drawing.Size(91, 24);
             this.chkHabilitado.TabIndex = 28;
@@ -175,7 +175,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(430, 436);
+            this.ClientSize = new System.Drawing.Size(405, 353);
             this.Controls.Add(this.chkHabilitado);
             this.Controls.Add(this.txtContraseniaConfirma);
             this.Controls.Add(this.label5);

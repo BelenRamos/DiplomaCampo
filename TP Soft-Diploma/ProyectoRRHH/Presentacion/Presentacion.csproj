@@ -252,6 +252,18 @@
     <Compile Include="Formularios Postulantes\FormPostulanteNuevo.Designer.cs">
       <DependentUpon>FormPostulanteNuevo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios Turnos\FormAgendarReunion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios Turnos\FormAgendarReunion.Designer.cs">
+      <DependentUpon>FormAgendarReunion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios Turnos\FormAgendarTurno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios Turnos\FormAgendarTurno.Designer.cs">
+      <DependentUpon>FormAgendarTurno.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios Turnos\FormPortaldeTurnos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -331,6 +343,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios Postulantes\FormPostulanteNuevo.resx">
       <DependentUpon>FormPostulanteNuevo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios Turnos\FormAgendarReunion.resx">
+      <DependentUpon>FormAgendarReunion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios Turnos\FormAgendarTurno.resx">
+      <DependentUpon>FormAgendarTurno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios Turnos\FormPortaldeTurnos.resx">
       <DependentUpon>FormPortaldeTurnos.cs</DependentUpon>

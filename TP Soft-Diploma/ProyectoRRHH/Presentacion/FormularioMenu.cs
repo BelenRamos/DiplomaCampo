@@ -128,12 +128,14 @@ namespace Presentacion
             {
                 FormLogin formLogin = new FormLogin();
                 formLogin.Show();
-                this.Close();
+                this.Hide();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cerrar sesión: " + ex.Message);
             }
         }
+
+
     }
 }

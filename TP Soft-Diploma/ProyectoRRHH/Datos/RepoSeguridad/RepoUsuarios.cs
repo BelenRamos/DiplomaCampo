@@ -122,15 +122,15 @@ namespace Datos.RepoSeguridad
                 legajo = fila["legajo"] != DBNull.Value ? (int?)Convert.ToInt32(fila["legajo"]) : null
             };
         }
-      public int ModificarUsuario(Usuarios usuario)
+        public int ModificarUsuario(Usuarios usuario)
         {
             string consultaSQL = @"UPDATE Usuarios 
-                                   SET nombreUsuario = @nombreUsuario, 
-                                       contrasenia = @contrasenia, 
-                                       emailUsuario = @emailUsuario, 
-                                       habilitado = @habilitado, 
-                                       legajo = @legajo 
-                                   WHERE idUsuario = @idUsuario";
+                           SET nombreUsuario = @nombreUsuario, 
+                               contrasenia = @contrasenia, 
+                               emailUsuario = @emailUsuario, 
+                               habilitado = @habilitado, 
+                               legajo = @legajo 
+                           WHERE idUsuario = @idUsuario";
 
             parametros.Clear();
             parametros.Add(new SqlParameter("@idUsuario", usuario.idUsuario));
@@ -149,6 +149,7 @@ namespace Datos.RepoSeguridad
                 throw new Exception("Error al modificar al usuario", ex);
             }
         }
+
 
         public int BajaUsuario(int idUsuario)
         {
