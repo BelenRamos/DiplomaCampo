@@ -75,7 +75,7 @@ namespace Presentacion.Formularios_Postulantes
                 }
                 else
                 {
-                    // Obtener y usar el siguiente número de postulante
+                    // Obtener el siguiente numero para el nuevo postulante
                     int ultimoNumero = negocio.ObtenerUltimoNumero();
                     numero = ultimoNumero + 1;
                 }
@@ -107,7 +107,7 @@ namespace Presentacion.Formularios_Postulantes
                 if (resultado > 0)
                 {
                     MessageBox.Show("Postulante guardado correctamente.");
-                    this.Close(); // Cerrar el formulario si se guarda correctamente
+                    this.Close(); 
                 }
                 else
                 {

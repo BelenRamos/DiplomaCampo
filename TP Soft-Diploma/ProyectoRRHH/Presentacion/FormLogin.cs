@@ -14,6 +14,7 @@ namespace Presentacion
         {
             InitializeComponent();
             negUsuarios = NegUsuarios.ObtenerInstancia();
+            txtContra.PasswordChar = '*';
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
