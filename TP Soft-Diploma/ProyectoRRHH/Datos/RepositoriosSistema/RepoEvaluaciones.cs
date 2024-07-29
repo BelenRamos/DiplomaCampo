@@ -14,9 +14,9 @@ namespace Datos
             connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
         }
 
-        public List<(string NombrePostulante, string ResultadoEvaluacion)> ObtenerCandidatosConEvaluacion(int numeroOL)
+        public List<(string NombrePostulante, string ResultadoEvaluacion)> ObtenerPostulantesConEvaluacion(int numeroOL)
         {
-            var candidatosConEvaluacion = new List<(string NombrePostulante, string ResultadoEvaluacion)>();
+            var postulantesConEvaluacion = new List<(string NombrePostulante, string ResultadoEvaluacion)>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -40,13 +40,13 @@ namespace Datos
                             string nombrePostulante = reader.IsDBNull(0) ? string.Empty : reader.GetString(0);
                             string resultadoEvaluacion = reader.IsDBNull(1) ? string.Empty : reader.GetString(1);
 
-                            candidatosConEvaluacion.Add((nombrePostulante, resultadoEvaluacion));
+                            postulantesConEvaluacion.Add((nombrePostulante, resultadoEvaluacion));
                         }
                     }
                 }
             }
 
-            return candidatosConEvaluacion;
+            return postulantesConEvaluacion;
         }
 
     }

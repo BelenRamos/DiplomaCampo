@@ -24,9 +24,9 @@ namespace Negocio
             return instancia;
         }
 
-        public List<(string NombrePostulante, string ResultadoEvaluacion)> ObtenerCandidatosConEvaluacion(int numeroOL)
+        public List<(string NombrePostulante, string ResultadoEvaluacion)> ObtenerPostulantesConEvaluacion(int numeroOL)
         {
-            return repoEvaluaciones.ObtenerCandidatosConEvaluacion(numeroOL);
+            return repoEvaluaciones.ObtenerPostulantesConEvaluacion(numeroOL);
         }
     }
 }

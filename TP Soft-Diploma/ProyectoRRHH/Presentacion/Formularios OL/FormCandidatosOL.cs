@@ -22,14 +22,14 @@ namespace Presentacion.Formularios_OL
         {
             try
             {
-                var candidatosConEvaluacion = NegEvaluaciones.ObtenerInstancia().ObtenerCandidatosConEvaluacion(numeroOferta);
+                var postulantesConEvaluacion = NegEvaluaciones.ObtenerInstancia().ObtenerPostulantesConEvaluacion(numeroOferta);
 
                 listaCandidatos.Items.Clear();
                 listaCandidatos.View = View.Details;
                 listaCandidatos.Columns.Add("Nombre Postulante", -1, HorizontalAlignment.Left);
                 listaCandidatos.Columns.Add("Resultado Evaluación", -2, HorizontalAlignment.Left);
 
-                foreach (var candidato in candidatosConEvaluacion)
+                foreach (var candidato in postulantesConEvaluacion) 
                 {
                     var item = new ListViewItem(candidato.NombrePostulante);
                     item.SubItems.Add(candidato.ResultadoEvaluacion);
