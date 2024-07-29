@@ -29,7 +29,7 @@ namespace Presentacion.Formularios_OL
             negEstados = NegEstados.ObtenerInstancia();
             try
             {
-                CargarEstados();
+                InicializarComboEstados();
                 dgvOfertasLaborales.DataSource = ofertasLaborales.ObtenerOfertasLaborales();
             }
             catch (Exception ex)
@@ -38,15 +38,45 @@ namespace Presentacion.Formularios_OL
             }
         }
 
-        private void CargarEstados()
+        private void ComboEstados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboEstados.SelectedItem != null)
+            {
+                var estadoSeleccionado = (Estados)comboEstados.SelectedItem;
+                CargarOfertasLaborales(estadoSeleccionado.codigo);
+            }
+        }
+
+        private void CargarOfertasLaborales(int codigoEstado)
+        {
+            try
+            {
+                if (codigoEstado == -1) // Mostrar todas las ofertas si se selecciona "Todos"
+                {
+                    dgvOfertasLaborales.DataSource = ofertasLaborales.ObtenerOfertasLaborales();
+                }
+                else
+                {
+                    dgvOfertasLaborales.DataSource = ofertasLaborales.ObtenerOfertasPorEstado(codigoEstado);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al filtrar las ofertas laborales por estado: " + ex.Message);
+            }
+        }
+
+        private void InicializarComboEstados()
         {
             try
             {
                 List<Estados> estados = negEstados.ObtenerEstados();
+                estados.Insert(0, new Estados { codigo = -1, designacion = "Todos" });
                 comboEstados.DataSource = estados;
                 comboEstados.DisplayMember = "designacion";
                 comboEstados.ValueMember = "codigo";
-                comboEstados.SelectedIndex = -1; // Opcional: no seleccionar ningún estado al inicio
+                comboEstados.SelectedIndex = 0; // Seleccionar "Todos" al inicio
+                comboEstados.SelectedIndexChanged += ComboEstados_SelectedIndexChanged;
             }
             catch (Exception ex)
             {
@@ -54,27 +84,11 @@ namespace Presentacion.Formularios_OL
             }
         }
 
-        private void cbEstados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboEstados.SelectedItem != null)
-            {
-                var estadoSeleccionado = (Estados)comboEstados.SelectedItem;
-                try
-                {
-                    dgvOfertasLaborales.DataSource = ofertasLaborales.ObtenerOfertasPorEstado(estadoSeleccionado.codigo);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al filtrar las ofertas laborales por estado: " + ex.Message);
-                }
-            }
-        }
-
         private void btnAgregarOL_Click(object sender, EventArgs e)
         {
             if (!UsuarioTienePermiso("ABM_OFERTA_LABORAL"))
             {
-                MessageBox.Show("No tiene permiso para agregar clientes.");
+                MessageBox.Show("No tiene permiso para agregar ofertas laborales.");
                 return;
             }
             using (FormOLNuevo formulario = new FormOLNuevo { EsAlta = true })
@@ -91,7 +105,7 @@ namespace Presentacion.Formularios_OL
         {
             if (!UsuarioTienePermiso("ABM_OFERTA_LABORAL"))
             {
-                MessageBox.Show("No tiene permiso para agregar clientes.");
+                MessageBox.Show("No tiene permiso para modificar ofertas laborales.");
                 return;
             }
             if (dgvOfertasLaborales.SelectedRows.Count > 0)
@@ -116,7 +130,7 @@ namespace Presentacion.Formularios_OL
         {
             if (!UsuarioTienePermiso("ABM_OFERTA_LABORAL"))
             {
-                MessageBox.Show("No tiene permiso para agregar clientes.");
+                MessageBox.Show("No tiene permiso para eliminar ofertas laborales.");
                 return;
             }
             if (dgvOfertasLaborales.SelectedRows.Count > 0)
@@ -192,6 +206,5 @@ namespace Presentacion.Formularios_OL
                 MessageBox.Show("Seleccione una oferta laboral para ver los requisitos.");
             }
         }
-
     }
 }

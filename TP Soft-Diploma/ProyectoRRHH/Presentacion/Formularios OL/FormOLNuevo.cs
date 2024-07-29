@@ -43,6 +43,34 @@ namespace Presentacion.Formularios_OL
             }
         }
 
+        private void FormOLNuevo_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                // Cargar lista de requisitos
+                List<Requisitos> requisitos = negRequisitos.ObtenerRequisitos();
+                clbRequisitos.Items.Clear();
+                foreach (var requisito in requisitos)
+                {
+                    clbRequisitos.Items.Add(requisito);
+                }
+                
+                clbRequisitos.DisplayMember = "descripcion";
+
+                // Si no es un alta, cargar datos de la oferta actual
+                if (!EsAlta && Oferta != null)
+                {
+                    txtTitulo.Text = Oferta.titulo;
+                    txtDescripcion.Text = Oferta.descripcion;
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los requisitos: " + ex.Message);
+            }
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -67,7 +95,14 @@ namespace Presentacion.Formularios_OL
                 }
 
                 // Llama al método para guardar la oferta
-                negOfertasLaborales.AltaOfertaLaboral(ofertaActual, clienteIds, new List<int>(), new List<int>(), requisitoIds);
+                if (EsAlta)
+                {
+                    negOfertasLaborales.AltaOfertaLaboral(ofertaActual, clienteIds, new List<int>(), new List<int>(), requisitoIds);
+                }
+                else
+                {
+                    negOfertasLaborales.ModificarOfertaLaboral(ofertaActual);
+                }
 
                 MessageBox.Show("Oferta Laboral guardada exitosamente.");
                 this.DialogResult = DialogResult.OK;
@@ -82,26 +117,6 @@ namespace Presentacion.Formularios_OL
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void FormOLNuevo_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                List<Requisitos> requisitos = negRequisitos.ObtenerRequisitos();
-                clbRequisitos.Items.Clear();
-                foreach (var requisito in requisitos)
-                {
-                    clbRequisitos.Items.Add(requisito);
-                }
-
-                // Configurar DisplayMember para mostrar la descripción del requisito
-                clbRequisitos.DisplayMember = "descripcion";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar los requisitos: " + ex.Message);
-            }
         }
     }
 }

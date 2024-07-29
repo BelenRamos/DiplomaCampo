@@ -8,6 +8,8 @@ namespace Modelo
 
     public partial class Ofertas_Laborales
     {
+        public Ofertas_Laborales ofertaLaboral;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ofertas_Laborales()
         {

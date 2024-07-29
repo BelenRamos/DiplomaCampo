@@ -76,9 +76,6 @@
             this.comboEstados.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold);
             this.comboEstados.ForeColor = System.Drawing.Color.DimGray;
             this.comboEstados.FormattingEnabled = true;
-            this.comboEstados.Items.AddRange(new object[] {
-            "Candidatos",
-            "No candidatos"});
             this.comboEstados.Location = new System.Drawing.Point(390, 189);
             this.comboEstados.Name = "comboEstados";
             this.comboEstados.Size = new System.Drawing.Size(121, 24);

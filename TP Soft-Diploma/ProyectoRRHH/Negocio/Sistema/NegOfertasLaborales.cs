@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Datos;
 using Modelo;
 
@@ -9,10 +10,12 @@ namespace Negocio
     {
         private RepoOfertasLaborales repoOfertasLaborales;
         private static NegOfertasLaborales instancia;
+        private RepoEstados repoEstados;
 
         private NegOfertasLaborales()
         {
             repoOfertasLaborales = new RepoOfertasLaborales();
+            repoEstados = new RepoEstados();
         }
 
         public static NegOfertasLaborales ObtenerInstancia()
@@ -59,6 +62,24 @@ namespace Negocio
         {
             return repoOfertasLaborales.ObtenerOfertasPorEstado(codigoEstado);
         }
+
+        //public List<Ofertas_Laborales> ObtenerOfertasConEstados()
+        //{
+        //    var ofertas = repoOfertasLaborales.ObtenerOfertasLaborales();
+        //    var ofertasConEstados = new List<Ofertas_Laborales>();
+
+        //    foreach (var oferta in ofertas)
+        //    {
+        //        var estados = repoOfertasLaborales.ObtenerEstadosPorOferta(oferta.numero);
+        //        ofertasConEstados.Add(new Ofertas_Laborales
+        //        {
+        //            ofertaLaboral = oferta,
+        //            Estados = (ICollection<Estados>)estados.Select(e => repoEstados.ObtenerEstadoPorCodigo(e)).ToList() 
+        //        });
+        //    }
+
+        //    return ofertasConEstados;
+        //}
 
         public void CerrarOfertaLaboral(int numero)
         {

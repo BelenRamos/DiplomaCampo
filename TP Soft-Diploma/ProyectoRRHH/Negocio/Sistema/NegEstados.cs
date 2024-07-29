@@ -26,7 +26,7 @@ namespace Negocio
             return instancia;
         }
 
-        public List<Modelo.Estados> ObtenerEstados()
+        public List<Estados> ObtenerEstados()
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Negocio
             }
         }
 
-        public List<Modelo.Estados> ObtenerEstadoPorCodigo(int codigoEstado)
+        public List<Estados> ObtenerEstadoPorCodigo(int codigoEstado)
         {
             try
             {

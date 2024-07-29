@@ -143,7 +143,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(107)))), ((int)(((byte)(122)))));
-            this.ClientSize = new System.Drawing.Size(333, 413);
+            this.ClientSize = new System.Drawing.Size(333, 359);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.txtContra);

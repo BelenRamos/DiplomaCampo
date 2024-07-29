@@ -68,6 +68,8 @@ namespace Datos
                             fechaCreacion = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
                             fechaPublicacion = reader.IsDBNull(4) ? (DateTime?)null : reader.GetDateTime(4),
                             fechaCierre = reader.IsDBNull(5) ? (DateTime?)null : reader.GetDateTime(5)
+                            
+
                         };
                     }
                 }
@@ -165,6 +167,27 @@ namespace Datos
             return ofertasLaborales;
         }
 
+        //public List<int> ObtenerEstadosPorOferta(int numeroOferta)
+        //{
+        //    var estados = new List<int>();
+
+        //    using (var connection = new SqlConnection(connectionString))
+        //    {
+        //        var command = new SqlCommand("SELECT codigo_estado FROM OL_Estados WHERE nro_OL = @numeroOferta", connection);
+        //        command.Parameters.AddWithValue("@numeroOferta", numeroOferta);
+        //        connection.Open();
+        //        using (var reader = command.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                estados.Add(reader.GetInt32(0));
+        //            }
+        //        }
+        //    }
+
+        //    return estados;
+        //}
+
         public void PublicarOfertaLaboral(int numero, DateTime fechaPublicacion)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -172,7 +195,7 @@ namespace Datos
                 var command = new SqlCommand("UPDATE Ofertas_Laborales SET fechaPublicacion = @fechaPublicacion, estado = @estado WHERE numero = @numero", connection);
                 command.Parameters.AddWithValue("@numero", numero);
                 command.Parameters.AddWithValue("@fechaPublicacion", fechaPublicacion);
-                command.Parameters.AddWithValue("@estado", 4); // Código para "Publicación"
+                //command.Parameters.AddWithValue("@estado", 4); // Código para "Publicación"
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -185,7 +208,7 @@ namespace Datos
             {
                 var command = new SqlCommand("UPDATE Ofertas_Laborales SET estado = @estado WHERE numero = @numero", connection);
                 command.Parameters.AddWithValue("@numero", numero);
-                command.Parameters.AddWithValue("@estado", 5); // Código para "Recepción de candidaturas" (o el código correspondiente)
+                //command.Parameters.AddWithValue("@estado", 5); // Código para "Recepción de candidaturas" (o el código correspondiente)
 
                 connection.Open();
                 command.ExecuteNonQuery();
