@@ -112,7 +112,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Name = "FormNuevoPerfil";
-            this.Text = "FormNuevoPerfil";
+            this.Text = "Perfiles";
             this.ResumeLayout(false);
             this.PerformLayout();
 

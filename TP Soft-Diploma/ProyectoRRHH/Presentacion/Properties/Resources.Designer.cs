@@ -63,6 +63,26 @@ namespace Presentacion.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2 {
+            get {
+                object obj = ResourceManager.GetObject("2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _21 {
+            get {
+                object obj = ResourceManager.GetObject("21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons_derechos_de_los_usuarios {
             get {
                 object obj = ResourceManager.GetObject("icons-derechos-de-los-usuarios", resourceCulture);
@@ -106,6 +126,16 @@ namespace Presentacion.Properties {
         internal static System.Drawing.Bitmap Mentalità {
             get {
                 object obj = ResourceManager.GetObject("Mentalità", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Mentalità1 {
+            get {
+                object obj = ResourceManager.GetObject("Mentalità1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

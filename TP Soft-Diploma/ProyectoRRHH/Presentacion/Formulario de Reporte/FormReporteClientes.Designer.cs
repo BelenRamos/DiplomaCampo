@@ -76,7 +76,7 @@
             this.btnGenerarReporteCliente.UseVisualStyleBackColor = true;
             this.btnGenerarReporteCliente.Click += new System.EventHandler(this.btnGenerarReporteCliente_Click);
             // 
-            // FormReporte
+            // FormReporteClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -84,8 +84,8 @@
             this.Controls.Add(this.btnGenerarReporteCliente);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvDataClientes);
-            this.Name = "FormReporte";
-            this.Text = "FormReporte";
+            this.Name = "FormReporteClientes";
+            this.Text = "Reporte de Cliente";
             this.Load += new System.EventHandler(this.FormReporte_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDataClientes)).EndInit();
             this.panel1.ResumeLayout(false);

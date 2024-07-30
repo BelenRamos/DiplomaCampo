@@ -158,7 +158,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Name = "FormNuevoCliente";
-            this.Text = "FormNuevoCliente";
+            this.Text = "Cliente";
             this.Load += new System.EventHandler(this.FormNuevoCliente_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

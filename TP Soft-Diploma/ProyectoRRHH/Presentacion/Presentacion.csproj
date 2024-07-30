@@ -412,6 +412,15 @@
   <ItemGroup>
     <None Include="Resources\icons-usuario.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mentalità.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

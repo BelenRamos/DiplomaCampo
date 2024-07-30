@@ -37,11 +37,11 @@
             this.btnTurnos = new System.Windows.Forms.Button();
             this.btnOL = new System.Windows.Forms.Button();
             this.btnPerfiles = new System.Windows.Forms.Button();
-            this.panelLogo = new System.Windows.Forms.Panel();
             this.panelBarra = new System.Windows.Forms.Panel();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.panelseparacion = new System.Windows.Forms.Panel();
             this.panelFormularios = new System.Windows.Forms.Panel();
-            this.btnCerrarSesion = new System.Windows.Forms.Button();
+            this.panelLogo = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.panelBarra.SuspendLayout();
             this.SuspendLayout();
@@ -183,16 +183,6 @@
             this.btnPerfiles.UseVisualStyleBackColor = false;
             this.btnPerfiles.Click += new System.EventHandler(this.btnPerfiles_Click);
             // 
-            // panelLogo
-            // 
-            this.panelLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelLogo.BackgroundImage")));
-            this.panelLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(200, 140);
-            this.panelLogo.TabIndex = 0;
-            // 
             // panelBarra
             // 
             this.panelBarra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(31)))), ((int)(((byte)(48)))));
@@ -202,6 +192,19 @@
             this.panelBarra.Name = "panelBarra";
             this.panelBarra.Size = new System.Drawing.Size(539, 50);
             this.panelBarra.TabIndex = 1;
+            // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrarSesion.Font = new System.Drawing.Font("Arial Narrow", 8F);
+            this.btnCerrarSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(72)))), ((int)(((byte)(54)))));
+            this.btnCerrarSesion.Location = new System.Drawing.Point(445, 12);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(82, 23);
+            this.btnCerrarSesion.TabIndex = 12;
+            this.btnCerrarSesion.Text = "Cerrar Sesion";
+            this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // panelseparacion
             // 
@@ -215,24 +218,23 @@
             // panelFormularios
             // 
             this.panelFormularios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
+            this.panelFormularios.BackgroundImage = global::Presentacion.Properties.Resources._21;
+            this.panelFormularios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panelFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFormularios.Location = new System.Drawing.Point(200, 58);
             this.panelFormularios.Name = "panelFormularios";
             this.panelFormularios.Size = new System.Drawing.Size(539, 431);
             this.panelFormularios.TabIndex = 3;
             // 
-            // btnCerrarSesion
+            // panelLogo
             // 
-            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarSesion.Font = new System.Drawing.Font("Arial Narrow", 9F);
-            this.btnCerrarSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(72)))), ((int)(((byte)(54)))));
-            this.btnCerrarSesion.Location = new System.Drawing.Point(451, 3);
-            this.btnCerrarSesion.Name = "btnCerrarSesion";
-            this.btnCerrarSesion.Size = new System.Drawing.Size(85, 32);
-            this.btnCerrarSesion.TabIndex = 12;
-            this.btnCerrarSesion.Text = "Cerrar Sesion";
-            this.btnCerrarSesion.UseVisualStyleBackColor = true;
-            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            this.panelLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelLogo.BackgroundImage")));
+            this.panelLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Name = "panelLogo";
+            this.panelLogo.Size = new System.Drawing.Size(200, 140);
+            this.panelLogo.TabIndex = 0;
             // 
             // FormularioMenu
             // 
@@ -244,7 +246,7 @@
             this.Controls.Add(this.panelBarra);
             this.Controls.Add(this.panelMenu);
             this.Name = "FormularioMenu";
-            this.Text = "FormularioMenu";
+            this.Text = "Menu de inicio";
             this.panelMenu.ResumeLayout(false);
             this.panelBarra.ResumeLayout(false);
             this.ResumeLayout(false);

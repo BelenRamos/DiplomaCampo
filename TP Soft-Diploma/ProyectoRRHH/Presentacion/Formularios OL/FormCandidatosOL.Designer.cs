@@ -97,7 +97,7 @@
             this.Controls.Add(this.btnPreseleccion);
             this.Controls.Add(this.listaCandidatos);
             this.Name = "FormCandidatosOL";
-            this.Text = "FormPostulantesOL";
+            this.Text = "Gestion de Seleccion";
             this.Load += new System.EventHandler(this.FormPostulantesOL_Load);
             this.ResumeLayout(false);
 

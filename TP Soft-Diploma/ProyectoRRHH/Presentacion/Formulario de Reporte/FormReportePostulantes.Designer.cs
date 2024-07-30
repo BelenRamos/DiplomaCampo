@@ -86,7 +86,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvDataPostulantes);
             this.Name = "FormReportePostulantes";
-            this.Text = "FormReportePostulantes";
+            this.Text = "Reporte de Postulante";
             this.Load += new System.EventHandler(this.FormReportePostulantes_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

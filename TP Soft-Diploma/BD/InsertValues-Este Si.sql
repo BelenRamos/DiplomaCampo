@@ -3,7 +3,9 @@ INSERT INTO Clientes (id, nombre, mail) VALUES
 (1, 'SoftAD', 'softad@example.com'),
 (2, 'Tech Solutions', 'techsolutions@example.com'),
 (3, 'WebExperts', 'webexperts@example.com'),
-(4, 'DataTech', 'datatech@example.com');
+(4, 'DataTech', 'datatech@example.com'),
+(5, 'AW_Soft', 'awsoft@example.com'),
+(6, 'Cybernet Solutions', 'cybernetsolutions@example.com');
 Go
 
 -- Insertar valores en la tabla Clientes_Telefonos
@@ -11,7 +13,9 @@ INSERT INTO Clientes_Telefonos (id_cliente, telefono) VALUES
 (1, '111-111-1111'),
 (2, '222-222-2222'),
 (3, '333-333-3333'),
-(4, '444-444-4444');
+(4, '444-444-4444'),
+(5, '555-555-5555'),
+(6, '666-666-6666');
 Go
 
 -- Insertar valores en la tabla Personas 
@@ -35,7 +39,9 @@ INSERT INTO Postulantes (numero, nombre, apellido, mail, telefono, fechaNacimien
 (1, 'Luisa', 'Hernández', 'luisamoreno@example.com', '999-999-9999', '1990-01-01', 1),
 (2, 'Andrés', 'Gómez', 'andresrodriguez@example.com', '111-111-1111', '1995-02-02', 0),
 (3, 'Mariana', 'Pérez', 'marianasilva@example.com', '222-222-2222', '1985-03-03', 1),
-(4, 'Javier', 'López', 'javiertorres@example.com', '333-333-3333', '1992-04-04', 0);
+(4, 'Javier', 'López', 'javiertorres@example.com', '333-333-3333', '1992-04-04', 0),
+(5, 'Gabriel', 'Fernández', 'gabriel.fernandez@example.com', '555-6789', '1990-05-05', 1),
+(6, 'Lucía', 'Santos', 'lucia.santos@example.com', '555-4321', '1993-06-06', 1);
 Go
 
 -- Insertar valores en la tabla Perfiles
@@ -59,7 +65,9 @@ INSERT INTO Evaluaciones (numero, descripcion, resultado, fechaEvaluacion, profe
 (1, 'Examen basado en problemas reales', 'Aprobado', '2023-01-01', 'Ana Sánchez'),
 (2, 'Entrevista personal', 'Rechazado', '2023-02-02', 'Juan Martínez'),
 (3, 'Examen de conceptos', 'Pendiente', '2023-03-03', 'María Rodríguez'),
-(4, 'Exposición de tema asignado', 'Aprobado', '2023-04-04', 'Carlos Gómez');
+(4, 'Exposición de tema asignado', 'Aprobado', '2023-04-04', 'Carlos Gómez'),
+(5, 'Prueba técnica avanzada', 'Aprobada', '2024-07-10', 'María Pérez'),
+(6, 'Entrevista con el equipo', 'Pendiente', '2024-07-15', 'Carlos Díaz');
 Go
 
 -- Insertar valores en la tabla Tipo_Evaluaciones
@@ -83,7 +91,9 @@ INSERT INTO Entrevistas (numero, observaciones) VALUES
 (1, 'Buena impresión general, experiencia relevante'),
 (2, 'Falta de habilidades técnicas requeridas'),
 (3, 'Excelente presentación y habilidades de comunicación'),
-(4, 'Entrevista cancelada por parte del candidato');
+(4, 'Entrevista cancelada por parte del candidato'),
+(5, 'Excelente presentación y habilidades de comunicación'),
+(6, 'Buena impresión general');
 Go
 
 -- Insertar valores en la tabla Reuniones
@@ -99,7 +109,9 @@ INSERT INTO Entrevistas_Perfiles (nro_entrevista, id_perfil) VALUES
 (1, 1),
 (2, 2),
 (3, 3),
-(4, 4);
+(4, 4),
+(5, 2),  -- Gabriel Fernández - Desarrollador Back-end
+(6, 1);  -- Lucía Santos - Desarrollador Front-end
 Go
 
 -- Insertar valores en la tabla Psicologos
@@ -115,7 +127,9 @@ INSERT INTO Turnos (fecha, horario, disponible, nro_entrevista, mat_psicologo) V
 ('2023-01-01', '10:00', 1, 1, 1),
 ('2023-02-02', '11:00', 0, 2, 2),
 ('2023-03-03', '12:00', 1, 3, 3),
-('2023-04-04', '13:00', 0, 4, 4);
+('2023-04-04', '13:00', 0, 4, 4),
+('2024-07-20', '14:00', 0, 5, 1),  -- Gabriel Fernández
+('2024-07-25', '15:00', 0, 6, 2);  -- Lucía Santos
 Go
 
 -- Insertar valores en la tabla TurnosReuniones -->	CONSULTORIA
@@ -165,8 +179,11 @@ VALUES
 (1, 'Desarrollador Web', 'Buscamos un desarrollador web con experiencia en HTML, CSS y JavaScript.', '2023-01-01', '2023-02-01', '2023-03-01'),
 (2, 'Analista de Datos', 'Se requiere un analista de datos con experiencia en análisis estadístico.', '2023-02-02', '2023-03-02', '2023-04-02'),
 (3, 'Diseñador UI/UX', 'Estamos buscando un diseñador UI/UX creativo y con habilidades de diseño gráfico.', '2023-03-03', '2023-04-03', '2023-05-03'),
-(4, 'Desarrollador Full Stack', 'Buscamos un desarrollador full stack con experiencia en tecnologías front-end y back-end.', '2023-04-04', '2023-05-04', '2023-06-04');
+(4, 'Desarrollador Full Stack', 'Buscamos un desarrollador full stack con experiencia en tecnologías front-end y back-end.', '2023-04-04', '2023-05-04', '2023-06-04'),
+(5, 'Analista de Sistemas', 'Buscamos un analista de sistemas con experiencia en SQL y gestión de proyectos.', '2024-01-15', '2024-02-01', NULL),
+(6, 'Ingeniero de Software', 'Se requiere un ingeniero de software con habilidades en C# y .NET.', '2024-02-15', '2024-03-01', NULL);
 Go
+
 
 -- Insertar valores en la tabla OL_Requisitos
 INSERT INTO OL_Requisitos (nro_OL, id_requisito) VALUES
@@ -197,7 +214,11 @@ INSERT INTO OL_Postulantes (nro_OL, nro_postulante) VALUES
 (3, 1),
 (3, 2),
 (4, 3),
-(4, 4);
+(4, 4),
+(5, 5),
+(5, 6),
+(6, 5),
+(6, 6);
 Go
 
 -- Insertar valores en la tabla OL_Estados
@@ -205,7 +226,9 @@ INSERT INTO OL_Estados (nro_OL, codigo_estado) VALUES
 (1, 1),
 (2, 3),
 (3, 5),
-(4, 6);
+(4, 6),
+(5, 6),  -- Preselección
+(6, 6);  -- Preselección
 Go
 
 -- Insertar valores en la tabla OL_Consultor_Asignado
@@ -223,7 +246,9 @@ INSERT INTO OL_Clientes (nro_OL, id_cliente) VALUES
 (1, 1),
 (2, 2),
 (3, 3),
-(4, 4);
+(4, 4),
+(5, 1),  
+(6, 2); 
 Go
 
 -- Insertar valores en la tabla Evaluciones_Postulantes
@@ -231,7 +256,9 @@ INSERT INTO Evaluciones_Postulantes (nro_postulante, nro_evaluacion) VALUES
 (1, 1),
 (2, 2),
 (3, 3),
-(4, 4);
+(4, 4),
+(5, 5),
+(6, 6);
 Go
 
 -- Insertar valores en la tabla Personas_Rol

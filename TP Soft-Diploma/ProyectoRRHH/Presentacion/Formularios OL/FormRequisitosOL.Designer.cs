@@ -50,7 +50,7 @@
             this.ClientSize = new System.Drawing.Size(278, 230);
             this.Controls.Add(this.listRequisitos);
             this.Name = "FormRequisitosOL";
-            this.Text = "FormRequisitosOL";
+            this.Text = "Requistos de la Oferta Laboral";
             this.Load += new System.EventHandler(this.FormRequisitosOL_Load);
             this.ResumeLayout(false);
 

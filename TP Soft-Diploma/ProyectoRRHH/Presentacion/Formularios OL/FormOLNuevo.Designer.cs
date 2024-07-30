@@ -180,7 +180,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Name = "FormOLNuevo";
-            this.Text = "FormOLNuevo";
+            this.Text = "Ofertas Laborales";
             this.Load += new System.EventHandler(this.FormOLNuevo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

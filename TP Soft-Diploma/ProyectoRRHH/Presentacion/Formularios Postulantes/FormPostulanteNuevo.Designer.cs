@@ -177,7 +177,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Name = "FormPostulanteNuevo";
-            this.Text = "Alta de Postulante";
+            this.Text = "Postulante";
             this.ResumeLayout(false);
             this.PerformLayout();
 

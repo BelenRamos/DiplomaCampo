@@ -12,7 +12,7 @@ namespace Datos
         private string connectionString;
         public RepoPostulantes()
         {
-            // Obtener la cadena de conexión desde la configuración
+            
             connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
         }
         public List<Postulantes> ObtenerTodosLosPostulantes()
@@ -41,7 +41,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones
+                
                 throw new Exception("Error al obtener los postulantes", ex);
             }
 
@@ -86,7 +86,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones
+                
                 throw new Exception("Error al dar de baja al postulante", ex);
             }
         }
@@ -117,7 +117,7 @@ namespace Datos
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones
+                
                 throw new Exception("Error al modificar al postulante", ex);
             }
         }
