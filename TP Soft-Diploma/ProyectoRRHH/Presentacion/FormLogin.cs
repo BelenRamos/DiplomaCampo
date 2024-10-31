@@ -1,20 +1,22 @@
 ﻿using Modelo;
 using Negocio;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Presentacion
 {
     public partial class FormLogin : Form
     {
-        private readonly NegUsuarios negUsuarios;
+        private readonly NegSessionManager negSessionManager;
+        
 
         public FormLogin()
         {
             InitializeComponent();
-            negUsuarios = NegUsuarios.ObtenerInstancia();
+            negSessionManager = NegSessionManager.ObtenerInstancia(); // Usar el Singleton de NegSessionManager
             txtContra.PasswordChar = '*';
+
+
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -24,16 +26,20 @@ namespace Presentacion
 
             try
             {
-                Usuarios usuario = negUsuarios.ValidarUsuario(email, contrasenia);
+                // Intentar iniciar sesión usando el NegSessionManager
+                bool loginExitoso = negSessionManager.IniciarSesion(email, contrasenia);
 
-                if (usuario != null)
+                if (loginExitoso)
                 {
+                    Usuarios usuario = negSessionManager.UsuarioActual;
+
                     if (usuario.habilitado.HasValue && usuario.habilitado.Value == 1)
                     {
-                        negUsuarios.EstablecerUsuarioActual(usuario);
+                        // Establece el usuario actual y permisos en NegUsuarios
+                        NegUsuarios.ObtenerInstancia().EstablecerUsuarioActual(usuario);
 
                         MessageBox.Show("Login exitoso");
-                        FormularioMenu formularioMenu = new FormularioMenu();
+                        FormularioMenu formularioMenu = new FormularioMenu(NegUsuarios.ObtenerInstancia());
                         formularioMenu.FormClosed += (s, args) => this.Show();
                         formularioMenu.Show();
                         this.Hide();
@@ -41,6 +47,7 @@ namespace Presentacion
                     else
                     {
                         MessageBox.Show("El usuario no está habilitado.");
+                        negSessionManager.CerrarSesion();
                     }
                 }
                 else

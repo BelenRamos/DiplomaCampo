@@ -11,10 +11,17 @@ namespace Presentacion
         private Form currentChildForm;
         private NegUsuarios negUsuarios;
 
-        public FormularioMenu()
+        //public FormularioMenu()
+        //{
+        //    InitializeComponent();
+        //    negUsuarios = NegUsuarios.ObtenerInstancia();
+        //}
+
+        // Constructor modificado
+        public FormularioMenu(NegUsuarios negUsuarios)
         {
             InitializeComponent();
-            negUsuarios = NegUsuarios.ObtenerInstancia();
+            this.negUsuarios = negUsuarios; // Asigna la instancia de NegUsuarios
         }
 
         private void OpenChildForm(Form childForm)
@@ -122,10 +129,29 @@ namespace Presentacion
             }
         }
 
+        //private void btnCerrarSesion_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        FormLogin formLogin = new FormLogin();
+        //        formLogin.Show();
+        //        this.Hide();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al cerrar sesión: " + ex.Message);
+        //    }
+        //}
+
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             try
             {
+                // Obtén la instancia de NegSessionManager y cierra la sesión actual
+                var sessionManager = NegSessionManager.ObtenerInstancia();
+                sessionManager.CerrarSesion();
+
+                // Redirige al formulario de inicio de sesión
                 FormLogin formLogin = new FormLogin();
                 formLogin.Show();
                 this.Hide();
@@ -135,6 +161,7 @@ namespace Presentacion
                 MessageBox.Show("Error al cerrar sesión: " + ex.Message);
             }
         }
+
 
 
     }

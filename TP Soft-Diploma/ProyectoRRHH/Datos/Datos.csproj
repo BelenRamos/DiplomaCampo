@@ -123,6 +123,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Reportes.cs" />
+    <Compile Include="RepoSeguridad\Decorator\ISessionManager.cs" />
+    <Compile Include="RepoSeguridad\Decorator\SessionManagerDecorator.cs" />
     <Compile Include="RepoSeguridad\RepoSessionManager.cs" />
     <Compile Include="RepositoriosSistema\RepoClientes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

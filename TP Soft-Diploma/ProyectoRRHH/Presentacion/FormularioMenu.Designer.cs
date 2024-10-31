@@ -37,11 +37,11 @@
             this.btnTurnos = new System.Windows.Forms.Button();
             this.btnOL = new System.Windows.Forms.Button();
             this.btnPerfiles = new System.Windows.Forms.Button();
+            this.panelLogo = new System.Windows.Forms.Panel();
             this.panelBarra = new System.Windows.Forms.Panel();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.panelseparacion = new System.Windows.Forms.Panel();
             this.panelFormularios = new System.Windows.Forms.Panel();
-            this.panelLogo = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             this.panelBarra.SuspendLayout();
             this.SuspendLayout();
@@ -183,6 +183,16 @@
             this.btnPerfiles.UseVisualStyleBackColor = false;
             this.btnPerfiles.Click += new System.EventHandler(this.btnPerfiles_Click);
             // 
+            // panelLogo
+            // 
+            this.panelLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelLogo.BackgroundImage")));
+            this.panelLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Name = "panelLogo";
+            this.panelLogo.Size = new System.Drawing.Size(200, 140);
+            this.panelLogo.TabIndex = 0;
+            // 
             // panelBarra
             // 
             this.panelBarra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(31)))), ((int)(((byte)(48)))));
@@ -225,16 +235,6 @@
             this.panelFormularios.Name = "panelFormularios";
             this.panelFormularios.Size = new System.Drawing.Size(539, 431);
             this.panelFormularios.TabIndex = 3;
-            // 
-            // panelLogo
-            // 
-            this.panelLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelLogo.BackgroundImage")));
-            this.panelLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(200, 140);
-            this.panelLogo.TabIndex = 0;
             // 
             // FormularioMenu
             // 
