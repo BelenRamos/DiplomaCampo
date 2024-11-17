@@ -8,6 +8,7 @@ namespace Datos
 {
     public class RepoReuniones : RepositorioMaestro
     {
+        private string connectionString = "data source=.;initial catalog=db_RRHH;integrated security=True;encrypt=True;trustservercertificate=True;MultipleActiveResultSets=True;App=EntityFramework";
         public List<Reuniones> ObtenerTodasLasReuniones()
         {
             List<Reuniones> reuniones = new List<Reuniones>();
@@ -47,5 +48,19 @@ namespace Datos
             }
             return reunion;
         }
+        public void AgregarReunion(int nroReunion)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(
+                    "INSERT INTO Reuniones (numero) VALUES (@numero)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@numero", nroReunion);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }

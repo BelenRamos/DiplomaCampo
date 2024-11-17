@@ -31,6 +31,7 @@
             this.calenderAgenda = new System.Windows.Forms.MonthCalendar();
             this.cbHorarios = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.cbClientes = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // calenderAgenda
@@ -51,20 +52,31 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGuardar.Location = new System.Drawing.Point(0, 183);
+            this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnGuardar.Location = new System.Drawing.Point(0, 209);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(247, 35);
             this.btnGuardar.TabIndex = 5;
-            this.btnGuardar.Text = "button1";
+            this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // cbClientes
+            // 
+            this.cbClientes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbClientes.FormattingEnabled = true;
+            this.cbClientes.Location = new System.Drawing.Point(0, 183);
+            this.cbClientes.Name = "cbClientes";
+            this.cbClientes.Size = new System.Drawing.Size(247, 21);
+            this.cbClientes.TabIndex = 6;
             // 
             // FormAgendarReunion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(247, 218);
+            this.ClientSize = new System.Drawing.Size(247, 244);
+            this.Controls.Add(this.cbClientes);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cbHorarios);
             this.Controls.Add(this.calenderAgenda);
@@ -79,5 +91,6 @@
         private System.Windows.Forms.MonthCalendar calenderAgenda;
         private System.Windows.Forms.ComboBox cbHorarios;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.ComboBox cbClientes;
     }
 }
