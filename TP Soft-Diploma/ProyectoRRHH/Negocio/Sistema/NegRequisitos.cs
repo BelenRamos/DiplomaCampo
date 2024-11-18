@@ -37,7 +37,6 @@ namespace Negocio
                 throw new Exception("Error al obtener los requisitos.", ex);
             }
         }
-
         public Requisitos ObtenerRequisitoPorID(int idRequisito)
         {
             try
@@ -49,7 +48,6 @@ namespace Negocio
                 throw new Exception("Error al obtener el requisito por ID.", ex);
             }
         }
-
         public List<string> ObtenerDescripcionesRequisitos()
         {
             try
@@ -61,7 +59,6 @@ namespace Negocio
                 throw new Exception("Error al obtener las descripciones de los requisitos.", ex);
             }
         }
-
         public int AgregarRequisitoAOferta(int ofertaLaboralId, int requisitoId)
         {
             try
@@ -74,18 +71,22 @@ namespace Negocio
             }
         }
 
-        public int EliminarRequisitoDeOferta(int ofertaLaboralId, int requisitoId)
+        public int EliminarRequisitosDeOferta(int ofertaLaboralId)
         {
             try
             {
-                return repositorio.EliminarRequisitoDeOferta(ofertaLaboralId, requisitoId);
+                int filasEliminadas = repositorio.EliminarRequisitoDeOferta(ofertaLaboralId);
+                if (filasEliminadas == 0)
+                {
+                    throw new Exception("No se encontraron requisitos para eliminar en la oferta laboral.");
+                }
+                return filasEliminadas;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al eliminar el requisito de la oferta laboral.", ex);
+                throw new Exception("Error al eliminar los requisitos de la oferta laboral.", ex);
             }
         }
-
         public List<Requisitos> ObtenerRequisitosPorOferta(int numeroOferta)
         {
             return repositorio.ObtenerRequisitosPorOferta(numeroOferta);

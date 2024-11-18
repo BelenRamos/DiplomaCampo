@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvOfertasLaborales = new System.Windows.Forms.DataGridView();
             this.btnPublicar = new System.Windows.Forms.Button();
             this.comboEstados = new System.Windows.Forms.ComboBox();
             this.btnEliminarOL = new System.Windows.Forms.Button();
@@ -37,34 +35,19 @@
             this.btnAgregarOL = new System.Windows.Forms.Button();
             this.btnSeleccionCandidato = new System.Windows.Forms.Button();
             this.btnRequistosOl = new System.Windows.Forms.Button();
+            this.btnPerfilar = new System.Windows.Forms.Button();
+            this.dgvOfertasLaborales = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOfertasLaborales)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgvOfertasLaborales
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvOfertasLaborales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvOfertasLaborales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOfertasLaborales.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dgvOfertasLaborales.Location = new System.Drawing.Point(0, 0);
-            this.dgvOfertasLaborales.Name = "dgvOfertasLaborales";
-            this.dgvOfertasLaborales.Size = new System.Drawing.Size(523, 183);
-            this.dgvOfertasLaborales.TabIndex = 0;
             // 
             // btnPublicar
             // 
             this.btnPublicar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPublicar.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
+            this.btnPublicar.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPublicar.ForeColor = System.Drawing.Color.Tan;
             this.btnPublicar.Location = new System.Drawing.Point(390, 288);
             this.btnPublicar.Name = "btnPublicar";
-            this.btnPublicar.Size = new System.Drawing.Size(121, 33);
+            this.btnPublicar.Size = new System.Drawing.Size(121, 25);
             this.btnPublicar.TabIndex = 10;
             this.btnPublicar.Text = "Publicar";
             this.btnPublicar.UseVisualStyleBackColor = true;
@@ -124,11 +107,11 @@
             // btnSeleccionCandidato
             // 
             this.btnSeleccionCandidato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSeleccionCandidato.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
+            this.btnSeleccionCandidato.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSeleccionCandidato.ForeColor = System.Drawing.Color.Tan;
-            this.btnSeleccionCandidato.Location = new System.Drawing.Point(390, 327);
+            this.btnSeleccionCandidato.Location = new System.Drawing.Point(390, 319);
             this.btnSeleccionCandidato.Name = "btnSeleccionCandidato";
-            this.btnSeleccionCandidato.Size = new System.Drawing.Size(121, 33);
+            this.btnSeleccionCandidato.Size = new System.Drawing.Size(121, 25);
             this.btnSeleccionCandidato.TabIndex = 11;
             this.btnSeleccionCandidato.Text = "Seleccion";
             this.btnSeleccionCandidato.UseVisualStyleBackColor = true;
@@ -147,12 +130,36 @@
             this.btnRequistosOl.UseVisualStyleBackColor = true;
             this.btnRequistosOl.Click += new System.EventHandler(this.btnRequistosOl_Click);
             // 
+            // btnPerfilar
+            // 
+            this.btnPerfilar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPerfilar.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPerfilar.ForeColor = System.Drawing.Color.Tan;
+            this.btnPerfilar.Location = new System.Drawing.Point(390, 350);
+            this.btnPerfilar.Name = "btnPerfilar";
+            this.btnPerfilar.Size = new System.Drawing.Size(121, 27);
+            this.btnPerfilar.TabIndex = 13;
+            this.btnPerfilar.Text = "Asignar Perfil";
+            this.btnPerfilar.UseVisualStyleBackColor = true;
+            this.btnPerfilar.Click += new System.EventHandler(this.btnPerfilar_Click);
+            // 
+            // dgvOfertasLaborales
+            // 
+            this.dgvOfertasLaborales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOfertasLaborales.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dgvOfertasLaborales.Location = new System.Drawing.Point(0, 0);
+            this.dgvOfertasLaborales.Name = "dgvOfertasLaborales";
+            this.dgvOfertasLaborales.Size = new System.Drawing.Size(523, 173);
+            this.dgvOfertasLaborales.TabIndex = 14;
+            // 
             // FormGestionOL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
             this.ClientSize = new System.Drawing.Size(523, 392);
+            this.Controls.Add(this.dgvOfertasLaborales);
+            this.Controls.Add(this.btnPerfilar);
             this.Controls.Add(this.btnRequistosOl);
             this.Controls.Add(this.btnSeleccionCandidato);
             this.Controls.Add(this.btnPublicar);
@@ -160,7 +167,6 @@
             this.Controls.Add(this.btnEliminarOL);
             this.Controls.Add(this.btnModificarOL);
             this.Controls.Add(this.btnAgregarOL);
-            this.Controls.Add(this.dgvOfertasLaborales);
             this.Name = "FormGestionOL";
             this.Text = "FormGestionOL";
             this.Load += new System.EventHandler(this.FormGestionOL_Load);
@@ -170,8 +176,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgvOfertasLaborales;
         private System.Windows.Forms.Button btnPublicar;
         private System.Windows.Forms.ComboBox comboEstados;
         private System.Windows.Forms.Button btnEliminarOL;
@@ -179,5 +183,7 @@
         private System.Windows.Forms.Button btnAgregarOL;
         private System.Windows.Forms.Button btnSeleccionCandidato;
         private System.Windows.Forms.Button btnRequistosOl;
+        private System.Windows.Forms.Button btnPerfilar;
+        private System.Windows.Forms.DataGridView dgvOfertasLaborales;
     }
 }

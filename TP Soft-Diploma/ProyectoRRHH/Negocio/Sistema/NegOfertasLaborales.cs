@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Datos;
 using Modelo;
 
@@ -11,6 +10,7 @@ namespace Negocio
         private RepoOfertasLaborales repoOfertasLaborales;
         private static NegOfertasLaborales instancia;
         private RepoEstados repoEstados;
+        private RepoRequisitos repoRequisitos;
 
         private NegOfertasLaborales()
         {
@@ -39,12 +39,23 @@ namespace Negocio
 
         public void AltaOfertaLaboral(Ofertas_Laborales ofertaLaboral, List<int> clienteIds, List<int> estadoIds, List<int> postulanteIds, List<int> requisitoIds)
         {
+            // Guardar la oferta laboral
             repoOfertasLaborales.AgregarOfertaLaboral(ofertaLaboral);
-            // Agregar lógica adicional para manejar relaciones (clientes, estados, postulantes, requisitos)
+
+            // Guardar los requisitos asociados a la oferta laboral
+            foreach (int requisitoId in requisitoIds)
+            {
+                NegRequisitos.ObtenerInstancia().AgregarRequisitoAOferta(ofertaLaboral.numero, requisitoId);
+            }
         }
 
         public void BajaOfertaLaboral(int numero)
         {
+            // Eliminar los requisitos asociados a la oferta laboral
+            var negRequisitos = NegRequisitos.ObtenerInstancia();
+            negRequisitos.EliminarRequisitosDeOferta(numero);
+
+            // Luego eliminar la oferta laboral
             repoOfertasLaborales.EliminarOfertaLaboral(numero);
         }
 

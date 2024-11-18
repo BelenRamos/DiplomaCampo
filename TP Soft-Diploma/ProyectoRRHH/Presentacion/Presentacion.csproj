@@ -234,6 +234,12 @@
     <Compile Include="Formularios OL\FormRequisitosOL.Designer.cs">
       <DependentUpon>FormRequisitosOL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios OL\FormPerfilarOL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios OL\FormPerfilarOL.Designer.cs">
+      <DependentUpon>FormPerfilarOL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios Perfiles\FormGestionPerfiles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -334,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios OL\FormRequisitosOL.resx">
       <DependentUpon>FormRequisitosOL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios OL\FormPerfilarOL.resx">
+      <DependentUpon>FormPerfilarOL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios Perfiles\FormGestionPerfiles.resx">
       <DependentUpon>FormGestionPerfiles.cs</DependentUpon>

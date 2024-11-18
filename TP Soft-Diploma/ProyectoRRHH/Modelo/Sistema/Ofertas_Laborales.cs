@@ -39,6 +39,7 @@ namespace Modelo
 
         [Column(TypeName = "date")]
         public DateTime? fechaCierre { get; set; }
+        
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clientes> Clientes { get; set; }

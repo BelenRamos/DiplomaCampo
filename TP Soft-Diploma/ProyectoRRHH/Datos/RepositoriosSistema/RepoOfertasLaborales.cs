@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
 using Modelo;
 
@@ -10,14 +9,11 @@ namespace Datos
     public class RepoOfertasLaborales
     {
         private string connectionString;
-
+        private List<int> requisitos = new List<int>();  // Inicializando como una lista vacía
         public RepoOfertasLaborales()
         {
             connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
         }
-
-
-
         public List<Ofertas_Laborales> ObtenerOfertasLaborales()
         {
             var ofertasLaborales = new List<Ofertas_Laborales>();
@@ -90,6 +86,12 @@ namespace Datos
                 connection.Open();
                 command.ExecuteNonQuery();
             }
+
+            foreach (var requisitoId in requisitos)
+            {
+                var repoRequisitos = new RepoRequisitos();
+                repoRequisitos.AgregarRequisitoAOferta(ofertaLaboral.numero, requisitoId);
+            }
         }
 
         public void ActualizarOfertaLaboral(Ofertas_Laborales ofertaLaboral)
@@ -108,14 +110,18 @@ namespace Datos
             }
         }
 
-        public int EliminarOfertaLaboral(int numero)
+        public void EliminarOfertaLaboral(int ofertaLaboralId)
         {
+            string consultaSQL = "DELETE FROM Ofertas_Laborales WHERE numero = @OfertaLaboralId";
+
             using (var connection = new SqlConnection(connectionString))
             {
-                var command = new SqlCommand("DELETE FROM Ofertas_Laborales WHERE numero = @numero", connection);
-                command.Parameters.AddWithValue("@numero", numero);
-                connection.Open();
-                return command.ExecuteNonQuery();
+                using (var command = new SqlCommand(consultaSQL, connection))
+                {
+                    command.Parameters.AddWithValue("@OfertaLaboralId", ofertaLaboralId);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
             }
         }
 

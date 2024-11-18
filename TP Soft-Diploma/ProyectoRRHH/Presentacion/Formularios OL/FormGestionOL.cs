@@ -135,16 +135,21 @@ namespace Presentacion.Formularios_OL
             }
             if (dgvOfertasLaborales.SelectedRows.Count > 0)
             {
-                var ofertaSeleccionada = (Ofertas_Laborales)dgvOfertasLaborales.SelectedRows[0].DataBoundItem;
-                try
+                var result = MessageBox.Show("¿Está seguro de que desea eliminar esta oferta laboral?", "Confirmación", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
                 {
-                    ofertasLaborales.BajaOfertaLaboral(ofertaSeleccionada.numero);
-                    // Refrescar la lista de ofertas laborales
-                    dgvOfertasLaborales.DataSource = ofertasLaborales.ObtenerOfertasLaborales();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al eliminar la oferta laboral: " + ex.Message);
+                    var ofertaSeleccionada = (Ofertas_Laborales)dgvOfertasLaborales.SelectedRows[0].DataBoundItem;
+                    try
+                    {
+                        ofertasLaborales.BajaOfertaLaboral(ofertaSeleccionada.numero);
+                       
+                        dgvOfertasLaborales.DataSource = ofertasLaborales.ObtenerOfertasLaborales();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al eliminar la oferta laboral: " + ex.Message);
+                    }
                 }
             }
             else
@@ -153,7 +158,7 @@ namespace Presentacion.Formularios_OL
             }
         }
 
-        private void btnPublicar_Click(object sender, EventArgs e)
+        private void btnPublicar_Click(object sender, EventArgs e) //Harcodearrrrr
         {
             if (dgvOfertasLaborales.SelectedRows.Count > 0)
             {
@@ -204,6 +209,22 @@ namespace Presentacion.Formularios_OL
             else
             {
                 MessageBox.Show("Seleccione una oferta laboral para ver los requisitos.");
+            }
+        }
+
+        private void btnPerfilar_Click(object sender, EventArgs e)
+        {
+            if (dgvOfertasLaborales.SelectedRows.Count > 0)
+            {
+                var ofertaSeleccionada = (Ofertas_Laborales)dgvOfertasLaborales.SelectedRows[0].DataBoundItem;
+                using (FormPerfilarOL formulario = new FormPerfilarOL(ofertaSeleccionada.numero))
+                {
+                    formulario.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una oferta laboral para cerrar la publicación.");
             }
         }
     }

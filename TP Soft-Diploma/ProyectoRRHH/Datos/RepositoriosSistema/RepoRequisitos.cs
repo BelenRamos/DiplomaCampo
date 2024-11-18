@@ -35,7 +35,6 @@ namespace Datos
             }
             return requisitos;
         }
-
         public Requisitos ObtenerRequisitoPorID(int idRequisito)
         {
             Requisitos requisito = null;
@@ -73,46 +72,52 @@ namespace Datos
             return descripciones;
         }
 
-        // Métodos para gestionar la tabla intermedia OL_Requisitos
         public int AgregarRequisitoAOferta(int ofertaLaboralId, int requisitoId)
         {
-            string consultaSQL = "INSERT INTO OL_Requisitos (nro_OL, id_requisito) VALUES (@OfertaLaboralId, @RequisitoId)";
-            List<SqlParameter> parametros = new List<SqlParameter>
+            using (var connection = new SqlConnection(connectionString))
             {
-                new SqlParameter("@OfertaLaboralId", ofertaLaboralId),
-                new SqlParameter("@RequisitoId", requisitoId)
-            };
+                string query = "INSERT INTO OL_Requisitos (nro_OL, id_requisito) VALUES (@ofertaLaboralId, @requisitoId)";
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ofertaLaboralId", ofertaLaboralId);
+                    command.Parameters.AddWithValue("@requisitoId", requisitoId);
 
-            try
-            {
-                return ExecuteNonQuery(consultaSQL, parametros);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al agregar el requisito a la oferta laboral.", ex);
+                    connection.Open();
+                    return command.ExecuteNonQuery();
+                }
             }
         }
-
-        public int EliminarRequisitoDeOferta(int ofertaLaboralId, int requisitoId)
+        private object ExecuteScalar(string consultaExistente, List<SqlParameter> parametrosExistentes)
         {
-            string consultaSQL = "DELETE FROM OL_Requisitos WHERE nro_OL = @OfertaLaboralId AND id_requisito = @RequisitoId";
-            List<SqlParameter> parametros = new List<SqlParameter>
-            {
-                new SqlParameter("@OfertaLaboralId", ofertaLaboralId),
-                new SqlParameter("@RequisitoId", requisitoId)
-            };
+            throw new NotImplementedException();
+        }
+        public int EliminarRequisitoDeOferta(int ofertaLaboralId)
+        {
+            string consultaSQL = @"DELETE OL_Requisitos
+                                   FROM Ofertas_Laborales
+                                   INNER JOIN OL_Requisitos ON Ofertas_Laborales.numero = OL_Requisitos.nro_OL
+                                   WHERE Ofertas_Laborales.numero = @OfertaLaboralId";
 
             try
             {
-                return ExecuteNonQuery(consultaSQL, parametros);
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    using (var command = new SqlCommand(consultaSQL, connection))
+                    {
+                        command.Parameters.AddWithValue("@OfertaLaboralId", ofertaLaboralId);
+                        connection.Open();
+                        int filasAfectadas = command.ExecuteNonQuery();
+                        return filasAfectadas;
+                    }
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al eliminar el requisito de la oferta laboral.", ex);
+                throw new Exception("Error al eliminar los requisitos de la oferta laboral.", ex);
             }
         }
-
-        public List<Requisitos> ObtenerRequisitosPorOferta(int ofertaLaboralId)
+    
+    public List<Requisitos> ObtenerRequisitosPorOferta(int ofertaLaboralId)
         {
             List<Requisitos> requisitos = new List<Requisitos>();
             string consultaSQL = "SELECT r.id, r.descripcion FROM Requisitos r " +
@@ -136,8 +141,6 @@ namespace Datos
             }
             return requisitos;
         }
-
-
 
         private DataTable ExecuteReader(string consultaSQL, List<SqlParameter> parametros = null)
         {
