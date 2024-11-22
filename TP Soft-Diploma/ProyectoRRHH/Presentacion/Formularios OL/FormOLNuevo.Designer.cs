@@ -149,9 +149,9 @@
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(15)))), ((int)(((byte)(20)))));
             this.label5.Location = new System.Drawing.Point(12, 284);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(124, 20);
+            this.label5.Size = new System.Drawing.Size(146, 20);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Fecha de Creacion";
+            this.label5.Text = "Requistos necesarios:";
             // 
             // clbRequisitos
             // 

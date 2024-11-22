@@ -158,5 +158,57 @@ namespace Datos
                 throw new Exception("Error al obtener el último ID de perfil", ex);
             }
         }
+
+        public Perfiles ObtenerPerfilPorNombre(string nombre)
+        {
+            Perfiles perfil = null;
+            string consultaSQL = "SELECT * FROM Perfiles WHERE nombre = @nombre";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@nombre", nombre));
+
+            try
+            {
+                DataTable tablaPerfil = ExecuteReader(consultaSQL);
+
+                if (tablaPerfil.Rows.Count > 0)
+                {
+                    DataRow fila = tablaPerfil.Rows[0];
+                    perfil = new Perfiles
+                    {
+                        id = Convert.ToInt32(fila["id"]),
+                        nombre = fila["nombre"].ToString(),
+                        descripcion = fila["descripcion"].ToString()
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                throw new Exception("Error al obtener el perfil por nombre", ex);
+            }
+
+            return perfil;
+        }
+
+        public int EliminarPerfilDeOferta(int idOferta)
+        {
+            string consultaSQL = "DELETE FROM OL_Perfiles WHERE nro_OL = @nro_OL";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@nro_OL", idOferta));
+
+            try
+            {
+                return ExecuteNonQuery(consultaSQL);
+            }
+            catch (Exception ex)
+            {
+                // Manejo de excepciones
+                throw new Exception("Error al eliminar perfiles asociados a la oferta laboral", ex);
+            }
+        }
+
+
     }
 }

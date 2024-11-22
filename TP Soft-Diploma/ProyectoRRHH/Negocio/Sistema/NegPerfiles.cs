@@ -99,5 +99,34 @@ namespace Negocio
                 throw new Exception("Error al modificar el perfil.", ex);
             }
         }
+
+        public Perfiles ObtenerPerfilPorNombre(string nombre)
+        {
+            if (string.IsNullOrEmpty(nombre))
+            {
+                throw new ArgumentException("El nombre del perfil no puede estar vacío.");
+            }
+
+            return repositorio.ObtenerPerfilPorNombre(nombre);
+        }
+
+        public int EliminarPerfilDeOferta(int ofertaLaboralId)
+        {
+            try
+            {
+                int filasEliminadas = repositorio.EliminarPerfilDeOferta(ofertaLaboralId);
+                if (filasEliminadas == 0)
+                {
+                    throw new Exception("No se encuentra el perfil para eliminar en la oferta laboral.");
+                }
+                return filasEliminadas;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar el perfil de la oferta laboral.", ex);
+
+
+            }
+        }
     }
 }

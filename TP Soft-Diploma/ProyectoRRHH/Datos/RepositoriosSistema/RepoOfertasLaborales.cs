@@ -64,7 +64,7 @@ namespace Datos
                             fechaCreacion = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
                             fechaPublicacion = reader.IsDBNull(4) ? (DateTime?)null : reader.GetDateTime(4),
                             fechaCierre = reader.IsDBNull(5) ? (DateTime?)null : reader.GetDateTime(5)
-                            
+
 
                         };
                     }
@@ -221,6 +221,28 @@ namespace Datos
             }
         }
 
+        public bool AsignarPerfilAOferta(int numeroOferta, int idPerfil)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "INSERT INTO OL_Perfiles (nro_OL, id_perfil) VALUES (@nro_OL, @id_perfil)";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nro_OL", numeroOferta);
+                command.Parameters.AddWithValue("@id_perfil", idPerfil);
 
+                try
+                {
+                    connection.Open();
+                    return command.ExecuteNonQuery() > 0;
+                }
+                catch (Exception ex)
+                {
+                    // Loguear el error si es necesario.
+                    throw new Exception("Error al asignar el perfil a la oferta laboral: " + ex.Message);
+                }
+            }
+
+        }
     }
+
 }

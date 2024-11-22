@@ -9,13 +9,11 @@ namespace Negocio
     {
         private RepoOfertasLaborales repoOfertasLaborales;
         private static NegOfertasLaborales instancia;
-        private RepoEstados repoEstados;
-        private RepoRequisitos repoRequisitos;
 
+       
         private NegOfertasLaborales()
         {
             repoOfertasLaborales = new RepoOfertasLaborales();
-            repoEstados = new RepoEstados();
         }
 
         public static NegOfertasLaborales ObtenerInstancia()
@@ -53,7 +51,9 @@ namespace Negocio
         {
             // Eliminar los requisitos asociados a la oferta laboral
             var negRequisitos = NegRequisitos.ObtenerInstancia();
+            var negPerfiles = NegPerfiles.ObtenerInstancia();
             negRequisitos.EliminarRequisitosDeOferta(numero);
+            negPerfiles.EliminarPerfilDeOferta(numero);
 
             // Luego eliminar la oferta laboral
             repoOfertasLaborales.EliminarOfertaLaboral(numero);
@@ -105,6 +105,16 @@ namespace Negocio
         public void PublicarOfertaLaboral(int numero)
         {
             throw new NotImplementedException();
+        }
+
+        public bool AsignarPerfilAOferta(int numeroOferta, int idPerfil)
+        {
+            if (numeroOferta <= 0 || idPerfil <= 0)
+            {
+                throw new ArgumentException("Número de oferta e ID de perfil deben ser mayores a cero.");
+            }
+
+            return repoOfertasLaborales.AsignarPerfilAOferta(numeroOferta, idPerfil);
         }
     }
 }
