@@ -7,13 +7,13 @@ namespace Negocio
 {
     public class NegOfertasLaborales
     {
-        private RepoOfertasLaborales repoOfertasLaborales;
+        private RepoOfertasLaborales repositorio;
         private static NegOfertasLaborales instancia;
 
        
         private NegOfertasLaborales()
         {
-            repoOfertasLaborales = new RepoOfertasLaborales();
+            repositorio = new RepoOfertasLaborales();
         }
 
         public static NegOfertasLaborales ObtenerInstancia()
@@ -27,18 +27,18 @@ namespace Negocio
 
         public List<Ofertas_Laborales> ObtenerOfertasLaborales()
         {
-            return repoOfertasLaborales.ObtenerOfertasLaborales();
+            return repositorio.ObtenerOfertasLaborales();
         }
 
         public Ofertas_Laborales ObtenerOfertaLaboralPorNumero(int numero)
         {
-            return repoOfertasLaborales.ObtenerOfertaLaboralPorNumero(numero);
+            return repositorio.ObtenerOfertaLaboralPorNumero(numero);
         }
 
         public void AltaOfertaLaboral(Ofertas_Laborales ofertaLaboral, List<int> clienteIds, List<int> estadoIds, List<int> postulanteIds, List<int> requisitoIds)
         {
             // Guardar la oferta laboral
-            repoOfertasLaborales.AgregarOfertaLaboral(ofertaLaboral);
+            repositorio.AgregarOfertaLaboral(ofertaLaboral);
 
             // Guardar los requisitos asociados a la oferta laboral
             foreach (int requisitoId in requisitoIds)
@@ -56,50 +56,32 @@ namespace Negocio
             negPerfiles.EliminarPerfilDeOferta(numero);
 
             // Luego eliminar la oferta laboral
-            repoOfertasLaborales.EliminarOfertaLaboral(numero);
+            repositorio.EliminarOfertaLaboral(numero);
         }
 
         public void ModificarOfertaLaboral(Ofertas_Laborales ofertaLaboral)
         {
-            repoOfertasLaborales.ActualizarOfertaLaboral(ofertaLaboral);
+            repositorio.ActualizarOfertaLaboral(ofertaLaboral);
         }
 
         public int ObtenerUltimoNumero()
         {
-            return repoOfertasLaborales.ObtenerUltimoNumero();
+            return repositorio.ObtenerUltimoNumero();
         }
 
         public List<Ofertas_Laborales> ObtenerOfertasPorEstado(int codigoEstado)
         {
-            return repoOfertasLaborales.ObtenerOfertasPorEstado(codigoEstado);
+            return repositorio.ObtenerOfertasPorEstado(codigoEstado);
         }
-
-        //public List<Ofertas_Laborales> ObtenerOfertasConEstados()
-        //{
-        //    var ofertas = repoOfertasLaborales.ObtenerOfertasLaborales();
-        //    var ofertasConEstados = new List<Ofertas_Laborales>();
-
-        //    foreach (var oferta in ofertas)
-        //    {
-        //        var estados = repoOfertasLaborales.ObtenerEstadosPorOferta(oferta.numero);
-        //        ofertasConEstados.Add(new Ofertas_Laborales
-        //        {
-        //            ofertaLaboral = oferta,
-        //            Estados = (ICollection<Estados>)estados.Select(e => repoEstados.ObtenerEstadoPorCodigo(e)).ToList() 
-        //        });
-        //    }
-
-        //    return ofertasConEstados;
-        //}
 
         public void CerrarOfertaLaboral(int numero)
         {
-            repoOfertasLaborales.CerrarOfertaLaboral(numero);
+            repositorio.CerrarOfertaLaboral(numero);
         }
 
         public void PublicarOfertaLaboral(int numero, DateTime fechaPublicacion)
         {
-            repoOfertasLaborales.PublicarOfertaLaboral(numero, fechaPublicacion);
+            repositorio.PublicarOfertaLaboral(numero, fechaPublicacion);
         }
 
         public void PublicarOfertaLaboral(int numero)
@@ -114,7 +96,8 @@ namespace Negocio
                 throw new ArgumentException("Número de oferta e ID de perfil deben ser mayores a cero.");
             }
 
-            return repoOfertasLaborales.AsignarPerfilAOferta(numeroOferta, idPerfil);
+            return repositorio.AsignarPerfilAOferta(numeroOferta, idPerfil);
         }
+
     }
 }

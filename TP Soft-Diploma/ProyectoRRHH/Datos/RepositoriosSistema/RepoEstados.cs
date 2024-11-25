@@ -79,8 +79,6 @@ namespace Datos
             return estados;
         }
 
-
-
         public List<int> ObtenerEstadosPorOferta(int ofertaLaboralId)
         {
             List<int> estados = new List<int>();
@@ -99,7 +97,6 @@ namespace Datos
             }
             return estados;
         }
-
 
         private DataTable ExecuteReader(string consultaSQL, List<SqlParameter> parametros = null)
         {

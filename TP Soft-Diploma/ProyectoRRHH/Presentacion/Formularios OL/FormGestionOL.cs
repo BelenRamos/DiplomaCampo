@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Modelo;
 using Negocio;
@@ -37,6 +38,7 @@ namespace Presentacion.Formularios_OL
                 MessageBox.Show(ex.ToString());
             }
         }
+
 
         private void ComboEstados_SelectedIndexChanged(object sender, EventArgs e)
         {

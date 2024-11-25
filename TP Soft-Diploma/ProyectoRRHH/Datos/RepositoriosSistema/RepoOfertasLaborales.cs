@@ -74,25 +74,81 @@ namespace Datos
             return ofertaLaboral;
         }
 
+        //public void AgregarOfertaLaboral(Ofertas_Laborales ofertaLaboral)
+        //{
+        //    using (var connection = new SqlConnection(connectionString))
+        //    {
+        //        var command = new SqlCommand("INSERT INTO Ofertas_Laborales (numero, titulo, descripcion, fechaCreacion) VALUES (@numero, @titulo, @descripcion, @fechaCreacion)", connection);
+        //        command.Parameters.AddWithValue("@numero", ofertaLaboral.numero);
+        //        command.Parameters.AddWithValue("@titulo", ofertaLaboral.titulo ?? (object)DBNull.Value);
+        //        command.Parameters.AddWithValue("@descripcion", ofertaLaboral.descripcion ?? (object)DBNull.Value);
+        //        command.Parameters.AddWithValue("@fechaCreacion", ofertaLaboral.fechaCreacion ?? (object)DBNull.Value);
+        //        connection.Open();
+        //        command.ExecuteNonQuery();
+
+
+        //    }
+
+        //    foreach (var requisitoId in requisitos)
+        //    {
+        //        var repoRequisitos = new RepoRequisitos();
+        //        repoRequisitos.AgregarRequisitoAOferta(ofertaLaboral.numero, requisitoId);
+        //    }
+        //}
+
         public void AgregarOfertaLaboral(Ofertas_Laborales ofertaLaboral)
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                var command = new SqlCommand("INSERT INTO Ofertas_Laborales (numero, titulo, descripcion, fechaCreacion) VALUES (@numero, @titulo, @descripcion, @fechaCreacion)", connection);
-                command.Parameters.AddWithValue("@numero", ofertaLaboral.numero);
-                command.Parameters.AddWithValue("@titulo", ofertaLaboral.titulo ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@descripcion", ofertaLaboral.descripcion ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@fechaCreacion", ofertaLaboral.fechaCreacion ?? (object)DBNull.Value);
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
+                connection.Open(); // Abre la conexión antes de cualquier operación
 
-            foreach (var requisitoId in requisitos)
-            {
-                var repoRequisitos = new RepoRequisitos();
-                repoRequisitos.AgregarRequisitoAOferta(ofertaLaboral.numero, requisitoId);
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Insertar la oferta laboral
+                        var command = new SqlCommand(
+                            @"INSERT INTO Ofertas_Laborales (numero, titulo, descripcion, fechaCreacion) 
+                      VALUES (@numero, @titulo, @descripcion, @fechaCreacion)",
+                            connection,
+                            transaction);
+
+                        command.Parameters.AddWithValue("@numero", ofertaLaboral.numero);
+                        command.Parameters.AddWithValue("@titulo", ofertaLaboral.titulo ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@descripcion", ofertaLaboral.descripcion ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@fechaCreacion", ofertaLaboral.fechaCreacion ?? DateTime.Now);
+
+                        command.ExecuteNonQuery();
+
+                        // Insertar el estado inicial (abierta)
+                        var commandEstado = new SqlCommand(
+                            @"INSERT INTO OL_Estados (nro_OL, codigo_estado) 
+                      VALUES (@nro_OL, 2);",
+                            connection,
+                            transaction);
+
+                        commandEstado.Parameters.AddWithValue("@nro_OL", ofertaLaboral.numero);
+                        commandEstado.ExecuteNonQuery();
+
+                        // Asignar requisitos
+                        foreach (var requisitoId in requisitos)
+                        {
+                            var repoRequisitos = new RepoRequisitos();
+                            repoRequisitos.AgregarRequisitoAOferta(ofertaLaboral.numero, requisitoId);
+                        }
+
+
+                        transaction.Commit(); // Confirma la transacción
+                    }
+                    catch
+                    {
+                        transaction.Rollback(); // Revertir en caso de error
+                        throw; // Relanzar la excepción para manejarla a nivel superior
+                    }
+                }
             }
         }
+
 
         public void ActualizarOfertaLaboral(Ofertas_Laborales ofertaLaboral)
         {
@@ -110,21 +166,58 @@ namespace Datos
             }
         }
 
+        //public void EliminarOfertaLaboral(int ofertaLaboralId)
+        //{
+        //    string consultaSQL = "DELETE FROM Ofertas_Laborales WHERE numero = @OfertaLaboralId";
+
+        //    using (var connection = new SqlConnection(connectionString))
+        //    {
+        //        using (var command = new SqlCommand(consultaSQL, connection))
+        //        {
+        //            command.Parameters.AddWithValue("@OfertaLaboralId", ofertaLaboralId);
+        //            connection.Open();
+        //            command.ExecuteNonQuery();
+        //        }
+        //    }
+        //}
+
         public void EliminarOfertaLaboral(int ofertaLaboralId)
         {
-            string consultaSQL = "DELETE FROM Ofertas_Laborales WHERE numero = @OfertaLaboralId";
-
             using (var connection = new SqlConnection(connectionString))
             {
-                using (var command = new SqlCommand(consultaSQL, connection))
+                connection.Open(); // Abre la conexión antes de las operaciones
+
+                using (var transaction = connection.BeginTransaction())
                 {
-                    command.Parameters.AddWithValue("@OfertaLaboralId", ofertaLaboralId);
-                    connection.Open();
-                    command.ExecuteNonQuery();
+                    try
+                    {
+                        // Eliminar de OL_Estados
+                        string consultaEliminarEstados = "DELETE FROM OL_Estados WHERE nro_OL = @OfertaLaboralId";
+                        using (var commandEstados = new SqlCommand(consultaEliminarEstados, connection, transaction))
+                        {
+                            commandEstados.Parameters.AddWithValue("@OfertaLaboralId", ofertaLaboralId);
+                            commandEstados.ExecuteNonQuery();
+                        }
+
+                        // Eliminar de Ofertas_Laborales
+                        string consultaEliminarOferta = "DELETE FROM Ofertas_Laborales WHERE numero = @OfertaLaboralId";
+                        using (var commandOferta = new SqlCommand(consultaEliminarOferta, connection, transaction))
+                        {
+                            commandOferta.Parameters.AddWithValue("@OfertaLaboralId", ofertaLaboralId);
+                            commandOferta.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit(); // Confirma la transacción
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback(); // Revierte la transacción en caso de error
+                                                // Loguear o manejar el error según sea necesario
+                        throw new Exception("Error al eliminar la oferta laboral: " + ex.Message);
+                    }
                 }
             }
         }
-
         public int ObtenerUltimoNumero()
         {
             string consultaSQL = "SELECT ISNULL(MAX(numero), 0) FROM Ofertas_Laborales";
@@ -173,27 +266,6 @@ namespace Datos
             return ofertasLaborales;
         }
 
-        //public List<int> ObtenerEstadosPorOferta(int numeroOferta)
-        //{
-        //    var estados = new List<int>();
-
-        //    using (var connection = new SqlConnection(connectionString))
-        //    {
-        //        var command = new SqlCommand("SELECT codigo_estado FROM OL_Estados WHERE nro_OL = @numeroOferta", connection);
-        //        command.Parameters.AddWithValue("@numeroOferta", numeroOferta);
-        //        connection.Open();
-        //        using (var reader = command.ExecuteReader())
-        //        {
-        //            while (reader.Read())
-        //            {
-        //                estados.Add(reader.GetInt32(0));
-        //            }
-        //        }
-        //    }
-
-        //    return estados;
-        //}
-
         public void PublicarOfertaLaboral(int numero, DateTime fechaPublicacion)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -221,27 +293,70 @@ namespace Datos
             }
         }
 
+        //public bool AsignarPerfilAOferta(int numeroOferta, int idPerfil)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        string query = "INSERT INTO OL_Perfiles (nro_OL, id_perfil) VALUES (@nro_OL, @id_perfil)";
+        //        SqlCommand command = new SqlCommand(query, connection);
+        //        command.Parameters.AddWithValue("@nro_OL", numeroOferta);
+        //        command.Parameters.AddWithValue("@id_perfil", idPerfil);
+
+        //        try
+        //        {
+        //            connection.Open();
+        //            return command.ExecuteNonQuery() > 0;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            // Loguear el error si es necesario.
+        //            throw new Exception("Error al asignar el perfil a la oferta laboral: " + ex.Message);
+        //        }
+        //    }
+
+        //}
+
+
         public bool AsignarPerfilAOferta(int numeroOferta, int idPerfil)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO OL_Perfiles (nro_OL, id_perfil) VALUES (@nro_OL, @id_perfil)";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@nro_OL", numeroOferta);
-                command.Parameters.AddWithValue("@id_perfil", idPerfil);
+                connection.Open(); // Abre la conexión al inicio
+                using (SqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Insertar en OL_Perfiles
+                        string queryPerfil = "INSERT INTO OL_Perfiles (nro_OL, id_perfil) VALUES (@nro_OL, @id_perfil)";
+                        var commandPerfil = new SqlCommand(queryPerfil, connection, transaction);
+                        commandPerfil.Parameters.AddWithValue("@nro_OL", numeroOferta);
+                        commandPerfil.Parameters.AddWithValue("@id_perfil", idPerfil);
+                        commandPerfil.ExecuteNonQuery();
 
-                try
-                {
-                    connection.Open();
-                    return command.ExecuteNonQuery() > 0;
-                }
-                catch (Exception ex)
-                {
-                    // Loguear el error si es necesario.
-                    throw new Exception("Error al asignar el perfil a la oferta laboral: " + ex.Message);
+                        // Actualizar el estado a 3 (perfilada) en OL_Estados
+                        string queryEstado = @"UPDATE OL_Estados 
+                                       SET codigo_estado = 3 
+                                       WHERE nro_OL = @nro_OL";
+                        var commandEstado = new SqlCommand(queryEstado, connection, transaction);
+                        commandEstado.Parameters.AddWithValue("@nro_OL", numeroOferta);
+                        commandEstado.ExecuteNonQuery();
+
+                        transaction.Commit(); // Confirma la transacción
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback(); // Revierte la transacción en caso de error
+                                                // Loguear el error si es necesario
+                        throw new Exception("Error al asignar el perfil a la oferta laboral: " + ex.Message);
+                    }
                 }
             }
+        }
 
+        public object ObtenerEstadosPorOfertas()
+        {
+            throw new NotImplementedException();
         }
     }
 

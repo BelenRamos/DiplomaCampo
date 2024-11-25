@@ -68,7 +68,7 @@ namespace Presentacion.Formularios_OL
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -96,6 +96,8 @@ namespace Presentacion.Formularios_OL
                 if (resultado)
                 {
                     MessageBox.Show("Perfil asignado exitosamente a la oferta laboral.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
@@ -106,6 +108,8 @@ namespace Presentacion.Formularios_OL
             {
                 MessageBox.Show("Ocurrió un error al asignar el perfil: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
         }
     }
 }

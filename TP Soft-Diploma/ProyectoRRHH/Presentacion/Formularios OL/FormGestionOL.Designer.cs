@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnPublicar = new System.Windows.Forms.Button();
             this.comboEstados = new System.Windows.Forms.ComboBox();
             this.btnEliminarOL = new System.Windows.Forms.Button();
             this.btnModificarOL = new System.Windows.Forms.Button();
@@ -39,19 +38,6 @@
             this.dgvOfertasLaborales = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOfertasLaborales)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnPublicar
-            // 
-            this.btnPublicar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPublicar.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPublicar.ForeColor = System.Drawing.Color.Tan;
-            this.btnPublicar.Location = new System.Drawing.Point(390, 288);
-            this.btnPublicar.Name = "btnPublicar";
-            this.btnPublicar.Size = new System.Drawing.Size(121, 25);
-            this.btnPublicar.TabIndex = 10;
-            this.btnPublicar.Text = "Publicar";
-            this.btnPublicar.UseVisualStyleBackColor = true;
-            this.btnPublicar.Click += new System.EventHandler(this.btnPublicar_Click);
             // 
             // comboEstados
             // 
@@ -162,7 +148,6 @@
             this.Controls.Add(this.btnPerfilar);
             this.Controls.Add(this.btnRequistosOl);
             this.Controls.Add(this.btnSeleccionCandidato);
-            this.Controls.Add(this.btnPublicar);
             this.Controls.Add(this.comboEstados);
             this.Controls.Add(this.btnEliminarOL);
             this.Controls.Add(this.btnModificarOL);
@@ -176,7 +161,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnPublicar;
         private System.Windows.Forms.ComboBox comboEstados;
         private System.Windows.Forms.Button btnEliminarOL;
         private System.Windows.Forms.Button btnModificarOL;
