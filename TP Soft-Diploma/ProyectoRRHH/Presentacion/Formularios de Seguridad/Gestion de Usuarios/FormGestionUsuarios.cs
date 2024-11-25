@@ -5,15 +5,13 @@ using System.Windows.Forms;
 
 using Modelo;
 using System.Collections.Generic;
+using Presentacion.Formularios_de_Seguridad.Gestion_Grupos;
 
 namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
 {
     public partial class FormGestionUsuarios : Form
     {
         private NegUsuarios negocioUsuarios;
-
-
-
         public FormGestionUsuarios()
         {
             InitializeComponent();
@@ -150,6 +148,12 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
             {
                 MessageBox.Show("Error al modificar el usuario: " + ex.Message);
             }
+        }
+
+        private void btnSessionManager_Click(object sender, EventArgs e)
+        {
+            FormSesiones formSesiones = new FormSesiones();
+            formSesiones.ShowDialog();
         }
     }
 }

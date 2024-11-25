@@ -1,6 +1,7 @@
 ﻿using Modelo;
 using Datos.RepoSeguridad;
 using System;
+using System.Data;
 
 namespace Negocio
 {
@@ -77,6 +78,11 @@ namespace Negocio
                 repoSessionManager.ActualizarEstadoSesion(SesionActual.sessionId, isLoggedIn);
                 SesionActual.isLoggedIn = isLoggedIn; // Asignar el valor de isLoggedIn correctamente
             }
+        }
+
+        public DataTable ObtenerReporteSesiones()
+        {
+            return repoSessionManager.ObtenerReporteSesiones();
         }
     }
 }

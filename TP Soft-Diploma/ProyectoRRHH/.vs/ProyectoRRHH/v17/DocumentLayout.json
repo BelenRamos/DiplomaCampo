@@ -3,28 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E842AF7E-445E-4175-9623-9FBB36516ACD}|Negocio\\Negocio.csproj|C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\negocio\\sistema\\negofertaslaborales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E842AF7E-445E-4175-9623-9FBB36516ACD}|Negocio\\Negocio.csproj|solutionrelative:negocio\\sistema\\negofertaslaborales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\presentacion\\formularios de seguridad\\gestion de usuarios\\formsesiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\formularios de seguridad\\gestion de usuarios\\formsesiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\presentacion\\formularios ol\\formperfilarol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\formularios ol\\formperfilarol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\presentacion\\formularios de seguridad\\gestion de usuarios\\formsesiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\formularios de seguridad\\gestion de usuarios\\formsesiones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\presentacion\\formularios ol\\formolnuevo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\formularios ol\\formolnuevo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\datos\\reposeguridad\\reposessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|solutionrelative:datos\\reposeguridad\\reposessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\presentacion\\formularios ol\\formgestionol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\formularios ol\\formgestionol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E842AF7E-445E-4175-9623-9FBB36516ACD}|Negocio\\Negocio.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\negocio\\seguridad\\negsessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E842AF7E-445E-4175-9623-9FBB36516ACD}|Negocio\\Negocio.csproj|solutionrelative:negocio\\seguridad\\negsessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\datos\\repositoriossistema\\repoestados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|solutionrelative:datos\\repositoriossistema\\repoestados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\datos\\repositoriossistema\\repoofertaslaborales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|solutionrelative:datos\\repositoriossistema\\repoofertaslaborales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\presentacion\\formularios de seguridad\\gestion de usuarios\\formgestionusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\formularios de seguridad\\gestion de usuarios\\formgestionusuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,84 +30,70 @@
       "DocumentGroups": [
         {
           "DockedHeight": 136,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FormPerfilarOL.cs",
-              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios OL\\FormPerfilarOL.cs",
-              "RelativeDocumentMoniker": "Presentacion\\Formularios OL\\FormPerfilarOL.cs",
-              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios OL\\FormPerfilarOL.cs",
-              "RelativeToolTip": "Presentacion\\Formularios OL\\FormPerfilarOL.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAIwE4AAAARAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "FormSesiones.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormSesiones.cs",
+              "RelativeDocumentMoniker": "Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormSesiones.cs",
+              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormSesiones.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormSesiones.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T11:09:06.226Z",
+              "WhenOpened": "2024-11-25T21:20:54.081Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NegSessionManager.cs",
+              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Negocio\\Seguridad\\NegSessionManager.cs",
+              "RelativeDocumentMoniker": "Negocio\\Seguridad\\NegSessionManager.cs",
+              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Negocio\\Seguridad\\NegSessionManager.cs",
+              "RelativeToolTip": "Negocio\\Seguridad\\NegSessionManager.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAcwFUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T21:14:27.711Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "FormOLNuevo.cs",
-              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios OL\\FormOLNuevo.cs",
-              "RelativeDocumentMoniker": "Presentacion\\Formularios OL\\FormOLNuevo.cs",
-              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios OL\\FormOLNuevo.cs",
-              "RelativeToolTip": "Presentacion\\Formularios OL\\FormOLNuevo.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAcwHYAAAAMAAAAAAAAAA==",
+              "Title": "RepoSessionManager.cs",
+              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepoSeguridad\\RepoSessionManager.cs",
+              "RelativeDocumentMoniker": "Datos\\RepoSeguridad\\RepoSessionManager.cs",
+              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepoSeguridad\\RepoSessionManager.cs",
+              "RelativeToolTip": "Datos\\RepoSeguridad\\RepoSessionManager.cs",
+              "ViewState": "AgIAAMcAAAAAAAAAAAAkwMwAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T11:08:48.583Z",
+              "WhenOpened": "2024-11-25T21:03:02.433Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FormGestionOL.cs",
-              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios OL\\FormGestionOL.cs",
-              "RelativeDocumentMoniker": "Presentacion\\Formularios OL\\FormGestionOL.cs",
-              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios OL\\FormGestionOL.cs",
-              "RelativeToolTip": "Presentacion\\Formularios OL\\FormGestionOL.cs",
-              "ViewState": "AgIAAJoAAAAAAAAAAAAcwCAAAAAqAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "FormSesiones.cs",
+              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormSesiones.cs",
+              "RelativeDocumentMoniker": "Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormSesiones.cs",
+              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormSesiones.cs",
+              "RelativeToolTip": "Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormSesiones.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAewIAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T20:33:57.923Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NegOfertasLaborales.cs",
-              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Negocio\\Sistema\\NegOfertasLaborales.cs",
-              "RelativeDocumentMoniker": "Negocio\\Sistema\\NegOfertasLaborales.cs",
-              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Negocio\\Sistema\\NegOfertasLaborales.cs",
-              "RelativeToolTip": "Negocio\\Sistema\\NegOfertasLaborales.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAA5wGMAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T19:34:43.656Z",
+              "WhenOpened": "2024-11-25T11:39:22.308Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "RepoEstados.cs",
-              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepositoriosSistema\\RepoEstados.cs",
-              "RelativeDocumentMoniker": "Datos\\RepositoriosSistema\\RepoEstados.cs",
-              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepositoriosSistema\\RepoEstados.cs",
-              "RelativeToolTip": "Datos\\RepositoriosSistema\\RepoEstados.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGIAAAAJAAAAAAAAAA==",
+              "Title": "FormGestionUsuarios.cs",
+              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormGestionUsuarios.cs",
+              "RelativeDocumentMoniker": "Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormGestionUsuarios.cs",
+              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormGestionUsuarios.cs",
+              "RelativeToolTip": "Presentacion\\Formularios de Seguridad\\Gestion de Usuarios\\FormGestionUsuarios.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T18:59:07.894Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RepoOfertasLaborales.cs",
-              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepositoriosSistema\\RepoOfertasLaborales.cs",
-              "RelativeDocumentMoniker": "Datos\\RepositoriosSistema\\RepoOfertasLaborales.cs",
-              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepositoriosSistema\\RepoOfertasLaborales.cs",
-              "RelativeToolTip": "Datos\\RepositoriosSistema\\RepoOfertasLaborales.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAANsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T13:41:36.834Z",
+              "WhenOpened": "2024-11-25T11:37:32.517Z",
               "EditorCaption": ""
             }
           ]

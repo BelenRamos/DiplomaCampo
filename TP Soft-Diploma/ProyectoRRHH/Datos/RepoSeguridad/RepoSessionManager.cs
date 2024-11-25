@@ -201,5 +201,33 @@ namespace Datos.RepoSeguridad
         {
             throw new NotImplementedException();
         }
+
+        public DataTable ObtenerReporteSesiones()
+        {
+            try
+            {
+                string consultaSQL = @"
+            SELECT 
+                SM.sessionId, 
+                U.nombreUsuario AS Usuario, 
+                SM.sessionLogIn AS InicioSesion, 
+                SM.sessionLogOut AS CierreSesion, 
+                CASE SM.isLoggedIn 
+                    WHEN 1 THEN 'Activo'
+                    ELSE 'Inactivo'
+                END AS EstadoSesion
+            FROM SessionManager SM
+            INNER JOIN Usuarios U ON SM.userId = U.idUsuario
+            ORDER BY SM.sessionLogIn DESC";
+
+                return ExecuteReader(consultaSQL);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error al obtener el reporte de sesiones: " + ex.Message);
+                throw;
+            }
+        }
+
     }
 }
