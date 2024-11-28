@@ -98,6 +98,13 @@ namespace Negocio
 
             return repositorio.AsignarPerfilAOferta(numeroOferta, idPerfil);
         }
+        //Reporte
+        public List<(string Estado, int Cantidad, int Porcentaje)> ObtenerPorcentajesPorEstado()
+        {
+            var repo = new RepoOfertasLaborales();
+            return repo.ObtenerOfertasPorEstadoConPorcentajes();
+        }
+
 
     }
 }

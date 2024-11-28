@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using Modelo;
 
 namespace Datos
@@ -353,11 +354,53 @@ namespace Datos
                 }
             }
         }
-
         public object ObtenerEstadosPorOfertas()
         {
             throw new NotImplementedException();
         }
+
+        //Reporte
+        public List<(string Estado, int Cantidad, int Porcentaje)> ObtenerOfertasPorEstadoConPorcentajes()
+        {
+            var resultados = new Dictionary<string, int>();
+            int totalOfertas = 0;
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand(
+                    @"SELECT E.designacion AS Estado, COUNT(O.numero) AS Cantidad
+              FROM Ofertas_Laborales O
+              INNER JOIN OL_Estados OE ON O.numero = OE.nro_OL
+              INNER JOIN Estados E ON OE.codigo_estado = E.codigo
+              GROUP BY E.designacion",
+                    connection);
+
+                connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string estado = reader["Estado"].ToString();
+                        int cantidad = Convert.ToInt32(reader["Cantidad"]);
+                        resultados[estado] = cantidad;
+                        totalOfertas += cantidad;
+                    }
+                }
+            }
+
+            // Calcular porcentajes
+            var resultadosConPorcentaje = resultados.Select(kvp =>
+                (Estado: kvp.Key,
+                 Cantidad: kvp.Value,
+                 Porcentaje: (int)Math.Round((kvp.Value / (double)totalOfertas) * 100))
+            ).ToList();
+
+            return resultadosConPorcentaje;
+        }
+
+
+
+
     }
 
 }

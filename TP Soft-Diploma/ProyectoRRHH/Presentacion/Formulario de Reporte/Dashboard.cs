@@ -9,9 +9,6 @@ namespace Presentacion.Formulario_de_Reporte
     {
         private NegClientes negClientes;
         private NegPostulantes negPostulantes;
-        private const int MaxClientes = 100; // Número máximo de clientes
-        private const int MaxPostulantes = 100; // Número máximo de postulantes
-
 
         public Dashboard()
         {
@@ -22,28 +19,39 @@ namespace Presentacion.Formulario_de_Reporte
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            ActualizarBarrasDeProgreso();
+            cbReportes.Items.Add("Clientes");
+            cbReportes.Items.Add("Postulantes");
+            cbReportes.Items.Add("Ofertas Laborales");
+            cbReportes.SelectedIndex = 0;
         }
 
-        private void ActualizarBarrasDeProgreso()
-        {
-            int porcentajeClientes = negClientes.ObtenerPorcentajeClientes(MaxClientes);
-            int porcentajePostulantes = negPostulantes.ObtenerPorcentajePostulantes(MaxPostulantes);
 
-            pbClientes.Value = Math.Min(porcentajeClientes, 100); // Asegurar que no se pase de 100
-            pbPostulantes.Value = Math.Min(porcentajeClientes, 100); // pbPostulantes.Value = Math.Min(porcentajePostulantes, 100); // Asegurar que no se pase de 100
-        }
-
-        private void btnGenerarReporteCliente_Click(object sender, EventArgs e)
+        private void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            FormReporteClientes formReporteClientes = new FormReporteClientes();
-            formReporteClientes.ShowDialog();
-        }
+            // Verificar la selección del ComboBox y abrir el formulario correspondiente
+            string opcionSeleccionada = cbReportes.SelectedItem.ToString();
 
-        private void btnGenerarReportePostulante_Click(object sender, EventArgs e)
-        {
-            FormReportePostulantes formReportePostulantes = new FormReportePostulantes();
-            formReportePostulantes.ShowDialog();
+            switch (opcionSeleccionada)
+            {
+                case "Clientes":
+                    FormReporteClientes formClientes = new FormReporteClientes();
+                    formClientes.ShowDialog();
+                    break;
+
+                case "Postulantes":
+                    FormReportePostulantes formPostulantes = new FormReportePostulantes();
+                    formPostulantes.ShowDialog();
+                    break;
+
+                case "Ofertas Laborales":
+                    FormReporteOfertasLaborales formOfertas = new FormReporteOfertasLaborales();
+                    formOfertas.ShowDialog();
+                    break;
+
+                default:
+                    MessageBox.Show("Seleccione una opción válida", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+            }
         }
     }
 }
