@@ -126,6 +126,7 @@
     <Compile Include="RepoSeguridad\Decorator\ISessionManager.cs" />
     <Compile Include="RepoSeguridad\Decorator\SessionManagerDecorator.cs" />
     <Compile Include="RepoSeguridad\RepoSessionManager.cs" />
+    <Compile Include="RepositoriosSistema\RepoAuditoriaPostulantes.cs" />
     <Compile Include="RepositoriosSistema\RepoClientes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoriosSistema\RepoClientesTels.cs" />

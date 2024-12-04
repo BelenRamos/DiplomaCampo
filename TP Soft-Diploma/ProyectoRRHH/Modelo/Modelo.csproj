@@ -163,6 +163,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sistema\AuditoriaPostulantes.cs" />
     <Compile Include="Sistema\Clientes.cs" />
     <Compile Include="Sistema\Clientes_Telefonos.cs" />
     <Compile Include="Sistema\Entrevistas.cs" />

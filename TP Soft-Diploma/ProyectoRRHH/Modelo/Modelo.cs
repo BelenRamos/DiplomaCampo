@@ -1,3 +1,4 @@
+using Modelo.Sistema;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -35,6 +36,8 @@ namespace Modelo
         public virtual DbSet<Turnos> Turnos { get; set; }
         public virtual DbSet<TurnosReuniones> TurnosReuniones { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<AuditoriaPostulantes> AuditoriaPostulantes { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -184,6 +187,23 @@ namespace Modelo
                 .WithRequired(e => e.Usuarios)
                 .HasForeignKey(e => e.userId)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AuditoriaPostulantes>()
+                .Property(e => e.accion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AuditoriaPostulantes>()
+                .Property(e => e.usuario)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AuditoriaPostulantes>()
+                .Property(e => e.valoresOriginales)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<AuditoriaPostulantes>()
+                .Property(e => e.valoresNuevos)
+                .IsUnicode(false);
+
         }
     }
 }

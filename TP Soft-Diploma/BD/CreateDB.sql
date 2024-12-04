@@ -219,4 +219,28 @@ CREATE TABLE Mensajes (
 --drop table Personas_Rol
 
 
+---------------------------------------------------------------------------
+
+
+--CREATE TABLE AuditoriaPostulantes (
+--    idAuditoria INT IDENTITY(1,1) PRIMARY KEY, -- Identificador único para cada registro de auditoría
+--    numeroPostulante INT NOT NULL,            -- Referencia al postulante auditado
+--    accion NVARCHAR(50) NOT NULL,             -- Tipo de acción (INSERT, UPDATE, DELETE)
+--    usuario NVARCHAR(100) NOT NULL,           -- Usuario que realizó la acción
+--    fechaHora DATETIME NOT NULL DEFAULT GETDATE(), -- Fecha y hora de la acción
+--    valoresOriginales NVARCHAR(MAX),          -- Valores originales en formato JSON (puede ser NULL)
+--    valoresNuevos NVARCHAR(MAX)               -- Valores nuevos en formato JSON (puede ser NULL)
+--);
+
+
+CREATE TABLE AuditoriaPostulantes (
+    idAuditoria INT IDENTITY(1,1) PRIMARY KEY, -- Identificador único para cada registro de auditoría
+    numeroPostulante INT NOT NULL,            -- Referencia al postulante auditado
+    accion NVARCHAR(50) NOT NULL,             -- Tipo de acción (INSERT, UPDATE, DELETE)
+    usuario NVARCHAR(100) NOT NULL,           -- Usuario que realizó la acción
+    fechaHora DATETIME NOT NULL DEFAULT GETDATE(), -- Fecha y hora de la acción
+    valoresOriginales NVARCHAR(MAX),          -- Valores originales en formato JSON (puede ser NULL)
+    valoresNuevos NVARCHAR(MAX),              -- Valores nuevos en formato JSON (puede ser NULL)
+    CONSTRAINT FK_AuditoriaPostulantes_Postulantes FOREIGN KEY (numeroPostulante) REFERENCES Postulantes(numero)
+);
 
