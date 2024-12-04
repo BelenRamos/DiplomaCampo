@@ -312,6 +312,34 @@ namespace Datos.RepoSeguridad
 
             return idGrupo;
         }
+
+        //////Cambio contraseña
+        public int CambiarContraseña(string emailUsuario, string nuevaContrasenia, string confirmaContrasenia)
+        {
+            // Verificar que la nueva contraseña y la confirmación coincidan
+            if (nuevaContrasenia != confirmaContrasenia)
+            {
+                throw new ArgumentException("Las contraseñas no coinciden.");
+            }
+
+            string consultaSQL = @"UPDATE Usuarios 
+                           SET contrasenia = @nuevaContrasenia 
+                           WHERE emailUsuario = @Email";
+
+            parametros.Clear();
+            parametros.Add(new SqlParameter("@Email", emailUsuario));
+            parametros.Add(new SqlParameter("@nuevaContrasenia", nuevaContrasenia));
+
+            try
+            {
+                return ExecuteNonQuery(consultaSQL); // Retorna el número de filas afectadas
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al cambiar la contraseña del usuario", ex);
+            }
+        }
+
     }
 
 }

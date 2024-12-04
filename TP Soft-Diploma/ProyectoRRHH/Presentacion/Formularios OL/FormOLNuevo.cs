@@ -75,42 +75,62 @@ namespace Presentacion.Formularios_OL
         {
             try
             {
+                // Crear una nueva oferta si no existe
                 if (ofertaActual == null)
                 {
-                    ofertaActual = new Ofertas_Laborales();
-                    ofertaActual.numero = negOfertasLaborales.ObtenerUltimoNumero() + 1;
+                    ofertaActual = new Ofertas_Laborales
+                    {
+                        numero = negOfertasLaborales.ObtenerUltimoNumero() + 1
+                    };
                 }
 
+                // Asignar valores a la oferta
                 ofertaActual.titulo = txtTitulo.Text;
                 ofertaActual.descripcion = txtDescripcion.Text;
                 ofertaActual.fechaCreacion = dtpCreacion.Value;
 
+                // Obtener cliente seleccionado
                 var clienteSeleccionado = (Clientes)cbClientes.SelectedItem;
-                List<int> clienteIds = new List<int> { clienteSeleccionado.id };
+                if (clienteSeleccionado == null)
+                {
+                    MessageBox.Show("Debe seleccionar un cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
+                int idCliente = clienteSeleccionado.id;
+
+                // Obtener los requisitos seleccionados
                 List<int> requisitoIds = new List<int>();
                 foreach (var item in clbRequisitos.CheckedItems)
                 {
                     requisitoIds.Add(((Requisitos)item).id);
                 }
 
-                // Llama al método para guardar la oferta
+                // Validar y guardar la oferta
                 if (EsAlta)
                 {
-                    negOfertasLaborales.AltaOfertaLaboral(ofertaActual, clienteIds, new List<int>(), new List<int>(), requisitoIds);
+                    // Llamar a la lógica de negocio para guardar
+                    negOfertasLaborales.AltaOfertaLaboral(ofertaActual, idCliente, requisitoIds);
                 }
                 else
                 {
                     negOfertasLaborales.ModificarOfertaLaboral(ofertaActual);
                 }
 
-                MessageBox.Show("Oferta Laboral guardada exitosamente.");
+                // Confirmar éxito
+                MessageBox.Show("Oferta Laboral guardada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+            catch (InvalidOperationException ex)
+            {
+                // Mensaje para validación fallida
+                MessageBox.Show(ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar la oferta laboral: " + ex.Message);
+                // Mensaje para errores inesperados
+                MessageBox.Show("Error al guardar la oferta laboral: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

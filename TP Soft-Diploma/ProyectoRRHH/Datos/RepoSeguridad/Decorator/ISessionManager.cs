@@ -11,5 +11,3 @@ namespace Datos.RepoSeguridad
         SessionManager ObtenerSession(int sessionId);
     }
 }
-
-

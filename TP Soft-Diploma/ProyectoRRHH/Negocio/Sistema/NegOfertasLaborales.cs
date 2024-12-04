@@ -35,12 +35,30 @@ namespace Negocio
             return repositorio.ObtenerOfertaLaboralPorNumero(numero);
         }
 
-        public void AltaOfertaLaboral(Ofertas_Laborales ofertaLaboral, List<int> clienteIds, List<int> estadoIds, List<int> postulanteIds, List<int> requisitoIds)
-        {
-            // Guardar la oferta laboral
-            repositorio.AgregarOfertaLaboral(ofertaLaboral);
+        //public void AltaOfertaLaboral(Ofertas_Laborales ofertaLaboral, List<int> clienteIds, List<int> estadoIds, List<int> postulanteIds, List<int> requisitoIds)
+        //{
+        //    // Guardar la oferta laboral
+        //    repositorio.AgregarOfertaLaboral(ofertaLaboral);
 
-            // Guardar los requisitos asociados a la oferta laboral
+        //    // Guardar los requisitos asociados a la oferta laboral
+        //    foreach (int requisitoId in requisitoIds)
+        //    {
+        //        NegRequisitos.ObtenerInstancia().AgregarRequisitoAOferta(ofertaLaboral.numero, requisitoId);
+        //    }
+        //}
+        public void AltaOfertaLaboral(Ofertas_Laborales ofertaLaboral, int idCliente, List<int> requisitoIds)
+        {
+            // Validar si el cliente ya tiene 3 o más ofertas laborales
+            int cantidadOfertas = repositorio.ContarOfertasPorCliente(idCliente);
+            if (cantidadOfertas >= 3)
+            {
+                throw new InvalidOperationException("El cliente ya tiene 3 ofertas laborales asignadas.");
+            }
+
+            // Agregar la oferta laboral y registrar la relación con el cliente
+            repositorio.AgregarOfertaLaboral(ofertaLaboral, idCliente);
+
+            // Asignar los requisitos asociados a la oferta laboral
             foreach (int requisitoId in requisitoIds)
             {
                 NegRequisitos.ObtenerInstancia().AgregarRequisitoAOferta(ofertaLaboral.numero, requisitoId);
@@ -104,6 +122,8 @@ namespace Negocio
             var repo = new RepoOfertasLaborales();
             return repo.ObtenerOfertasPorEstadoConPorcentajes();
         }
+
+
 
 
     }

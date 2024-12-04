@@ -1,7 +1,8 @@
-﻿using ClosedXML.Excel;
-using Negocio;
+﻿using Negocio;
+using OfficeOpenXml.Drawing.Chart;
+using OfficeOpenXml;
 using System;
-using System.Linq;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Presentacion.Formulario_de_Reporte
@@ -45,34 +46,46 @@ namespace Presentacion.Formulario_de_Reporte
         {
             try
             {
-                // Obtener los porcentajes por estado
-                var porcentajes = negOfertasLaborales.ObtenerPorcentajesPorEstado();
+                // Obtener los datos
                 var datos = negOfertasLaborales.ObtenerPorcentajesPorEstado();
 
-                using (var workbook = new XLWorkbook())
+                string filePath = @"C:\Reportes\ReporteOfertasLaborales.xlsx";
+
+                // Configuración para EPPlus
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                using (var package = new ExcelPackage())
                 {
-                    var worksheet = workbook.Worksheets.Add("Reporte Ofertas Laborales");
+                    var worksheet = package.Workbook.Worksheets.Add("Reporte Ofertas Laborales");
 
                     // Encabezados
-                    worksheet.Cell(1, 1).Value = "Estado";
-                    worksheet.Cell(1, 2).Value = "Cantidad";
-                    worksheet.Cell(1, 3).Value = "Porcentaje";
+                    worksheet.Cells[1, 1].Value = "Estado";
+                    worksheet.Cells[1, 2].Value = "Cantidad";
+                    worksheet.Cells[1, 3].Value = "Porcentaje";
 
                     int row = 2;
-                    
+
                     foreach (var (Estado, Cantidad, Porcentaje) in datos)
                     {
-                        worksheet.Cell(row, 1).Value = Estado;     
-                        worksheet.Cell(row, 2).Value = Cantidad;   
-                        worksheet.Cell(row, 3).Value = $"{Porcentaje}%"; 
+                        worksheet.Cells[row, 1].Value = Estado;
+                        worksheet.Cells[row, 2].Value = Cantidad;
+                        worksheet.Cells[row, 3].Value = Porcentaje / 100.0; 
+                        worksheet.Cells[row, 3].Style.Numberformat.Format = "0.00%";
                         row++;
                     }
 
-                    // Guardar archivo
-                    string filePath = @"C:\Reportes\ReporteOfertasLaborales.xlsx";
-                    workbook.SaveAs(filePath);
-                    Console.WriteLine($"Reporte generado en: {filePath}");
+                    // Agregar gráfico de torta
+                    var chart = worksheet.Drawings.AddChart("GráficoOfertasLaborales", eChartType.Pie) as ExcelPieChart;
+                    chart.Title.Text = "Distribución por Estados";
+                    chart.Series.Add($"B2:B{row - 1}", $"A2:A{row - 1}");
+                    chart.SetPosition(1, 0, 4, 0); // Ajustar posición del gráfico
+                    chart.SetSize(600, 400);       // Ajustar tamaño del gráfico
+
+                    // Guardar el archivo
+                    package.SaveAs(new FileInfo(filePath));
                 }
+
+                MessageBox.Show($"Reporte y gráfico generados en: {filePath}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

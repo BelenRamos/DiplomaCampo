@@ -1,5 +1,6 @@
 ﻿using Modelo;
 using Negocio;
+using Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios;
 using System;
 using System.Windows.Forms;
 
@@ -65,6 +66,12 @@ namespace Presentacion
         {
             base.OnFormClosing(e);
             Application.Exit();
+        }
+
+        private void btnRestablecerContra_Click(object sender, EventArgs e)
+        {
+            FormRestablecerContraseña formRestablecerContraseña=new FormRestablecerContraseña();
+            formRestablecerContraseña.Show();
         }
     }
 }

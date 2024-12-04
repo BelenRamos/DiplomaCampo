@@ -12,7 +12,6 @@ namespace Datos.Decorator
         {
             _decoratedSessionManager = decoratedSessionManager;
         }
-
         public Usuarios Login(string email, string pass)
         {
             var usuario = _decoratedSessionManager.Login(email, pass);
@@ -24,7 +23,6 @@ namespace Datos.Decorator
 
             return usuario;
         }
-
         public bool Logout(int userId)
         {
             var resultado = _decoratedSessionManager.Logout(userId);
@@ -36,7 +34,6 @@ namespace Datos.Decorator
 
             return resultado;
         }
-
         public bool ActualizarEstadoSesion(int sessionId, bool isLoggedIn)
         {
             var resultado = _decoratedSessionManager.ActualizarEstadoSesion(sessionId, isLoggedIn);
@@ -45,7 +42,6 @@ namespace Datos.Decorator
 
             return resultado;
         }
-
         public int GuardarSession(SessionManager session)
         {
             int sessionId = _decoratedSessionManager.GuardarSession(session);
@@ -54,7 +50,6 @@ namespace Datos.Decorator
 
             return sessionId;
         }
-
         public SessionManager ObtenerSession(int sessionId)
         {
             return _decoratedSessionManager.ObtenerSession(sessionId);

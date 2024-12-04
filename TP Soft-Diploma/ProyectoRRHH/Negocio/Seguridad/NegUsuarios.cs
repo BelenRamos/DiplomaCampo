@@ -158,5 +158,18 @@ namespace Negocio
         {
             return repositorio.ObtenerGrupoUsuario(idUsuario);
         }
+
+        public bool CambiarContraseña(string email, string nuevaContrasenia, string confirmaContrasenia)
+        {
+            // Validar parámetros básicos (puedes añadir más validaciones si es necesario)
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(nuevaContrasenia) || string.IsNullOrEmpty(confirmaContrasenia))
+            {
+                throw new ArgumentException("Todos los campos son obligatorios.");
+            }
+
+            // Llamar al método del repositorio
+            int filasAfectadas = repositorio.CambiarContraseña(email, nuevaContrasenia, confirmaContrasenia);
+            return filasAfectadas > 0; // Retorna true si se actualizó correctamente
+        }
     }
 }

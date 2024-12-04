@@ -36,7 +36,7 @@
             this.txtMailUsu = new System.Windows.Forms.TextBox();
             this.txtContra = new System.Windows.Forms.TextBox();
             this.btnIngresar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRestablecerContra = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -125,26 +125,27 @@
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
-            // button1
+            // btnRestablecerContra
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(199)))), ((int)(((byte)(30)))));
-            this.button1.Location = new System.Drawing.Point(69, 353);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(196, 40);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Restablecer Contraseña";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnRestablecerContra.FlatAppearance.BorderSize = 0;
+            this.btnRestablecerContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRestablecerContra.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRestablecerContra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(199)))), ((int)(((byte)(30)))));
+            this.btnRestablecerContra.Location = new System.Drawing.Point(69, 353);
+            this.btnRestablecerContra.Name = "btnRestablecerContra";
+            this.btnRestablecerContra.Size = new System.Drawing.Size(196, 40);
+            this.btnRestablecerContra.TabIndex = 12;
+            this.btnRestablecerContra.Text = "Restablecer Contraseña";
+            this.btnRestablecerContra.UseVisualStyleBackColor = true;
+            this.btnRestablecerContra.Click += new System.EventHandler(this.btnRestablecerContra_Click);
             // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(107)))), ((int)(((byte)(122)))));
-            this.ClientSize = new System.Drawing.Size(333, 359);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(333, 398);
+            this.Controls.Add(this.btnRestablecerContra);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.txtContra);
             this.Controls.Add(this.txtMailUsu);
@@ -171,6 +172,6 @@
         private System.Windows.Forms.TextBox txtMailUsu;
         private System.Windows.Forms.TextBox txtContra;
         private System.Windows.Forms.Button btnIngresar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRestablecerContra;
     }
 }

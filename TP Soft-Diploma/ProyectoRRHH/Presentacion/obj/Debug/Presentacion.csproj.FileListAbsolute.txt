@@ -2,7 +2,6 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Presentacion.exe
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Presentacion.pdb
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\BouncyCastle.Cryptography.dll
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\ClosedXML.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\ClosedXML.Parser.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Datos.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\DocumentFormat.OpenXml.dll
@@ -45,8 +44,6 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Negocio.pdb
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Negocio.dll.config
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\BouncyCastle.Cryptography.xml
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\ClosedXML.pdb
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\ClosedXML.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\ClosedXML.Parser.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\DocumentFormat.OpenXml.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\DocumentFormat.OpenXml.Framework.xml
@@ -115,3 +112,13 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presenta.BC77CD05.Up2Date
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.exe
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.pdb
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.dll
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Drawing.Common.dll
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.xml
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Drawing.Common.pdb
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Drawing.Common.xml
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios.FormRestablecerContraseña.resources

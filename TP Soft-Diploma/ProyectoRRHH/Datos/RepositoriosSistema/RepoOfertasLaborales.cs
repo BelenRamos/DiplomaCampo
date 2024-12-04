@@ -75,16 +75,76 @@ namespace Datos
             return ofertaLaboral;
         }
 
-        public void AgregarOfertaLaboral(Ofertas_Laborales ofertaLaboral)
+        //public void AgregarOfertaLaboral(Ofertas_Laborales ofertaLaboral)
+        //{
+        //    using (var connection = new SqlConnection(connectionString))
+        //    {
+        //        connection.Open(); // Abre la conexión antes de cualquier operación
+
+        //        using (var transaction = connection.BeginTransaction())
+        //        {
+        //            try
+        //            {
+        //                // Insertar la oferta laboral
+        //                var command = new SqlCommand(
+        //                    @"INSERT INTO Ofertas_Laborales (numero, titulo, descripcion, fechaCreacion) 
+        //              VALUES (@numero, @titulo, @descripcion, @fechaCreacion)",
+        //                    connection,
+        //                    transaction);
+
+        //                command.Parameters.AddWithValue("@numero", ofertaLaboral.numero);
+        //                command.Parameters.AddWithValue("@titulo", ofertaLaboral.titulo ?? (object)DBNull.Value);
+        //                command.Parameters.AddWithValue("@descripcion", ofertaLaboral.descripcion ?? (object)DBNull.Value);
+        //                command.Parameters.AddWithValue("@fechaCreacion", ofertaLaboral.fechaCreacion ?? DateTime.Now);
+
+        //                command.ExecuteNonQuery();
+
+        //                // Insertar el estado inicial (abierta)
+        //                var commandEstado = new SqlCommand(
+        //                    @"INSERT INTO OL_Estados (nro_OL, codigo_estado) 
+        //              VALUES (@nro_OL, 2);",
+        //                    connection,
+        //                    transaction);
+
+        //                commandEstado.Parameters.AddWithValue("@nro_OL", ofertaLaboral.numero);
+        //                commandEstado.ExecuteNonQuery();
+
+        //                // Asignar requisitos
+        //                foreach (var requisitoId in requisitos)
+        //                {
+        //                    var repoRequisitos = new RepoRequisitos();
+        //                    repoRequisitos.AgregarRequisitoAOferta(ofertaLaboral.numero, requisitoId);
+        //                }
+
+
+        //                transaction.Commit();
+        //            }
+        //            catch
+        //            {
+        //                transaction.Rollback();
+        //                throw;
+        //            }
+        //        }
+        //    }
+        //}
+
+        public void AgregarOfertaLaboral(Ofertas_Laborales ofertaLaboral, int idCliente)
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                connection.Open(); // Abre la conexión antes de cualquier operación
+                connection.Open();
 
                 using (var transaction = connection.BeginTransaction())
                 {
                     try
                     {
+                        // Validar si el cliente tiene menos de 3 ofertas
+                        var cantidadOfertas = ContarOfertasPorCliente(idCliente);
+                        if (cantidadOfertas >= 3)
+                        {
+                            throw new InvalidOperationException("El cliente ya tiene 3 ofertas laborales asignadas.");
+                        }
+
                         // Insertar la oferta laboral
                         var command = new SqlCommand(
                             @"INSERT INTO Ofertas_Laborales (numero, titulo, descripcion, fechaCreacion) 
@@ -99,6 +159,18 @@ namespace Datos
 
                         command.ExecuteNonQuery();
 
+                        // Insertar la relación en OL_Clientes
+                        var commandCliente = new SqlCommand(
+                            @"INSERT INTO OL_Clientes (nro_OL, id_cliente) 
+                      VALUES (@nro_OL, @idCliente)",
+                            connection,
+                            transaction);
+
+                        commandCliente.Parameters.AddWithValue("@nro_OL", ofertaLaboral.numero);
+                        commandCliente.Parameters.AddWithValue("@idCliente", idCliente);
+
+                        commandCliente.ExecuteNonQuery();
+
                         // Insertar el estado inicial (abierta)
                         var commandEstado = new SqlCommand(
                             @"INSERT INTO OL_Estados (nro_OL, codigo_estado) 
@@ -109,20 +181,19 @@ namespace Datos
                         commandEstado.Parameters.AddWithValue("@nro_OL", ofertaLaboral.numero);
                         commandEstado.ExecuteNonQuery();
 
-                        // Asignar requisitos
+                        // Asignar requisitos (si aplica)
                         foreach (var requisitoId in requisitos)
                         {
                             var repoRequisitos = new RepoRequisitos();
                             repoRequisitos.AgregarRequisitoAOferta(ofertaLaboral.numero, requisitoId);
                         }
 
-
-                        transaction.Commit(); 
+                        transaction.Commit();
                     }
                     catch
                     {
-                        transaction.Rollback(); 
-                        throw; 
+                        transaction.Rollback();
+                        throw;
                     }
                 }
             }
@@ -144,7 +215,6 @@ namespace Datos
                 command.ExecuteNonQuery();
             }
         }
-
         public void EliminarOfertaLaboral(int ofertaLaboralId)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -155,6 +225,14 @@ namespace Datos
                 {
                     try
                     {
+                        // Eliminar de OL_Clientes
+                        string consultaEliminarClientes = "DELETE FROM OL_Clientes WHERE nro_OL = @OfertaLaboralId";
+                        using (var commandClientes = new SqlCommand(consultaEliminarClientes, connection, transaction))
+                        {
+                            commandClientes.Parameters.AddWithValue("@OfertaLaboralId", ofertaLaboralId);
+                            commandClientes.ExecuteNonQuery();
+                        }
+
                         // Eliminar de OL_Estados
                         string consultaEliminarEstados = "DELETE FROM OL_Estados WHERE nro_OL = @OfertaLaboralId";
                         using (var commandEstados = new SqlCommand(consultaEliminarEstados, connection, transaction))
@@ -181,6 +259,7 @@ namespace Datos
                 }
             }
         }
+
         public int ObtenerUltimoNumero()
         {
             string consultaSQL = "SELECT ISNULL(MAX(numero), 0) FROM Ofertas_Laborales";
@@ -334,6 +413,20 @@ namespace Datos
             ).ToList();
 
             return resultadosConPorcentaje;
+        }
+        public int ContarOfertasPorCliente(int idCliente)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand(
+                    "SELECT COUNT(*) FROM OL_Clientes WHERE id_cliente = @idCliente",
+                    connection
+                );
+                command.Parameters.AddWithValue("@idCliente", idCliente);
+
+                connection.Open();
+                return (int)command.ExecuteScalar();
+            }
         }
 
 
