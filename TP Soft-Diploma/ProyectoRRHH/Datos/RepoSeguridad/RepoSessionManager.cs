@@ -11,7 +11,6 @@ namespace Datos.RepoSeguridad
         private string connectionString;
         public RepoSessionManager()
         {
-            // Obtener la cadena de conexión desde la configuración
             connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
         }
         public Usuarios Login(string email, string pass)
@@ -49,27 +48,9 @@ namespace Datos.RepoSeguridad
             }
         }
 
-        //public bool Logout(int userId)
-        //{
-        //    try
-        //    {
-        //        string consultaSQL = "UPDATE SessionManager SET isLoggedIn = 0, sessionLogOut = GETDATE() WHERE userId = @userId";
-        //        parametros.Add(new SqlParameter("@userId", userId));
-
-        //        int filasAfectadas = ExecuteNonQuery(consultaSQL);
-
-        //        return filasAfectadas > 0;
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        Console.WriteLine("Error al cerrar sesión: " + ex.Message);
-        //        throw;
-        //    }
-        //}
-
         public bool Logout(int sessionId)
         {
-            parametros.Clear(); // Limpia antes de agregar nuevos parámetros
+            parametros.Clear();
             try
             {
                 string consultaSQL = "UPDATE SessionManager SET isLoggedIn = 0, sessionLogOut = GETDATE() WHERE sessionId = @sessionId";
@@ -83,8 +64,6 @@ namespace Datos.RepoSeguridad
                 throw;
             }
         }
-
-
 
         public bool ActualizarEstadoSesion(int sessionId, bool isLoggedIn)
         {
@@ -130,8 +109,6 @@ namespace Datos.RepoSeguridad
             }
         }
 
-
-
         private object ExecuteScalar(string consultaSQL)
         {
             using (SqlConnection conexion = new SqlConnection(connectionString))
@@ -141,13 +118,10 @@ namespace Datos.RepoSeguridad
                     try
                     {
                         conexion.Open();
-                        // Asigna los parámetros al comando
                         foreach (var param in parametros)
                         {
                             comando.Parameters.Add(param);
                         }
-
-                        // Ejecuta la consulta y devuelve el resultado
                         return comando.ExecuteScalar();
                     }
                     catch (SqlException ex)
@@ -157,12 +131,11 @@ namespace Datos.RepoSeguridad
                     }
                     finally
                     {
-                        parametros.Clear(); // Limpiamos los parámetros después de cada ejecución
+                        parametros.Clear();
                     }
                 }
             }
         }
-
 
         public SessionManager ObtenerSession(int sessionId)
         {
@@ -201,7 +174,6 @@ namespace Datos.RepoSeguridad
         {
             throw new NotImplementedException();
         }
-
         public DataTable ObtenerReporteSesiones()
         {
             try
@@ -228,6 +200,5 @@ namespace Datos.RepoSeguridad
                 throw;
             }
         }
-
     }
 }

@@ -10,7 +10,7 @@ namespace Datos
     public class RepoOfertasLaborales
     {
         private string connectionString;
-        private List<int> requisitos = new List<int>();  // Inicializando como una lista vacía
+        private List<int> requisitos = new List<int>();
         public RepoOfertasLaborales()
         {
             connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
@@ -75,59 +75,6 @@ namespace Datos
             return ofertaLaboral;
         }
 
-        //public void AgregarOfertaLaboral(Ofertas_Laborales ofertaLaboral)
-        //{
-        //    using (var connection = new SqlConnection(connectionString))
-        //    {
-        //        connection.Open(); // Abre la conexión antes de cualquier operación
-
-        //        using (var transaction = connection.BeginTransaction())
-        //        {
-        //            try
-        //            {
-        //                // Insertar la oferta laboral
-        //                var command = new SqlCommand(
-        //                    @"INSERT INTO Ofertas_Laborales (numero, titulo, descripcion, fechaCreacion) 
-        //              VALUES (@numero, @titulo, @descripcion, @fechaCreacion)",
-        //                    connection,
-        //                    transaction);
-
-        //                command.Parameters.AddWithValue("@numero", ofertaLaboral.numero);
-        //                command.Parameters.AddWithValue("@titulo", ofertaLaboral.titulo ?? (object)DBNull.Value);
-        //                command.Parameters.AddWithValue("@descripcion", ofertaLaboral.descripcion ?? (object)DBNull.Value);
-        //                command.Parameters.AddWithValue("@fechaCreacion", ofertaLaboral.fechaCreacion ?? DateTime.Now);
-
-        //                command.ExecuteNonQuery();
-
-        //                // Insertar el estado inicial (abierta)
-        //                var commandEstado = new SqlCommand(
-        //                    @"INSERT INTO OL_Estados (nro_OL, codigo_estado) 
-        //              VALUES (@nro_OL, 2);",
-        //                    connection,
-        //                    transaction);
-
-        //                commandEstado.Parameters.AddWithValue("@nro_OL", ofertaLaboral.numero);
-        //                commandEstado.ExecuteNonQuery();
-
-        //                // Asignar requisitos
-        //                foreach (var requisitoId in requisitos)
-        //                {
-        //                    var repoRequisitos = new RepoRequisitos();
-        //                    repoRequisitos.AgregarRequisitoAOferta(ofertaLaboral.numero, requisitoId);
-        //                }
-
-
-        //                transaction.Commit();
-        //            }
-        //            catch
-        //            {
-        //                transaction.Rollback();
-        //                throw;
-        //            }
-        //        }
-        //    }
-        //}
-
         public void AgregarOfertaLaboral(Ofertas_Laborales ofertaLaboral, int idCliente)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -145,7 +92,6 @@ namespace Datos
                             throw new InvalidOperationException("El cliente ya tiene 3 ofertas laborales asignadas.");
                         }
 
-                        // Insertar la oferta laboral
                         var command = new SqlCommand(
                             @"INSERT INTO Ofertas_Laborales (numero, titulo, descripcion, fechaCreacion) 
                       VALUES (@numero, @titulo, @descripcion, @fechaCreacion)",
@@ -219,7 +165,7 @@ namespace Datos
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                connection.Open(); // Abre la conexión antes de las operaciones
+                connection.Open();
 
                 using (var transaction = connection.BeginTransaction())
                 {
@@ -259,7 +205,6 @@ namespace Datos
                 }
             }
         }
-
         public int ObtenerUltimoNumero()
         {
             string consultaSQL = "SELECT ISNULL(MAX(numero), 0) FROM Ofertas_Laborales";
@@ -339,7 +284,7 @@ namespace Datos
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open(); // Abre la conexión al inicio
+                connection.Open();
                 using (SqlTransaction transaction = connection.BeginTransaction())
                 {
                     try
@@ -428,10 +373,6 @@ namespace Datos
                 return (int)command.ExecuteScalar();
             }
         }
-
-
-
-
     }
 
 }

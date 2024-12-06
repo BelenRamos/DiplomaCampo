@@ -75,6 +75,25 @@ namespace Presentacion.Formularios_OL
         {
             try
             {
+                // Validar que los campos de título y descripción no estén vacíos
+                if (string.IsNullOrWhiteSpace(txtTitulo.Text))
+                {
+                    MessageBox.Show("El campo de título no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
+                {
+                    MessageBox.Show("El campo de descripción no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                // Validar que haya al menos un requisito seleccionado
+                if (clbRequisitos.CheckedItems.Count == 0)
+                {
+                    MessageBox.Show("Debe seleccionar al menos un requisito.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 // Crear una nueva oferta si no existe
                 if (ofertaActual == null)
                 {
@@ -87,7 +106,7 @@ namespace Presentacion.Formularios_OL
                 // Asignar valores a la oferta
                 ofertaActual.titulo = txtTitulo.Text;
                 ofertaActual.descripcion = txtDescripcion.Text;
-                ofertaActual.fechaCreacion = dtpCreacion.Value;
+                
 
                 // Obtener cliente seleccionado
                 var clienteSeleccionado = (Clientes)cbClientes.SelectedItem;
@@ -106,10 +125,8 @@ namespace Presentacion.Formularios_OL
                     requisitoIds.Add(((Requisitos)item).id);
                 }
 
-                // Validar y guardar la oferta
                 if (EsAlta)
                 {
-                    // Llamar a la lógica de negocio para guardar
                     negOfertasLaborales.AltaOfertaLaboral(ofertaActual, idCliente, requisitoIds);
                 }
                 else
@@ -117,19 +134,16 @@ namespace Presentacion.Formularios_OL
                     negOfertasLaborales.ModificarOfertaLaboral(ofertaActual);
                 }
 
-                // Confirmar éxito
                 MessageBox.Show("Oferta Laboral guardada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (InvalidOperationException ex)
             {
-                // Mensaje para validación fallida
                 MessageBox.Show(ex.Message, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                // Mensaje para errores inesperados
                 MessageBox.Show("Error al guardar la oferta laboral: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

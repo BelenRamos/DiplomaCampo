@@ -36,8 +36,6 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbClientes = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtpCreacion = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.clbRequisitos = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
@@ -47,7 +45,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.RosyBrown;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancelar.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
-            this.btnCancelar.Location = new System.Drawing.Point(156, 425);
+            this.btnCancelar.Location = new System.Drawing.Point(154, 372);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(88, 31);
             this.btnCancelar.TabIndex = 3;
@@ -60,7 +58,7 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnGuardar.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.btnGuardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(15)))), ((int)(((byte)(20)))));
-            this.btnGuardar.Location = new System.Drawing.Point(63, 425);
+            this.btnGuardar.Location = new System.Drawing.Point(61, 372);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(87, 31);
             this.btnGuardar.TabIndex = 2;
@@ -124,30 +122,12 @@
             this.cbClientes.Size = new System.Drawing.Size(147, 21);
             this.cbClientes.TabIndex = 9;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(15)))), ((int)(((byte)(20)))));
-            this.label4.Location = new System.Drawing.Point(12, 226);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(124, 20);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Fecha de Creacion";
-            // 
-            // dtpCreacion
-            // 
-            this.dtpCreacion.Location = new System.Drawing.Point(16, 249);
-            this.dtpCreacion.Name = "dtpCreacion";
-            this.dtpCreacion.Size = new System.Drawing.Size(200, 20);
-            this.dtpCreacion.TabIndex = 11;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(15)))), ((int)(((byte)(20)))));
-            this.label5.Location = new System.Drawing.Point(12, 284);
+            this.label5.Location = new System.Drawing.Point(17, 236);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(146, 20);
             this.label5.TabIndex = 12;
@@ -156,7 +136,7 @@
             // clbRequisitos
             // 
             this.clbRequisitos.FormattingEnabled = true;
-            this.clbRequisitos.Location = new System.Drawing.Point(16, 307);
+            this.clbRequisitos.Location = new System.Drawing.Point(16, 259);
             this.clbRequisitos.Name = "clbRequisitos";
             this.clbRequisitos.Size = new System.Drawing.Size(277, 94);
             this.clbRequisitos.TabIndex = 13;
@@ -166,11 +146,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(107)))), ((int)(((byte)(122)))));
-            this.ClientSize = new System.Drawing.Size(305, 465);
+            this.ClientSize = new System.Drawing.Size(305, 421);
             this.Controls.Add(this.clbRequisitos);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.dtpCreacion);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.cbClientes);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtDescripcion);
@@ -197,8 +175,6 @@
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbClientes;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dtpCreacion;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckedListBox clbRequisitos;
     }

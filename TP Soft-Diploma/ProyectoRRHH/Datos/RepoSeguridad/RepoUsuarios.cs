@@ -12,14 +12,13 @@ namespace Datos.RepoSeguridad
         private string connectionString;
         public RepoUsuarios()
         {
-            // Obtener la cadena de conexión desde la configuración
             connectionString = ConfigurationManager.ConnectionStrings["Modelo"].ConnectionString;
         }
 
         public List<Usuarios> ObtenerTodosLosUsuarios()
         {
             List<Usuarios> usuarios = new List<Usuarios>();
-            string consultaSQL = "SELECT * FROM Usuarios"; // Ajusta esto según el nombre de tu tabla de usuarios
+            string consultaSQL = "SELECT * FROM Usuarios"; 
 
             try
             {
@@ -31,7 +30,6 @@ namespace Datos.RepoSeguridad
                 Console.WriteLine("Error al obtener todos los usuarios: " + ex.Message);
                 throw;
             }
-
             return usuarios;
         }
 
@@ -55,7 +53,7 @@ namespace Datos.RepoSeguridad
                 }
                 else
                 {
-                    return null; // Retorna null si no se encuentra el usuario
+                    return null; // devuelve null si no se encuentra el usuario
                 }
             }
             catch (Exception ex)
@@ -149,8 +147,6 @@ namespace Datos.RepoSeguridad
                 throw new Exception("Error al modificar al usuario", ex);
             }
         }
-
-
         public int BajaUsuario(int idUsuario)
         {
             string consultaSQL = "DELETE FROM Usuarios WHERE idUsuario = @idUsuario";
@@ -210,7 +206,6 @@ namespace Datos.RepoSeguridad
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones
                 throw new Exception("Error al dar de alta al usuario", ex);
             }
         }

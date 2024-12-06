@@ -109,8 +109,6 @@ namespace Negocio
                 throw new Exception("Error al modificar el usuario: " + ex.Message);
             }
         }
-
-
         public int BajaUsuario(int idUsuario)
         {
             try
@@ -118,7 +116,6 @@ namespace Negocio
                 int resultado = repositorio.BajaUsuario(idUsuario);
                 if (resultado > 0)
                 {
-                    // Remover de la lista local si la eliminación fue exitosa
                     Usuarios usuarioExistente = usuarios.Find(u => u.idUsuario == idUsuario);
                     if (usuarioExistente != null)
                     {
@@ -161,15 +158,13 @@ namespace Negocio
 
         public bool CambiarContraseña(string email, string nuevaContrasenia, string confirmaContrasenia)
         {
-            // Validar parámetros básicos (puedes añadir más validaciones si es necesario)
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(nuevaContrasenia) || string.IsNullOrEmpty(confirmaContrasenia))
             {
                 throw new ArgumentException("Todos los campos son obligatorios.");
             }
 
-            // Llamar al método del repositorio
             int filasAfectadas = repositorio.CambiarContraseña(email, nuevaContrasenia, confirmaContrasenia);
-            return filasAfectadas > 0; // Retorna true si se actualizó correctamente
+            return filasAfectadas > 0;
         }
     }
 }

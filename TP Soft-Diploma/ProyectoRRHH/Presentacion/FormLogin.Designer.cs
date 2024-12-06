@@ -131,9 +131,9 @@
             this.btnRestablecerContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestablecerContra.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRestablecerContra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(199)))), ((int)(((byte)(30)))));
-            this.btnRestablecerContra.Location = new System.Drawing.Point(69, 353);
+            this.btnRestablecerContra.Location = new System.Drawing.Point(69, 359);
             this.btnRestablecerContra.Name = "btnRestablecerContra";
-            this.btnRestablecerContra.Size = new System.Drawing.Size(196, 40);
+            this.btnRestablecerContra.Size = new System.Drawing.Size(196, 27);
             this.btnRestablecerContra.TabIndex = 12;
             this.btnRestablecerContra.Text = "Restablecer Contraseña";
             this.btnRestablecerContra.UseVisualStyleBackColor = true;
