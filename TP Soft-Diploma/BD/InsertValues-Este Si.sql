@@ -282,5 +282,13 @@ Go
 --SET contenido = 'nuevo_valor_del_contenido'
 --WHERE numero = numero_del_mensaje_a_actualizar;
 
-
-
+---------------------------------------------
+INSERT INTO Mensajes (numero, asunto, contenido, emisor, receptor)
+VALUES
+(5, 'Comunicado', 'Se busca Desarrollador Back-end con experiencia en PHP y Python.', 2, 4),
+(6, 'Actualización', 'El proceso de selección para Analista de Datos está en revisión.', 3, 1),
+(7, 'Comunicado', 'Tenemos un puesto de Diseñador UI/UX.', 4, 2),
+(8, 'Aviso', 'Por favor, necesitamos una reunion para revisar los requisitos', 1, 3),
+(9, 'Comunicado', 'Buscamos un analista de Genexus, con experiencia en SQL', 3, 2),
+(10, 'Consulta', 'La vacante para Desarrollador Back-end ha sido ocupada.', 4, 1);
+GO

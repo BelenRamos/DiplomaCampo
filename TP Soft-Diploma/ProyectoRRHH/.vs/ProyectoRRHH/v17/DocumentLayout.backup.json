@@ -3,11 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\datos\\reposeguridad\\decorator\\sessionmanagerdecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|solutionrelative:datos\\reposeguridad\\decorator\\sessionmanagerdecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\datos\\repositoriossistema\\repoauditoriapostulantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|solutionrelative:datos\\repositoriossistema\\repoauditoriapostulantes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\datos\\reposeguridad\\decorator\\isessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|solutionrelative:datos\\reposeguridad\\decorator\\isessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\datos\\reposeguridad\\reposessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAB220F6-9A80-4949-B8FF-02BA51488CCC}|Datos\\Datos.csproj|solutionrelative:datos\\reposeguridad\\reposessionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\presentacion\\formularios ol\\formolnuevo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B2F7DAC-C3C4-4118-9D9D-823D76D7F9FD}|Presentacion\\Presentacion.csproj|solutionrelative:presentacion\\formularios ol\\formolnuevo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E842AF7E-445E-4175-9623-9FBB36516ACD}|Negocio\\Negocio.csproj|c:\\users\\belen\\onedrive\\documentos\\ing software \u0026 diploma\\tp soft-diploma\\proyectorrhh\\negocio\\sistema\\negofertaslaborales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E842AF7E-445E-4175-9623-9FBB36516ACD}|Negocio\\Negocio.csproj|C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\negocio\\sistema\\negofertaslaborales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E842AF7E-445E-4175-9623-9FBB36516ACD}|Negocio\\Negocio.csproj|solutionrelative:negocio\\sistema\\negofertaslaborales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -26,7 +42,56 @@
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ISessionManager.cs",
+              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepoSeguridad\\Decorator\\ISessionManager.cs",
+              "RelativeDocumentMoniker": "Datos\\RepoSeguridad\\Decorator\\ISessionManager.cs",
+              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepoSeguridad\\Decorator\\ISessionManager.cs",
+              "RelativeToolTip": "Datos\\RepoSeguridad\\Decorator\\ISessionManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T22:16:43.131Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "RepoAuditoriaPostulantes.cs",
+              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepositoriosSistema\\RepoAuditoriaPostulantes.cs",
+              "RelativeDocumentMoniker": "Datos\\RepositoriosSistema\\RepoAuditoriaPostulantes.cs",
+              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepositoriosSistema\\RepoAuditoriaPostulantes.cs",
+              "RelativeToolTip": "Datos\\RepositoriosSistema\\RepoAuditoriaPostulantes.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAiwEcAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T21:34:28.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SessionManagerDecorator.cs",
+              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepoSeguridad\\Decorator\\SessionManagerDecorator.cs",
+              "RelativeDocumentMoniker": "Datos\\RepoSeguridad\\Decorator\\SessionManagerDecorator.cs",
+              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepoSeguridad\\Decorator\\SessionManagerDecorator.cs",
+              "RelativeToolTip": "Datos\\RepoSeguridad\\Decorator\\SessionManagerDecorator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T12:00:53.357Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RepoSessionManager.cs",
+              "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepoSeguridad\\RepoSessionManager.cs",
+              "RelativeDocumentMoniker": "Datos\\RepoSeguridad\\RepoSessionManager.cs",
+              "ToolTip": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepoSeguridad\\RepoSessionManager.cs",
+              "RelativeToolTip": "Datos\\RepoSeguridad\\RepoSessionManager.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T12:01:46.751Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "NegOfertasLaborales.cs",
               "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Negocio\\Sistema\\NegOfertasLaborales.cs",
               "RelativeDocumentMoniker": "Negocio\\Sistema\\NegOfertasLaborales.cs",
@@ -34,12 +99,11 @@
               "RelativeToolTip": "Negocio\\Sistema\\NegOfertasLaborales.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAAAD8AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T21:26:25.851Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-05T21:26:25.851Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "RepoOfertasLaborales.cs",
               "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Datos\\RepositoriosSistema\\RepoOfertasLaborales.cs",
               "RelativeDocumentMoniker": "Datos\\RepositoriosSistema\\RepoOfertasLaborales.cs",
@@ -51,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "FormOLNuevo.cs",
               "DocumentMoniker": "C:\\Users\\belen\\OneDrive\\Documentos\\Ing Software \u0026 Diploma\\TP Soft-Diploma\\ProyectoRRHH\\Presentacion\\Formularios OL\\FormOLNuevo.cs",
               "RelativeDocumentMoniker": "Presentacion\\Formularios OL\\FormOLNuevo.cs",
@@ -59,8 +123,7 @@
               "RelativeToolTip": "Presentacion\\Formularios OL\\FormOLNuevo.cs",
               "ViewState": "AgIAAGMAAAAAAAAAAAAhwGwAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T21:01:03.04Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-05T21:01:03.04Z"
             }
           ]
         },
