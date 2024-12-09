@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -93,7 +94,6 @@ namespace Datos.RepoSeguridad
                 object resultadoId = ExecuteScalar(consultaObtenerMaxId);
                 int nuevoSessionId = Convert.ToInt32(resultadoId);
 
-                // Insertar la nueva sesión con el sessionId generado manualmente
                 string consultaSQL = "INSERT INTO SessionManager (sessionId, userId, sessionLogIn, isLoggedIn) VALUES (@sessionId, @userId, GETDATE(), 1)";
                 parametros.Add(new SqlParameter("@sessionId", nuevoSessionId));
                 parametros.Add(new SqlParameter("@userId", session.userId));
@@ -174,31 +174,79 @@ namespace Datos.RepoSeguridad
         {
             throw new NotImplementedException();
         }
-        public DataTable ObtenerReporteSesiones()
+
+        public DataTable ObtenerReporteSesiones(DateTime fechaDesde, DateTime fechaHasta)
         {
+
             try
             {
                 string consultaSQL = @"
-            SELECT 
-                SM.sessionId, 
-                U.nombreUsuario AS Usuario, 
-                SM.sessionLogIn AS InicioSesion, 
-                SM.sessionLogOut AS CierreSesion, 
-                CASE SM.isLoggedIn 
-                    WHEN 1 THEN 'Activo'
-                    ELSE 'Inactivo'
-                END AS EstadoSesion
-            FROM SessionManager SM
-            INNER JOIN Usuarios U ON SM.userId = U.idUsuario
-            ORDER BY SM.sessionLogIn DESC";
+                SELECT 
+                    SM.sessionId, 
+                    U.nombreUsuario AS Usuario, 
+                    SM.sessionLogIn AS InicioSesion, 
+                    SM.sessionLogOut AS CierreSesion, 
+                    CASE SM.isLoggedIn 
+                        WHEN 1 THEN 'Activo'
+                        ELSE 'Inactivo'
+                    END AS EstadoSesion
+                FROM SessionManager SM
+                INNER JOIN Usuarios U ON SM.userId = U.idUsuario
+                WHERE SM.sessionLogIn >= @FechaDesde AND SM.sessionLogOut < @FechaHasta
+                ORDER BY SM.sessionLogIn DESC";
 
-                return ExecuteReader(consultaSQL);
+                // Crear un diccionario con los parámetros
+                var parametros = new Dictionary<string, object>
+                {
+                    { "@FechaDesde", fechaDesde },
+                    { "@FechaHasta", fechaHasta.AddDays(1)}
+                };
+
+                // Llamar a ExecuteReader con la consulta y los parámetros
+                return ExecuteReader(consultaSQL, parametros);
             }
             catch (SqlException ex)
             {
                 Console.WriteLine("Error al obtener el reporte de sesiones: " + ex.Message);
                 throw;
             }
+        }
+
+        private DataTable ExecuteReader(string consultaSQL, Dictionary<string, object> parametros)
+        {
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(connectionString))
+                {
+                    conexion.Open();
+
+                    using (SqlCommand comando = new SqlCommand(consultaSQL, conexion))
+                    {
+                        // Agregar parámetros a la consulta
+                        if (parametros != null)
+                        {
+                            foreach (var parametro in parametros)
+                            {
+                                comando.Parameters.AddWithValue(parametro.Key, parametro.Value);
+                            }
+                        }
+
+                        using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+                        {
+                            adaptador.Fill(tabla);
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error al ejecutar ExecuteReader: " + ex.Message);
+                throw;
+            }
+
+            return tabla;
         }
     }
 }

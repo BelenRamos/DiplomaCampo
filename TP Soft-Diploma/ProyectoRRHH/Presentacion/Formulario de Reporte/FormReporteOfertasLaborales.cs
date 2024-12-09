@@ -46,7 +46,6 @@ namespace Presentacion.Formulario_de_Reporte
         {
             try
             {
-                // Obtener los datos
                 var datos = negOfertasLaborales.ObtenerPorcentajesPorEstado();
 
                 string filePath = @"C:\Reportes\ReporteOfertasLaborales.xlsx";
@@ -78,14 +77,13 @@ namespace Presentacion.Formulario_de_Reporte
                     var chart = worksheet.Drawings.AddChart("GráficoOfertasLaborales", eChartType.Pie) as ExcelPieChart;
                     chart.Title.Text = "Distribución por Estados";
                     chart.Series.Add($"B2:B{row - 1}", $"A2:A{row - 1}");
-                    chart.SetPosition(1, 0, 4, 0); // Ajustar posición del gráfico
-                    chart.SetSize(600, 400);       // Ajustar tamaño del gráfico
+                    chart.SetPosition(1, 0, 4, 0); 
+                    chart.SetSize(600, 400);       
 
                     // Guardar el archivo
                     package.SaveAs(new FileInfo(filePath));
                 }
 
-                MessageBox.Show($"Reporte y gráfico generados en: {filePath}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -107,6 +105,7 @@ namespace Presentacion.Formulario_de_Reporte
                         FileName = filePath,
                         UseShellExecute = true
                     });
+                    MessageBox.Show($"Reporte y gráfico generados en: {filePath}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

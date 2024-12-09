@@ -8,6 +8,9 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\DocumentFormat.OpenXml.Framework.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EntityFramework.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.dll
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.System.Drawing.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\ExcelNumberFormat.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\itextsharp.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
@@ -25,6 +28,7 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Extensions.Logging.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Extensions.Options.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Modelo.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Negocio.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\RBush.dll
@@ -33,6 +37,7 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Collections.Immutable.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.ComponentModel.Annotations.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Drawing.Common.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Memory.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
@@ -49,6 +54,7 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\DocumentFormat.OpenXml.Framework.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EntityFramework.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\ExcelNumberFormat.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\itextsharp.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
@@ -66,11 +72,14 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Extensions.Options.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\RBush.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\SixLabors.Fonts.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Buffers.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Collections.Immutable.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Drawing.Common.pdb
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Drawing.Common.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Memory.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
@@ -88,6 +97,7 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.FormGestionPermisos.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios.FormAltaUsuario.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios.FormGestionUsuarios.resources
+C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios.FormRestablecerContraseña.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios.FormSesiones.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_de_Permisos.FormAltaGrupo.resources
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_Grupos.FormGestionGrupos.resources
@@ -112,13 +122,3 @@ C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\Proyec
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presenta.BC77CD05.Up2Date
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.exe
 C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.pdb
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.dll
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.Interfaces.dll
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.System.Drawing.dll
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Drawing.Common.dll
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\EPPlus.xml
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Drawing.Common.pdb
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\bin\Debug\System.Drawing.Common.xml
-C:\Users\belen\OneDrive\Documentos\Ing Software & Diploma\TP Soft-Diploma\ProyectoRRHH\Presentacion\obj\Debug\Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios.FormRestablecerContraseña.resources

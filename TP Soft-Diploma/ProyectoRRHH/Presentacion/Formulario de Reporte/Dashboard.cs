@@ -28,7 +28,7 @@ namespace Presentacion.Formulario_de_Reporte
 
         private void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            // Verificar la selección del ComboBox y abrir el formulario correspondiente
+
             string opcionSeleccionada = cbReportes.SelectedItem.ToString();
 
             switch (opcionSeleccionada)

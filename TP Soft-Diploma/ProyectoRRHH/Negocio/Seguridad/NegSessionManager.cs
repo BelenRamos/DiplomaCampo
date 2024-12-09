@@ -2,23 +2,24 @@
 using Datos.RepoSeguridad;
 using System;
 using System.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace Negocio
 {
     public class NegSessionManager
     {
         private static NegSessionManager instancia;
-        private readonly RepoSessionManager repoSessionManager;  // Dependencia a la capa de Datos
+        private readonly RepoSessionManager repoSessionManager;  
         public Usuarios UsuarioActual { get; private set; }
         public SessionManager SesionActual { get; private set; }
 
-        // Constructor privado para el patrón Singleton
+        
         private NegSessionManager()
         {
-            repoSessionManager = new RepoSessionManager(); // Inicializar el repositorio
+            repoSessionManager = new RepoSessionManager(); 
         }
 
-        // Obtener la instancia Singleton
+       
         public static NegSessionManager ObtenerInstancia()
         {
             if (instancia == null)
@@ -28,7 +29,6 @@ namespace Negocio
             return instancia;
         }
 
-        // Método para iniciar sesión
         public bool IniciarSesion(string email, string contrasenia)
         {
             UsuarioActual = repoSessionManager.Login(email, contrasenia);
@@ -47,18 +47,6 @@ namespace Negocio
             return false; // Login fallido
         }
 
-        // Método para cerrar sesión
-        //public void CerrarSesion()
-        //{
-        //    if (UsuarioActual != null)
-        //    {
-        //        // Actualizar el estado de la sesión en la base de datos
-        //        repoSessionManager.Logout(UsuarioActual.idUsuario);
-        //        UsuarioActual = null;
-        //        SesionActual = null;
-        //    }
-        //}
-
         public void CerrarSesion()
         {
             if (UsuarioActual != null && SesionActual != null)
@@ -68,7 +56,6 @@ namespace Negocio
                 SesionActual = null;
             }
         }
-
 
         // Método para actualizar el estado de la sesión
         public void ActualizarEstadoSesion(byte isLoggedIn)
@@ -80,9 +67,9 @@ namespace Negocio
             }
         }
 
-        public DataTable ObtenerReporteSesiones()
+        public DataTable ObtenerReporteSesiones(DateTime fechaDesde, DateTime fechaHasta)
         {
-            return repoSessionManager.ObtenerReporteSesiones();
+            return repoSessionManager.ObtenerReporteSesiones(fechaDesde, fechaHasta);
         }
     }
 }

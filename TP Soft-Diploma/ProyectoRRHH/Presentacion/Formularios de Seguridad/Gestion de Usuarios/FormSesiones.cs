@@ -1,16 +1,9 @@
 ﻿using iTextSharp.text.pdf;
 using iTextSharp.text;
-using Modelo;
 using Negocio;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
@@ -18,17 +11,22 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
     public partial class FormSesiones : Form
     {
         private NegSessionManager negSessionManager;
+
         public FormSesiones()
         {
             InitializeComponent();
             negSessionManager = NegSessionManager.ObtenerInstancia();
+
         }
         private void FormSesiones_Load(object sender, EventArgs e)
         {
+            DateTime fechaDesde = dtpFechaDesde.Value.Date;
+            DateTime fechaHasta = dtpFechaHasta.Value.Date;
+
             try
             {
                 // Obtener las sesiones desde la capa de negocio
-                DataTable sesiones = negSessionManager.ObtenerReporteSesiones();
+                DataTable sesiones = negSessionManager.ObtenerReporteSesiones(fechaDesde, fechaHasta);
 
                 if (sesiones == null || sesiones.Rows.Count == 0)
                 {
@@ -36,8 +34,6 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
                     return;
                 }
 
-                // Asignar los datos al DataGridView
-                dgvDataSesiones.DataSource = sesiones;
             }
             catch (Exception ex)
             {
@@ -48,8 +44,10 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
         {
             try
             {
-                // Obtener el reporte de sesiones desde la capa de negocio
-                DataTable reporteSesiones = negSessionManager.ObtenerReporteSesiones();
+                DateTime fechaDesde = dtpFechaDesde.Value.Date;
+                DateTime fechaHasta = dtpFechaHasta.Value.Date;
+               
+                DataTable reporteSesiones = negSessionManager.ObtenerReporteSesiones(fechaDesde, fechaHasta);
 
                 if (reporteSesiones == null || reporteSesiones.Rows.Count == 0)
                 {
@@ -91,16 +89,29 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
                     // Título del reporte
                     documento.Add(new Paragraph("Reporte de Sesiones"));
                     documento.Add(new Paragraph($"Generado el: {DateTime.Now}"));
-                    documento.Add(new Paragraph(" ")); // Espacio
+                    documento.Add(new Paragraph(" "));
 
-                    // Tabla para el reporte
                     PdfPTable tabla = new PdfPTable(sesiones.Columns.Count);
                     tabla.WidthPercentage = 100;
 
-                    // Encabezados
+                    // Encabezados personalizados
                     foreach (DataColumn columna in sesiones.Columns)
                     {
-                        PdfPCell celdaEncabezado = new PdfPCell(new Phrase(columna.ColumnName));
+                        string encabezado;
+                        if (columna.ColumnName == "sessionLogIn")
+                        {
+                            encabezado = "InicioSesion";
+                        }
+                        else if (columna.ColumnName == "sessionLogOut")
+                        {
+                            encabezado = "CierreSesion";
+                        }
+                        else
+                        {
+                            encabezado = columna.ColumnName;
+                        }
+
+                        PdfPCell celdaEncabezado = new PdfPCell(new Phrase(encabezado));
                         celdaEncabezado.BackgroundColor = BaseColor.LIGHT_GRAY;
                         tabla.AddCell(celdaEncabezado);
                     }
@@ -124,9 +135,36 @@ namespace Presentacion.Formularios_de_Seguridad.Gestion_de_Usuarios
             }
         }
 
-        private void dgvDataSesiones_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnFiltro_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Obtener las fechas seleccionadas
+                DateTime fechaDesde = dtpFechaDesde.Value.Date;
+                DateTime fechaHasta = dtpFechaHasta.Value.Date;
 
+                if (fechaDesde > fechaHasta)
+                {
+                    MessageBox.Show("La fecha 'Desde' no puede ser mayor que la fecha 'Hasta'.", "Error de rango", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Obtener los datos filtrados desde la capa de negocio
+                DataTable sesionesFiltradas = negSessionManager.ObtenerReporteSesiones(fechaDesde, fechaHasta);
+
+                if (sesionesFiltradas == null || sesionesFiltradas.Rows.Count == 0)
+                {
+                    MessageBox.Show("No hay datos de sesiones en el rango de fechas especificado.", "Sin datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Actualizar el DataGridView
+                dgvDataSesiones.DataSource = sesionesFiltradas;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al filtrar las sesiones: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
