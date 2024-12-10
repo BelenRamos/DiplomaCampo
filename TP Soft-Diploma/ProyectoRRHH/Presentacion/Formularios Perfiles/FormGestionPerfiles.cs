@@ -31,8 +31,16 @@ namespace Presentacion.Formularios_Perfiles
             try
             {
                 NegPerfiles negPerfiles = NegPerfiles.ObtenerInstancia();
+
                 List<Perfiles> perfiles = negPerfiles.ObtenerTodosLosPerfiles();
 
+                if (perfiles == null || perfiles.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron perfiles para mostrar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Limpia y recarga la lista
                 listaPerfiles.Items.Clear();
                 foreach (Perfiles perfil in perfiles)
                 {
@@ -57,6 +65,7 @@ namespace Presentacion.Formularios_Perfiles
             {
                 CargarPerfilesEnLista();
             }
+
         }
 
         private void btnEliminarPerfil_Click(object sender, EventArgs e)

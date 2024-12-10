@@ -30,15 +30,8 @@ namespace Negocio
         {
             try
             {
-                if (perfiles.Count > 0)
-                {
-                    return perfiles;
-                }
-                else
-                {
-                    perfiles = repositorio.ObtenerTodosLosPerfiles();
-                    return perfiles;
-                }
+                return repositorio.ObtenerTodosLosPerfiles();
+            
             }
             catch (Exception ex)
             {
@@ -81,7 +74,6 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones, puedes lanzarla nuevamente o manejarla de otra manera según tus necesidades.
                 throw new Exception("Error al dar de baja el perfil.", ex);
             }
         }
@@ -124,8 +116,6 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw new Exception("Error al eliminar el perfil de la oferta laboral.", ex);
-
-
             }
         }
     }

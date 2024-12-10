@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboEstados = new System.Windows.Forms.ComboBox();
             this.btnEliminarOL = new System.Windows.Forms.Button();
             this.btnModificarOL = new System.Windows.Forms.Button();
             this.btnAgregarOL = new System.Windows.Forms.Button();
@@ -38,17 +37,6 @@
             this.dgvOfertasLaborales = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOfertasLaborales)).BeginInit();
             this.SuspendLayout();
-            // 
-            // comboEstados
-            // 
-            this.comboEstados.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.comboEstados.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold);
-            this.comboEstados.ForeColor = System.Drawing.Color.DimGray;
-            this.comboEstados.FormattingEnabled = true;
-            this.comboEstados.Location = new System.Drawing.Point(390, 189);
-            this.comboEstados.Name = "comboEstados";
-            this.comboEstados.Size = new System.Drawing.Size(121, 24);
-            this.comboEstados.TabIndex = 9;
             // 
             // btnEliminarOL
             // 
@@ -95,7 +83,7 @@
             this.btnSeleccionCandidato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSeleccionCandidato.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSeleccionCandidato.ForeColor = System.Drawing.Color.Tan;
-            this.btnSeleccionCandidato.Location = new System.Drawing.Point(390, 319);
+            this.btnSeleccionCandidato.Location = new System.Drawing.Point(390, 246);
             this.btnSeleccionCandidato.Name = "btnSeleccionCandidato";
             this.btnSeleccionCandidato.Size = new System.Drawing.Size(121, 25);
             this.btnSeleccionCandidato.TabIndex = 11;
@@ -108,7 +96,7 @@
             this.btnRequistosOl.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRequistosOl.Font = new System.Drawing.Font("Arial Narrow", 10F, System.Drawing.FontStyle.Bold);
             this.btnRequistosOl.ForeColor = System.Drawing.Color.CadetBlue;
-            this.btnRequistosOl.Location = new System.Drawing.Point(390, 219);
+            this.btnRequistosOl.Location = new System.Drawing.Point(390, 190);
             this.btnRequistosOl.Name = "btnRequistosOl";
             this.btnRequistosOl.Size = new System.Drawing.Size(121, 32);
             this.btnRequistosOl.TabIndex = 12;
@@ -121,7 +109,7 @@
             this.btnPerfilar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPerfilar.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPerfilar.ForeColor = System.Drawing.Color.Tan;
-            this.btnPerfilar.Location = new System.Drawing.Point(390, 350);
+            this.btnPerfilar.Location = new System.Drawing.Point(390, 277);
             this.btnPerfilar.Name = "btnPerfilar";
             this.btnPerfilar.Size = new System.Drawing.Size(121, 27);
             this.btnPerfilar.TabIndex = 13;
@@ -143,12 +131,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(62)))));
-            this.ClientSize = new System.Drawing.Size(523, 392);
+            this.ClientSize = new System.Drawing.Size(523, 329);
             this.Controls.Add(this.dgvOfertasLaborales);
             this.Controls.Add(this.btnPerfilar);
             this.Controls.Add(this.btnRequistosOl);
             this.Controls.Add(this.btnSeleccionCandidato);
-            this.Controls.Add(this.comboEstados);
             this.Controls.Add(this.btnEliminarOL);
             this.Controls.Add(this.btnModificarOL);
             this.Controls.Add(this.btnAgregarOL);
@@ -161,7 +148,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox comboEstados;
         private System.Windows.Forms.Button btnEliminarOL;
         private System.Windows.Forms.Button btnModificarOL;
         private System.Windows.Forms.Button btnAgregarOL;

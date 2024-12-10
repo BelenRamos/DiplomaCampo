@@ -30,7 +30,6 @@ namespace Presentacion.Formularios_OL
             negEstados = NegEstados.ObtenerInstancia();
             try
             {
-                InicializarComboEstados();
                 dgvOfertasLaborales.DataSource = ofertasLaborales.ObtenerOfertasLaborales();
             }
             catch (Exception ex)
@@ -39,52 +38,18 @@ namespace Presentacion.Formularios_OL
             }
         }
 
-
-        private void ComboEstados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboEstados.SelectedItem != null)
-            {
-                var estadoSeleccionado = (Estados)comboEstados.SelectedItem;
-                CargarOfertasLaborales(estadoSeleccionado.codigo);
-            }
-        }
-
-        private void CargarOfertasLaborales(int codigoEstado)
+        private void CargarOfertasLaborales()
         {
             try
             {
-                if (codigoEstado == -1) // Mostrar todas las ofertas si se selecciona "Todos"
-                {
-                    dgvOfertasLaborales.DataSource = ofertasLaborales.ObtenerOfertasLaborales();
-                }
-                else
-                {
-                    dgvOfertasLaborales.DataSource = ofertasLaborales.ObtenerOfertasPorEstado(codigoEstado);
-                }
+                dgvOfertasLaborales.DataSource = ofertasLaborales.ObtenerOfertasLaborales();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al filtrar las ofertas laborales por estado: " + ex.Message);
+                MessageBox.Show("Error al cargar las ofertas laborales: " + ex.Message);
             }
         }
 
-        private void InicializarComboEstados()
-        {
-            try
-            {
-                List<Estados> estados = negEstados.ObtenerEstados();
-                estados.Insert(0, new Estados { codigo = -1, designacion = "Todos" });
-                comboEstados.DataSource = estados;
-                comboEstados.DisplayMember = "designacion";
-                comboEstados.ValueMember = "codigo";
-                comboEstados.SelectedIndex = 0; // Seleccionar "Todos" al inicio
-                comboEstados.SelectedIndexChanged += ComboEstados_SelectedIndexChanged;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar los estados: " + ex.Message);
-            }
-        }
 
         private void btnAgregarOL_Click(object sender, EventArgs e)
         {
